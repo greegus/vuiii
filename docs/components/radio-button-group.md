@@ -14,21 +14,81 @@ import { RadioButtonGroup } from 'vuiii'
 <script setup>
 import { ref } from 'vue'
 import { RadioButtonGroup } from '../../src'
+
+const view = ref()
+const status = ref()
+const viewIcon = ref('list')
+const sized = ref()
+const varianted = ref()
 </script>
 
-<ComponentDemo storybook="example-radiobuttongroup--default">
-  <!-- Add live demo here -->
+<ComponentDemo storybook="components-radiobuttongroup--default">
+  <RadioButtonGroup v-model="view" :options="['List', 'Grid', 'Table']" />
 </ComponentDemo>
 
 ```vue
-// Basic usage
 <RadioButtonGroup v-model="view" :options="['List', 'Grid', 'Table']" />
 ```
 
-## More Examples
+## Variants
+
+Use the `variant` prop to change the button style. Available variants: `default`, `primary`, `secondary`, `danger`.
+
+<ComponentDemo storybook="components-radiobuttongroup--variants">
+  <div style="display: flex; flex-flow: column; gap: 1rem;">
+    <RadioButtonGroup v-model="varianted" :options="['List', 'Grid', 'Table']" variant="default" />
+    <RadioButtonGroup v-model="varianted" :options="['List', 'Grid', 'Table']" variant="primary" />
+    <RadioButtonGroup v-model="varianted" :options="['List', 'Grid', 'Table']" variant="secondary" />
+    <RadioButtonGroup v-model="varianted" :options="['List', 'Grid', 'Table']" variant="danger" />
+  </div>
+</ComponentDemo>
 
 ```vue
-// With object options
+<RadioButtonGroup v-model="view" :options="options" variant="primary" />
+<RadioButtonGroup v-model="view" :options="options" variant="secondary" />
+<RadioButtonGroup v-model="view" :options="options" variant="danger" />
+```
+
+## Sizes
+
+Use the `size` prop to control the button size. Available sizes: `small`, `normal`, `large`.
+
+<ComponentDemo storybook="components-radiobuttongroup--sizes">
+  <div style="display: flex; flex-flow: column; gap: 1rem;">
+    <RadioButtonGroup v-model="sized" :options="['List', 'Grid', 'Table']" size="small" />
+    <RadioButtonGroup v-model="sized" :options="['List', 'Grid', 'Table']" size="normal" />
+    <RadioButtonGroup v-model="sized" :options="['List', 'Grid', 'Table']" size="large" />
+  </div>
+</ComponentDemo>
+
+```vue
+<RadioButtonGroup v-model="view" :options="options" size="small" />
+<RadioButtonGroup v-model="view" :options="options" size="normal" />
+<RadioButtonGroup v-model="view" :options="options" size="large" />
+```
+
+## Disabled
+
+Use the `disabled` prop to disable the entire group.
+
+```vue
+<RadioButtonGroup v-model="view" :options="options" disabled />
+```
+
+## Object Options
+
+Use `option-value` and `option-label` props to extract values from object arrays.
+
+<ComponentDemo storybook="components-radiobuttongroup--option-props-mapping">
+  <RadioButtonGroup
+    v-model="status"
+    :options="[{ id: 'active', name: 'Active' }, { id: 'inactive', name: 'Inactive' }]"
+    option-value="id"
+    option-label="name"
+  />
+</ComponentDemo>
+
+```vue
 <RadioButtonGroup
   v-model="status"
   :options="[{ id: 'active', name: 'Active' }, { id: 'inactive', name: 'Inactive' }]"
@@ -37,13 +97,31 @@ import { RadioButtonGroup } from '../../src'
 />
 ```
 
+## With Icons
+
+Use the `option-icon` extractor to display prefix icons on each button.
+
+<ComponentDemo storybook="components-radiobuttongroup--with-icons">
+  <RadioButtonGroup
+    v-model="viewIcon"
+    :options="[
+      { value: 'list', label: 'List', icon: 'list-bullet' },
+      { value: 'grid', label: 'Grid', icon: 'squares-2x2' },
+      { value: 'table', label: 'Table', icon: 'table-cells' }
+    ]"
+    option-value="value"
+    option-label="label"
+    option-icon="icon"
+  />
+</ComponentDemo>
+
 ```vue
-// With icons
 <RadioButtonGroup
   v-model="view"
   :options="[
-    { value: 'list', label: 'List', icon: 'list' },
-    { value: 'grid', label: 'Grid', icon: 'grid' }
+    { value: 'list', label: 'List', icon: 'list-bullet' },
+    { value: 'grid', label: 'Grid', icon: 'squares-2x2' },
+    { value: 'table', label: 'Table', icon: 'table-cells' }
   ]"
   option-value="value"
   option-label="label"
@@ -51,6 +129,20 @@ import { RadioButtonGroup } from '../../src'
 />
 ```
 
+## With Descriptions
+
+Use the `option-description` extractor to add tooltip text (shown via the `title` attribute) to each button.
+
+```vue
+<RadioButtonGroup
+  v-model="selected"
+  :options="options"
+  option-value="value"
+  option-label="label"
+  option-description="description"
+/>
+```
+
 ::: tip Storybook
-For interactive examples with all variants, see [RadioButtonGroup in Storybook](https://greegus.github.io/vuiii/storybook/?path=/docs/example-radiobuttongroup--docs).
+For interactive examples with all variants, see [RadioButtonGroup in Storybook](https://greegus.github.io/vuiii/storybook/?path=/docs/components-radiobuttongroup--docs).
 :::
