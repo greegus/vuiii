@@ -58,14 +58,9 @@ const fields: FormFieldOrRow<UserData>[] = [
 ```
 
 ```vue
-// With validation results from useValidation
-const { validatedFields, validate } = useValidation(data, validationRules)
+// With validation results from useValidation const { validatedFields, validate } = useValidation(data, validationRules)
 
-<FormFields
-  :fields="fields"
-  v-model="data"
-  :validation-results="validatedFields"
-/>
+<FormFields :fields="fields" v-model="data" :validation-results="validatedFields" />
 ```
 
 ::: tip Storybook

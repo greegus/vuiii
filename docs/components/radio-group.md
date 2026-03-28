@@ -21,8 +21,7 @@ import { RadioGroup } from '../../src'
 </ComponentDemo>
 
 ```vue
-// Basic usage with string array
-import { RadioGroup } from 'vuiii'
+// Basic usage with string array import { RadioGroup } from 'vuiii'
 
 <RadioGroup v-model="color" :options="['Red', 'Green', 'Blue']" />
 ```
@@ -30,38 +29,20 @@ import { RadioGroup } from 'vuiii'
 ## More Examples
 
 ```vue
-// With object options and extractors
-const plans = [
-  { id: 'free', name: 'Free', info: '0$/month' },
-  { id: 'pro', name: 'Pro', info: '10$/month' },
-  { id: 'enterprise', name: 'Enterprise', info: 'Contact us' }
-]
+// With object options and extractors const plans = [ { id: 'free', name: 'Free', info: '0$/month' }, { id: 'pro', name:
+'Pro', info: '10$/month' }, { id: 'enterprise', name: 'Enterprise', info: 'Contact us' } ]
 
-<RadioGroup
-  v-model="selectedPlan"
-  :options="plans"
-  option-value="id"
-  option-label="name"
-  option-description="info"
-/>
+<RadioGroup v-model="selectedPlan" :options="plans" option-value="id" option-label="name" option-description="info" />
 ```
 
 ```vue
 // Inline layout (horizontal)
-<RadioGroup
-  v-model="size"
-  :options="['Small', 'Medium', 'Large']"
-  inline
-/>
+<RadioGroup v-model="size" :options="['Small', 'Medium', 'Large']" inline />
 ```
 
 ```vue
 // With type parsing
-<RadioGroup
-  v-model="quantity"
-  :options="[1, 2, 3, 4, 5]"
-  type="number"
-/>
+<RadioGroup v-model="quantity" :options="[1, 2, 3, 4, 5]" type="number" />
 ```
 
 ::: tip Storybook

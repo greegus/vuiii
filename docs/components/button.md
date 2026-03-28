@@ -6,7 +6,7 @@ Supports multiple variants, sizes, icons, and loading states.
 ## Import
 
 ```typescript
-import { Button } from "vuiii";
+import { Button } from 'vuiii'
 ```
 
 ## Basic Usage

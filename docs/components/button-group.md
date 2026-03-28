@@ -61,4 +61,3 @@ import { ButtonGroup, Button } from '../../src'
   <Button label="Next" suffixIcon="chevron-right" />
 </ButtonGroup>
 ```
-

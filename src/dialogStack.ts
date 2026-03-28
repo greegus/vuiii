@@ -63,73 +63,72 @@
  *   }
  * })
  */
-import { type Component, computed, markRaw, ref } from "vue";
+import { type Component, computed, markRaw, ref } from 'vue'
 
-import type { ButtonVariant, DialogLayoutButton } from "./types";
-
-import { DialogLayout } from "./index";
+import { DialogLayout } from './index'
+import type { ButtonVariant, DialogLayoutButton } from './types'
 
 export type Dialog<ResultType = any, DialogComponentProps = Record<string, any>> = {
-  id: number;
-  component: Component;
-  props?: DialogComponentProps;
-  resolve: (result: ResultType) => void;
-  focusElement: HTMLElement | null;
-  onBeforeClose?: (confirm: () => void) => void;
-  modal?: boolean;
-};
+  id: number
+  component: Component
+  props?: DialogComponentProps
+  resolve: (result: ResultType) => void
+  focusElement: HTMLElement | null
+  onBeforeClose?: (confirm: () => void) => void
+  modal?: boolean
+}
 
 export type Config = Partial<{
-  cancelLabel: string;
-  confirmLabel: string;
-}>;
+  cancelLabel: string
+  confirmLabel: string
+}>
 
 export type DialogOptions = {
-  title?: string;
-  content?: string;
-  buttons?: DialogLayoutButton[];
-};
+  title?: string
+  content?: string
+  buttons?: DialogLayoutButton[]
+}
 
 export type AlertOptions =
   | string
   | {
-      title?: string;
-      content?: string;
-      confirmLabel?: string;
-      confirmVariant?: ButtonVariant;
-      confirmIcon?: string;
-      modal?: boolean;
-    };
+      title?: string
+      content?: string
+      confirmLabel?: string
+      confirmVariant?: ButtonVariant
+      confirmIcon?: string
+      modal?: boolean
+    }
 
 export type ConfirmOptions =
   | string
   | {
-      title?: string;
-      content?: string;
-      cancelLabel?: string;
-      cancelVariant?: ButtonVariant;
-      cancelIcon?: string;
-      confirmLabel?: string;
-      confirmVariant?: ButtonVariant;
-      confirmIcon?: string;
-      modal?: boolean;
-    };
+      title?: string
+      content?: string
+      cancelLabel?: string
+      cancelVariant?: ButtonVariant
+      cancelIcon?: string
+      confirmLabel?: string
+      confirmVariant?: ButtonVariant
+      confirmIcon?: string
+      modal?: boolean
+    }
 
 const defaultConfig: Config = {
-  cancelLabel: "Cancel",
-  confirmLabel: "OK",
-};
+  cancelLabel: 'Cancel',
+  confirmLabel: 'OK',
+}
 
-const config = defaultConfig;
+const config = defaultConfig
 
-const iteration = ref<number>(1);
+const iteration = ref<number>(1)
 
-export const dialogs = ref<Dialog[]>([]);
-export const activeDialog = computed(() => dialogs.value[dialogs.value.length - 1]);
+export const dialogs = ref<Dialog[]>([])
+export const activeDialog = computed(() => dialogs.value[dialogs.value.length - 1])
 
 const getId = (): number => {
-  return iteration.value++;
-};
+  return iteration.value++
+}
 
 /**
  * Opens a custom dialog component and returns a promise that resolves when the dialog is closed.
@@ -150,9 +149,9 @@ export const openDialog = <ResultType = any, DialogComponentProps = Record<strin
   props?: DialogComponentProps,
   { modal }: { modal?: boolean } = {},
 ): Promise<ResultType> => {
-  const focusElement = document.activeElement as HTMLElement;
+  const focusElement = document.activeElement as HTMLElement
 
-  focusElement.blur?.();
+  focusElement.blur?.()
 
   return new Promise((resolve) => {
     const dialog: Dialog<ResultType, DialogComponentProps> = {
@@ -162,11 +161,11 @@ export const openDialog = <ResultType = any, DialogComponentProps = Record<strin
       resolve,
       focusElement,
       modal,
-    };
+    }
 
-    dialogs.value.push(dialog as Dialog);
-  });
-};
+    dialogs.value.push(dialog as Dialog)
+  })
+}
 
 /**
  * Opens an alert dialog with a single confirmation button.
@@ -188,13 +187,13 @@ export const openDialog = <ResultType = any, DialogComponentProps = Record<strin
  * })
  */
 export const openAlert = (options: AlertOptions): Promise<void> => {
-  if (typeof options === "string") {
+  if (typeof options === 'string') {
     options = {
       content: options,
-    };
+    }
   }
 
-  const { title, content, confirmVariant, confirmLabel = config.confirmLabel, confirmIcon, modal } = options;
+  const { title, content, confirmVariant, confirmLabel = config.confirmLabel, confirmIcon, modal } = options
 
   return openDialog(DialogLayout, {
     title,
@@ -202,13 +201,13 @@ export const openAlert = (options: AlertOptions): Promise<void> => {
     modal,
     buttons: [
       {
-        variant: confirmVariant || "primary",
-        label: confirmLabel || "",
+        variant: confirmVariant || 'primary',
+        label: confirmLabel || '',
         icon: confirmIcon,
       },
     ],
-  });
-};
+  })
+}
 
 /**
  * Opens a confirmation dialog with cancel and confirm buttons.
@@ -231,10 +230,10 @@ export const openAlert = (options: AlertOptions): Promise<void> => {
  * })
  */
 export const openConfirm = (options: ConfirmOptions): Promise<boolean> => {
-  if (typeof options === "string") {
+  if (typeof options === 'string') {
     options = {
       content: options,
-    };
+    }
   }
 
   const {
@@ -247,7 +246,7 @@ export const openConfirm = (options: ConfirmOptions): Promise<boolean> => {
     confirmVariant,
     confirmIcon,
     modal,
-  } = options;
+  } = options
 
   return openDialog(DialogLayout, {
     title,
@@ -255,37 +254,37 @@ export const openConfirm = (options: ConfirmOptions): Promise<boolean> => {
     modal,
     buttons: [
       {
-        variant: cancelVariant || "secondary",
-        label: cancelLabel || "",
+        variant: cancelVariant || 'secondary',
+        label: cancelLabel || '',
         icon: cancelIcon,
         value: false,
       },
       {
-        variant: confirmVariant || "primary",
-        label: confirmLabel || "",
+        variant: confirmVariant || 'primary',
+        label: confirmLabel || '',
         icon: confirmIcon,
         value: true,
       },
     ],
-  });
-};
+  })
+}
 
 const executeCloseDialog = (dialog: Dialog, result: any = undefined) => {
-  dialogs.value = dialogs.value.filter((m) => m.id !== dialog.id);
-  dialog.resolve(result);
+  dialogs.value = dialogs.value.filter((m) => m.id !== dialog.id)
+  dialog.resolve(result)
 
   if (dialog.focusElement) {
-    dialog.focusElement.focus?.();
+    dialog.focusElement.focus?.()
   }
-};
+}
 
 export const closeDialog = (dialog: Dialog, result: any = undefined) => {
   if (dialog.onBeforeClose) {
-    dialog.onBeforeClose(() => executeCloseDialog(dialog, result));
+    dialog.onBeforeClose(() => executeCloseDialog(dialog, result))
   } else {
-    executeCloseDialog(dialog, result);
+    executeCloseDialog(dialog, result)
   }
-};
+}
 
 /**
  * Composable for closing the current dialog from within a dialog component.
@@ -311,21 +310,21 @@ export const closeDialog = (dialog: Dialog, result: any = undefined) => {
  */
 export const useCloseDialog = (onBeforeClose?: (confirm: () => void) => void): ((result?: any) => void) => {
   if (onBeforeClose && activeDialog.value) {
-    activeDialog.value.onBeforeClose = onBeforeClose;
+    activeDialog.value.onBeforeClose = onBeforeClose
   }
 
   return (result?: any) => {
     if (activeDialog.value) {
-      closeDialog(activeDialog.value, result);
+      closeDialog(activeDialog.value, result)
     }
-  };
-};
+  }
+}
 
 const context = {
   open: openDialog,
   alert: openAlert,
   confirm: openConfirm,
-};
+}
 
 /**
  * Composable that provides access to dialog stack operations.
@@ -349,5 +348,5 @@ const context = {
  * }
  */
 export function useDialogStack() {
-  return context;
+  return context
 }

@@ -32,25 +32,18 @@ const { submit, isSubmitting } = useSubmitAction(
 
 ```typescript
 // With confirmation before submit
-const { submit, isSubmitting } = useSubmitAction(
-  (id) => api.deleteUser(id),
-  {
-    onBeforeSubmit: async ({ dialog }) => {
-      return await dialog.confirm('Are you sure?')
-    },
-    successMessage: 'User deleted'
-  }
-)
+const { submit, isSubmitting } = useSubmitAction((id) => api.deleteUser(id), {
+  onBeforeSubmit: async ({ dialog }) => {
+    return await dialog.confirm('Are you sure?')
+  },
+  successMessage: 'User deleted',
+})
 ```
 
 ```typescript
 // With dynamic messages
-const { submit, result } = useSubmitAction(
-  (data) => api.saveItem(data),
-  {
-    successMessage: ({ result }) => `Saved item ${result.id}`,
-    errorMessage: ({ error }) => `Error: ${error.message}`
-  }
-)
+const { submit, result } = useSubmitAction((data) => api.saveItem(data), {
+  successMessage: ({ result }) => `Saved item ${result.id}`,
+  errorMessage: ({ error }) => `Error: ${error.message}`,
+})
 ```
-

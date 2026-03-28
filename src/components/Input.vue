@@ -100,70 +100,70 @@
  * @emits suffix-icon-click - When suffix icon is clicked
  */
 export type InputRef = {
-  input: HTMLInputElement;
-  focus: () => void;
-  select: () => void;
-};
+  input: HTMLInputElement
+  focus: () => void
+  select: () => void
+}
 
 export default {
   inheritAttrs: false,
-};
+}
 </script>
 
 <script lang="ts" setup>
-import { ref, useAttrs, useSlots } from "vue";
+import { ref, useAttrs, useSlots } from 'vue'
 
 import InputWrapper, {
   type InputWrapperEmits,
   type InputWrapperProps,
   type InputWrapperSlots,
-} from "@/components/InputWrapper.vue";
-import { useAttrsWithoutClass } from "@/composables/useAttrsWithoutClass";
+} from '@/components/InputWrapper.vue'
+import { useAttrsWithoutClass } from '@/composables/useAttrsWithoutClass'
 
-type ModelValueType = string | number | Date | null | undefined;
+type ModelValueType = string | number | Date | null | undefined
 
-const modelValue = defineModel<ModelValueType>();
+const modelValue = defineModel<ModelValueType>()
 
 const props = defineProps<
   InputWrapperProps & {
-    inputClass?: any;
-    valueAsNumber?: boolean;
-    valueAsDate?: boolean;
+    inputClass?: any
+    valueAsNumber?: boolean
+    valueAsDate?: boolean
   }
->();
+>()
 
-defineEmits<InputWrapperEmits>();
+defineEmits<InputWrapperEmits>()
 
-defineSlots<InputWrapperSlots>();
+defineSlots<InputWrapperSlots>()
 
-const attrsWithoutClass = useAttrsWithoutClass();
-const slots = useSlots();
+const attrsWithoutClass = useAttrsWithoutClass()
+const slots = useSlots()
 
-const input = ref();
+const input = ref()
 
 function retrieveTargetValue(e: Event): ModelValueType {
-  const target = e.target as HTMLInputElement;
+  const target = e.target as HTMLInputElement
 
   if (props.valueAsNumber) {
-    return target.valueAsNumber;
+    return target.valueAsNumber
   }
 
   if (props.valueAsDate) {
-    return target.valueAsDate;
+    return target.valueAsDate
   }
 
-  return target.value;
+  return target.value
 }
 
 function handleInput(e: Event) {
-  modelValue.value = retrieveTargetValue(e);
+  modelValue.value = retrieveTargetValue(e)
 }
 
 defineExpose({
   input,
   focus: () => input.value.focus(),
   select: () => input.value.select(),
-});
+})
 </script>
 
 <style scoped>

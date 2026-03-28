@@ -1,8 +1,5 @@
 <template>
-  <hr
-    class="Divider"
-    :class="{ 'Divider--vertical': orientation === 'vertical' }"
-  />
+  <hr class="Divider" :class="{ 'Divider--vertical': orientation === 'vertical' }" />
 </template>
 
 <script lang="ts" setup>
@@ -38,11 +35,14 @@
  *   { name: 'email', component: Input, label: 'Email' }
  * ]
  */
-withDefaults(defineProps<{
-  orientation?: "horizontal" | "vertical";
-}>(), {
-  orientation: "horizontal"
-});
+withDefaults(
+  defineProps<{
+    orientation?: 'horizontal' | 'vertical'
+  }>(),
+  {
+    orientation: 'horizontal',
+  },
+)
 </script>
 
 <style scoped>

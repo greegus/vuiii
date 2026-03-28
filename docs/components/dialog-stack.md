@@ -44,7 +44,7 @@ if (confirmed) {
 // Show a custom dialog component
 const result = await dialog.open(MyCustomDialog, {
   title: 'Edit User',
-  user: userData
+  user: userData,
 })
 ```
 
@@ -75,4 +75,3 @@ function save() {
 }
 </script>
 ```
-

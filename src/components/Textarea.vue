@@ -71,53 +71,52 @@
  * @emits prefix-icon-click - When prefix icon is clicked
  */
 export type TextareaRef = {
-  focus: () => void;
-  select: () => void;
-};
+  focus: () => void
+  select: () => void
+}
 
 export default {
   inheritAttrs: false,
-};
+}
 </script>
 
 <script lang="ts" setup>
-import "@/assets/css/input.css";
-
-import { ref, useSlots } from "vue";
+import '@/assets/css/input.css'
+import { ref, useSlots } from 'vue'
 
 import InputWrapper, {
   type InputWrapperEmits,
   type InputWrapperProps,
   type InputWrapperSlots,
-} from "@/components/InputWrapper.vue";
-import { useAttrsWithoutClass } from "@/composables/useAttrsWithoutClass";
+} from '@/components/InputWrapper.vue'
+import { useAttrsWithoutClass } from '@/composables/useAttrsWithoutClass'
 
-const modelValue = defineModel<string>();
+const modelValue = defineModel<string>()
 
 defineProps<
-  Omit<InputWrapperProps, "suffixIcon"> & {
-    disabled?: boolean;
-    readonly?: boolean;
+  Omit<InputWrapperProps, 'suffixIcon'> & {
+    disabled?: boolean
+    readonly?: boolean
   }
->();
+>()
 
-defineEmits<Omit<InputWrapperEmits, "suffix-icon-click">>();
+defineEmits<Omit<InputWrapperEmits, 'suffix-icon-click'>>()
 
-defineSlots<Omit<InputWrapperSlots, "suffix">>();
+defineSlots<Omit<InputWrapperSlots, 'suffix'>>()
 
-const attrsWithoutClass = useAttrsWithoutClass();
-const slots = useSlots();
+const attrsWithoutClass = useAttrsWithoutClass()
+const slots = useSlots()
 
-const textareaElement = ref();
+const textareaElement = ref()
 
 function handleInput(event: Event) {
-  modelValue.value = (event.target as HTMLTextAreaElement).value;
+  modelValue.value = (event.target as HTMLTextAreaElement).value
 }
 
 defineExpose({
   focus: () => textareaElement.value.focus(),
   select: () => textareaElement.value.select(),
-});
+})
 </script>
 
 <style scoped>

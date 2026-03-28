@@ -21,8 +21,7 @@ import { Input } from '../../src'
 </ComponentDemo>
 
 ```vue
-// Basic usage
-import { Input } from 'vuiii'
+// Basic usage import { Input } from 'vuiii'
 
 <Input v-model="name" placeholder="Enter your name" />
 ```

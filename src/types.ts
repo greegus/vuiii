@@ -14,36 +14,36 @@
  *   ValidationResults
  * } from 'vuiii'
  */
-import type { AsyncComponentLoader, Component, Ref } from "vue";
-import type { RouteLocationRaw } from "vue-router";
+import type { AsyncComponentLoader, Component, Ref } from 'vue'
+import type { RouteLocationRaw } from 'vue-router'
 
 /** String that can be a key of T or any string (for flexible typing) */
-export type ObjectKeyOrAnyString<T> = (keyof T & string) | (string & {});
+export type ObjectKeyOrAnyString<T> = (keyof T & string) | (string & {})
 
 /** Value that may be a promise */
-export type MaybePromise<T> = T | Promise<T>;
+export type MaybePromise<T> = T | Promise<T>
 
 /** String literal type that also accepts any string */
-export type ConstOrAnyString<T extends string> = T | (string & {});
+export type ConstOrAnyString<T extends string> = T | (string & {})
 
 /** Size variants for inputs and icons: 'small' | 'normal' | 'large' */
-export type InputSize = "small" | "normal" | "large";
+export type InputSize = 'small' | 'normal' | 'large'
 
 /** Size variants for icons (same as InputSize) */
-export type IconSize = InputSize;
+export type IconSize = InputSize
 
 /** Button color variants: 'default' | 'primary' | 'secondary' | 'danger' */
-export type ButtonVariant = "default" | "primary" | "secondary" | "danger";
+export type ButtonVariant = 'default' | 'primary' | 'secondary' | 'danger'
 
 /** Configuration for dialog action buttons */
 export type DialogLayoutButton = {
-  variant?: ButtonVariant;
-  label: string;
-  icon?: string;
-  value?: any;
-  disabled?: boolean;
-  loading?: boolean;
-};
+  variant?: ButtonVariant
+  label: string
+  icon?: string
+  value?: any
+  disabled?: boolean
+  loading?: boolean
+}
 
 /**
  * Configuration for a Table column.
@@ -67,26 +67,26 @@ export type DialogLayoutButton = {
  * ]
  */
 export type TableColumn<T = any> = {
-  name: ObjectKeyOrAnyString<T>;
-  label?: string;
-  align?: "left" | "right" | "center";
-  width?: string;
-  noPadding?: boolean;
-  value?: (item: T, index: number) => unknown;
-  formatter?: (value: any) => unknown;
-  href?: (item: T) => RouteLocationRaw;
-  target?: ConstOrAnyString<"_blank">;
-  cellClass?: string | ((cell: { item: T; value: any }) => string);
-  headerClass?: string;
-  sortable?: boolean;
-  sorter?: (a: any, b: any) => number;
-};
+  name: ObjectKeyOrAnyString<T>
+  label?: string
+  align?: 'left' | 'right' | 'center'
+  width?: string
+  noPadding?: boolean
+  value?: (item: T, index: number) => unknown
+  formatter?: (value: any) => unknown
+  href?: (item: T) => RouteLocationRaw
+  target?: ConstOrAnyString<'_blank'>
+  cellClass?: string | ((cell: { item: T; value: any }) => string)
+  headerClass?: string
+  sortable?: boolean
+  sorter?: (a: any, b: any) => number
+}
 
 /**
  * Property extractor - can be a key name or a function.
  * Used by Select, Autocomplete, etc. for extracting values from option items.
  */
-export type Extractor = string | number | ((item: any) => string | number);
+export type Extractor = string | number | ((item: any) => string | number)
 
 /**
  * Normalized option structure used by Select, Autocomplete, RadioGroup, CheckboxGroup.
@@ -104,41 +104,41 @@ export type Extractor = string | number | ((item: any) => string | number);
  * }
  */
 export type Option<T = any> = {
-  value: string | number;
-  label: string;
-  disabled?: boolean;
-  description?: string;
-  icon?: string;
-  data: T;
-  index?: number;
-  isSelected?: boolean;
-};
+  value: string | number
+  label: string
+  disabled?: boolean
+  description?: string
+  icon?: string
+  data: T
+  index?: number
+  isSelected?: boolean
+}
 
 export type OptionGroup<T = any> = {
-  label: string;
-  options: Option<T>[];
-};
+  label: string
+  options: Option<T>[]
+}
 
 export type ValueParser<SerializedValueType = any, RawValueType = any> = {
-  parse: (serializedValue: SerializedValueType) => RawValueType;
-  stringify: (rawValue: RawValueType) => SerializedValueType;
-};
+  parse: (serializedValue: SerializedValueType) => RawValueType
+  stringify: (rawValue: RawValueType) => SerializedValueType
+}
 
-export type Tabs = Record<string, string>;
+export type Tabs = Record<string, string>
 
 export type BreadcrumbItems = {
-  label: string;
-  link: string | RouteLocationRaw;
-}[];
+  label: string
+  link: string | RouteLocationRaw
+}[]
 
 /**
  * Custom getter/setter for form field value transformation.
  * Used when the field value doesn't directly map to a model property.
  */
 export type FormFieldValue<T> = {
-  getter: (modelValue: T) => unknown;
-  setter: (value: unknown, modelValue: T) => T;
-};
+  getter: (modelValue: T) => unknown
+  setter: (value: unknown, modelValue: T) => T
+}
 
 /**
  * Configuration for a FormFields field.
@@ -176,43 +176,43 @@ export type FormFieldValue<T> = {
  * ]
  */
 export type FormField<Data extends {} = any> = {
-  name: ObjectKeyOrAnyString<Data>;
-  label?: string;
-  description?: string;
-  hint?: string;
-  required?: boolean | ((value: any) => boolean);
-  disabled?: boolean | ((value: any) => boolean);
-  component: string | Component | AsyncComponentLoader;
-  props?: Record<string, unknown>;
-  value?: FormFieldValue<Data>;
-};
+  name: ObjectKeyOrAnyString<Data>
+  label?: string
+  description?: string
+  hint?: string
+  required?: boolean | ((value: any) => boolean)
+  disabled?: boolean | ((value: any) => boolean)
+  component: string | Component | AsyncComponentLoader
+  props?: Record<string, unknown>
+  value?: FormFieldValue<Data>
+}
 
-export type FormFieldRow<Data extends {} = any> = FormField<Data>[];
+export type FormFieldRow<Data extends {} = any> = FormField<Data>[]
 
-export const FORM_DIVIDER = "–" as const;
-export type FormDivider = typeof FORM_DIVIDER;
+export const FORM_DIVIDER = '–' as const
+export type FormDivider = typeof FORM_DIVIDER
 
-export type FormFieldOrRow<Data extends {} = any> = FormField<Data> | FormFieldRow<Data> | FormDivider;
+export type FormFieldOrRow<Data extends {} = any> = FormField<Data> | FormFieldRow<Data> | FormDivider
 
 // Pagination
 
 export type Pagination = {
-  currentPage: number;
-  hasNextPage?: boolean;
-  hasPreviousPage?: boolean;
-  totalItems: number;
-  itemsPerPage: number;
-  totalPages: number;
-};
+  currentPage: number
+  hasNextPage?: boolean
+  hasPreviousPage?: boolean
+  totalItems: number
+  itemsPerPage: number
+  totalPages: number
+}
 
 export type PaginatedData<Item = unknown> = {
-  items: Item[];
-  pagination: Pagination;
-};
+  items: Item[]
+  pagination: Pagination
+}
 
 export type PaginatedDataSource<Item> = {
-  (params: { page: number; itemsPerPage: number }): Promise<PaginatedData<Item>>;
-};
+  (params: { page: number; itemsPerPage: number }): Promise<PaginatedData<Item>>
+}
 
 /**
  * Results from useValidation. Used to display validation state in forms.
@@ -235,26 +235,26 @@ export type PaginatedDataSource<Item> = {
  * }
  */
 export type ValidationResults<Rules extends {} = any> = {
-  isValid: boolean;
-  isInvalid: boolean;
-  errorMessages: Partial<Record<keyof Rules, string>>;
-  validatedFields: Record<keyof Rules, ValidationFieldResults>;
-};
+  isValid: boolean
+  isInvalid: boolean
+  errorMessages: Partial<Record<keyof Rules, string>>
+  validatedFields: Record<keyof Rules, ValidationFieldResults>
+}
 
 export type ValidationFieldResults = {
-  isValid?: boolean;
-  isInvalid?: boolean;
-  errorMessage: string;
-  validators?: any[];
-};
+  isValid?: boolean
+  isInvalid?: boolean
+  errorMessage: string
+  validators?: any[]
+}
 
-export type ElementRef = Readonly<Ref<HTMLElement | null | undefined>>;
+export type ElementRef = Readonly<Ref<HTMLElement | null | undefined>>
 
 /** Keyboard shortcut definition for ShortcutIcon component */
 export type Shortcut = {
-  key: string;
-  shift?: boolean;
-  alt?: boolean;
-  mod?: boolean;
-  ctrl?: boolean;
-};
+  key: string
+  shift?: boolean
+  alt?: boolean
+  mod?: boolean
+  ctrl?: boolean
+}

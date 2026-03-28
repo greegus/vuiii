@@ -67,7 +67,7 @@ const columns: TableColumn<User>[] = [
   :items="users"
   :columns="[
     { name: 'name', label: 'Name', sortable: true },
-    { name: 'createdAt', label: 'Created', sortable: true, sorter: (a, b) => a - b }
+    { name: 'createdAt', label: 'Created', sortable: true, sorter: (a, b) => a - b },
   ]"
   v-model:sort-column-name="sortColumn"
   v-model:sort-direction="sortDir"

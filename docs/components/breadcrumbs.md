@@ -20,15 +20,9 @@ import { Breadcrumbs } from '../../src'
 </ComponentDemo>
 
 ```vue
-// Basic usage
-import { Breadcrumbs } from 'vuiii'
-import type { BreadcrumbItems } from 'vuiii'
-
-const breadcrumbs: BreadcrumbItems = [
-  { label: 'Home', link: '/' },
-  { label: 'Products', link: '/products' },
-  { label: 'Electronics', link: '/products/electronics' }
-]
+// Basic usage import { Breadcrumbs } from 'vuiii' import type { BreadcrumbItems } from 'vuiii' const breadcrumbs:
+BreadcrumbItems = [ { label: 'Home', link: '/' }, { label: 'Products', link: '/products' }, { label: 'Electronics',
+link: '/products/electronics' } ]
 
 <Breadcrumbs :breadcrumbs="breadcrumbs" />
 ```
@@ -36,12 +30,8 @@ const breadcrumbs: BreadcrumbItems = [
 ## More Examples
 
 ```vue
-// With named routes
-const breadcrumbs: BreadcrumbItems = [
-  { label: 'Dashboard', link: { name: 'dashboard' } },
-  { label: 'Users', link: { name: 'users' } },
-  { label: 'John Doe', link: { name: 'user', params: { id: 123 } } }
-]
+// With named routes const breadcrumbs: BreadcrumbItems = [ { label: 'Dashboard', link: { name: 'dashboard' } }, {
+label: 'Users', link: { name: 'users' } }, { label: 'John Doe', link: { name: 'user', params: { id: 123 } } } ]
 ```
 
 ::: tip Storybook

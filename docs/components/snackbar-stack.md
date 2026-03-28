@@ -45,10 +45,9 @@ Messages automatically dismiss after 7 seconds by default. Users can also manual
 
 ## Message Types
 
-| Method | Description |
-|--------|-------------|
-| `success(message)` | Green success notification |
-| `error(message)` | Red error notification |
-| `info(message)` | Blue informational notification |
-| `warning(message)` | Yellow warning notification |
-
+| Method             | Description                     |
+| ------------------ | ------------------------------- |
+| `success(message)` | Green success notification      |
+| `error(message)`   | Red error notification          |
+| `info(message)`    | Blue informational notification |
+| `warning(message)` | Yellow warning notification     |

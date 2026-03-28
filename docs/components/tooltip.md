@@ -130,21 +130,21 @@ Enable `showOnFocus` to also show the tooltip when the trigger element receives 
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `label` | `string` | — | Text content of the tooltip |
-| `placement` | `'top' \| 'bottom' \| 'left' \| 'right'` | `'top'` | Position of the tooltip relative to the trigger |
-| `withArrow` | `boolean` | `false` | Show an arrow pointing towards the trigger |
-| `delay` | `number` | — | Delay in milliseconds before showing the tooltip on hover |
-| `offset` | `number` | — | Gap in pixels between the trigger and tooltip (overrides default 4px) |
-| `showOnFocus` | `boolean` | `false` | Also show the tooltip when the trigger receives focus |
+| Prop          | Type                                     | Default | Description                                                           |
+| ------------- | ---------------------------------------- | ------- | --------------------------------------------------------------------- |
+| `label`       | `string`                                 | —       | Text content of the tooltip                                           |
+| `placement`   | `'top' \| 'bottom' \| 'left' \| 'right'` | `'top'` | Position of the tooltip relative to the trigger                       |
+| `withArrow`   | `boolean`                                | `false` | Show an arrow pointing towards the trigger                            |
+| `delay`       | `number`                                 | —       | Delay in milliseconds before showing the tooltip on hover             |
+| `offset`      | `number`                                 | —       | Gap in pixels between the trigger and tooltip (overrides default 4px) |
+| `showOnFocus` | `boolean`                                | `false` | Also show the tooltip when the trigger receives focus                 |
 
 ## Slots
 
-| Slot | Description |
-|------|-------------|
-| `default` | The trigger content that the tooltip wraps |
-| `label` | Custom tooltip label content (alternative to `label` prop) |
+| Slot      | Description                                                |
+| --------- | ---------------------------------------------------------- |
+| `default` | The trigger content that the tooltip wraps                 |
+| `label`   | Custom tooltip label content (alternative to `label` prop) |
 
 ::: tip Storybook
 For interactive examples with all variants, see [Tooltip in Storybook](https://greegus.github.io/vuiii/storybook/?path=/docs/example-tooltip--docs).

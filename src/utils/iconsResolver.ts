@@ -4,39 +4,39 @@
  *
  * @module iconsResolver
  */
-import { type Component, defineAsyncComponent, h } from "vue";
+import { type Component, defineAsyncComponent, h } from 'vue'
 
-export type IconComponent = string | Component | undefined;
+export type IconComponent = string | Component | undefined
 
 /** Function that resolves an icon name to a Vue component */
-export type IconResolver = (name: string) => IconComponent;
+export type IconResolver = (name: string) => IconComponent
 
-const icons = import.meta.glob("../assets/icons/*.svg", {
-  query: "?raw",
-  import: "default",
-});
+const icons = import.meta.glob('../assets/icons/*.svg', {
+  query: '?raw',
+  import: 'default',
+})
 
-let customIconResolver: IconResolver;
+let customIconResolver: IconResolver
 
 /** @internal Default resolver for built-in SVG icons */
 function defaultIconResolver(name: string): IconComponent {
-  const key = Object.keys(icons).find((path) => path.endsWith(`/${name}.svg`));
+  const key = Object.keys(icons).find((path) => path.endsWith(`/${name}.svg`))
 
-  const loader = key ? icons[key] : undefined;
+  const loader = key ? icons[key] : undefined
 
   if (loader) {
     return defineAsyncComponent(async () => {
-      const svgContent = (await loader()) as string;
+      const svgContent = (await loader()) as string
       return {
         name: `Icon${name}`,
         render() {
-          return h("span", {
+          return h('span', {
             innerHTML: svgContent,
-            class: "icon-svg-wrapper",
-          });
+            class: 'icon-svg-wrapper',
+          })
         },
-      };
-    });
+      }
+    })
   }
 }
 
@@ -78,23 +78,23 @@ function defaultIconResolver(name: string): IconComponent {
  * })
  */
 export function registerCustomIconResolver(resolver: IconResolver) {
-  customIconResolver = resolver;
+  customIconResolver = resolver
 }
 
 export function resolveIconComponent(name: string): IconComponent {
-  let component;
+  let component
 
   if (customIconResolver) {
-    component = customIconResolver(name);
+    component = customIconResolver(name)
   }
 
   if (!component) {
-    component = defaultIconResolver(name);
+    component = defaultIconResolver(name)
   }
 
   if (!component) {
-    console.error("Unable to resolve icon component for name: " + name);
+    console.error('Unable to resolve icon component for name: ' + name)
   }
 
-  return component;
+  return component
 }

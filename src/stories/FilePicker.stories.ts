@@ -1,41 +1,41 @@
-import { type Meta, StoryObj } from "@storybook/vue3-vite";
-import { ref } from "vue";
+import { type Meta, StoryObj } from '@storybook/vue3-vite'
+import { ref } from 'vue'
 
-import FilePicker from "../components/FilePicker.vue";
-import IconButton from "../components/IconButton.vue";
-import DumpValue from "./helpers/components/DumpValue.vue";
+import FilePicker from '../components/FilePicker.vue'
+import IconButton from '../components/IconButton.vue'
+import DumpValue from './helpers/components/DumpValue.vue'
 
 export default {
-  title: "Components/FilePicker",
+  title: 'Components/FilePicker',
   component: FilePicker,
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
   argTypes: {
-    multiple: { control: "boolean" },
-    accept: { control: "text" },
-    label: { control: "text" },
+    multiple: { control: 'boolean' },
+    accept: { control: 'text' },
+    label: { control: 'text' },
   },
   args: {
-    label: "Upload file",
+    label: 'Upload file',
   },
-} as Meta<typeof FilePicker>;
+} as Meta<typeof FilePicker>
 
-export const Default: StoryObj<typeof FilePicker> = {};
+export const Default: StoryObj<typeof FilePicker> = {}
 
 export const Multiple: StoryObj<typeof FilePicker> = {
   args: {
     multiple: true,
-    label: "Upload files",
+    label: 'Upload files',
   },
-};
+}
 
 export const AcceptImages: StoryObj<typeof FilePicker> = {
   args: {
-    accept: "image/*",
-    label: "Upload image",
+    accept: 'image/*',
+    label: 'Upload image',
   },
-};
+}
 
 export const WithFileHandler: StoryObj<typeof FilePicker> = {
   render: (args) => ({
@@ -48,7 +48,7 @@ export const WithFileHandler: StoryObj<typeof FilePicker> = {
       </div>
     `,
   }),
-};
+}
 
 export const CustomSlot: StoryObj<typeof FilePicker> = {
   render: (args) => ({
@@ -60,4 +60,4 @@ export const CustomSlot: StoryObj<typeof FilePicker> = {
       </FilePicker>
     `,
   }),
-};
+}

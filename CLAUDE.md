@@ -93,7 +93,7 @@ const breadcrumbs: BreadcrumbItems = [
 const breadcrumbs: BreadcrumbItems = [
   { label: 'Dashboard', link: { name: 'dashboard' } },
   { label: 'Users', link: { name: 'users' } },
-  { label: 'John Doe', link: { name: 'user', params: { id: 123 } } }
+  { label: 'John Doe', link: { name: 'user', params: { id: 123 } } },
 ]
 ```
 
@@ -235,7 +235,7 @@ import { FORM_DIVIDER } from 'vuiii'
 const fields = [
   { name: 'name', component: Input, label: 'Name' },
   FORM_DIVIDER,
-  { name: 'email', component: Input, label: 'Email' }
+  { name: 'email', component: Input, label: 'Email' },
 ]
 ```
 
@@ -327,8 +327,7 @@ import { FilePicker } from 'vuiii'
 Dynamic form generator that renders fields from a configuration array.
 Supports vertical/horizontal layouts, nested rows, dividers, and validation integration.
 
-
-  @example <template #field:email="{ name, label, index }">Custom email input</template>
+@example <template #field:email="{ name, label, index }">Custom email input</template>
 
 **Examples:**
 
@@ -350,9 +349,9 @@ const fields: FormField<UserData>[] = [
 const fields: FormFieldOrRow<UserData>[] = [
   [
     { name: 'firstName', component: Input, label: 'First Name' },
-    { name: 'lastName', component: Input, label: 'Last Name' }
+    { name: 'lastName', component: Input, label: 'Last Name' },
   ],
-  { name: 'email', component: Input, label: 'Email' }
+  { name: 'email', component: Input, label: 'Email' },
 ]
 ```
 
@@ -363,7 +362,7 @@ import { FORM_DIVIDER } from 'vuiii'
 const fields: FormFieldOrRow<UserData>[] = [
   { name: 'name', component: Input, label: 'Name' },
   FORM_DIVIDER,
-  { name: 'email', component: Input, label: 'Email' }
+  { name: 'email', component: Input, label: 'Email' },
 ]
 ```
 
@@ -840,13 +839,7 @@ import { useCursor } from 'vuiii'
 
 const items = ref(['Apple', 'Banana', 'Cherry'])
 
-const {
-  cursorIndex,
-  cursorItem,
-  moveCursorForward,
-  moveCursorBack,
-  resetCursor
-} = useCursor(items)
+const { cursorIndex, cursorItem, moveCursorForward, moveCursorBack, resetCursor } = useCursor(items)
 
 console.log(cursorItem.value) // 'Apple'
 moveCursorForward()
@@ -890,11 +883,7 @@ const { isDropzoneActive } = useDropArea(
 
 ```typescript
 // With file type filter
-useDropArea(
-  dropElement,
-  handleFiles,
-  { accept: 'image/*' }
-)
+useDropArea(dropElement, handleFiles, { accept: 'image/*' })
 ```
 
 ### useLoadData
@@ -923,10 +912,7 @@ onMounted(load)
 
 ```typescript
 // With immediate loading
-const { isLoading, data } = useLoadData(
-  () => api.fetchUsers(),
-  { immediate: true }
-)
+const { isLoading, data } = useLoadData(() => api.fetchUsers(), { immediate: true })
 ```
 
 ### useLoadPaginatedData
@@ -944,8 +930,8 @@ and optional append mode for infinite scroll.
 import { useLoadPaginatedData } from 'vuiii'
 import type { PaginatedData } from 'vuiii'
 
-const { items, pagination, loadPage, isLoading } = useLoadPaginatedData(
-  ({ page, itemsPerPage }) => api.getUsers({ page, itemsPerPage })
+const { items, pagination, loadPage, isLoading } = useLoadPaginatedData(({ page, itemsPerPage }) =>
+  api.getUsers({ page, itemsPerPage }),
 )
 
 onMounted(() => loadPage(1))
@@ -953,10 +939,9 @@ onMounted(() => loadPage(1))
 
 ```typescript
 // With immediate loading
-const { items, pagination } = useLoadPaginatedData(
-  ({ page, itemsPerPage }) => api.getItems({ page, itemsPerPage }),
-  { immediate: true }
-)
+const { items, pagination } = useLoadPaginatedData(({ page, itemsPerPage }) => api.getItems({ page, itemsPerPage }), {
+  immediate: true,
+})
 ```
 
 ### useSubmitAction
@@ -987,15 +972,12 @@ const { submit, isSubmitting } = useSubmitAction(
 
 ```typescript
 // With confirmation before submit
-const { submit, isSubmitting } = useSubmitAction(
-  (id) => api.deleteUser(id),
-  {
-    onBeforeSubmit: async ({ dialog }) => {
-      return await dialog.confirm('Are you sure?')
-    },
-    successMessage: 'User deleted'
-  }
-)
+const { submit, isSubmitting } = useSubmitAction((id) => api.deleteUser(id), {
+  onBeforeSubmit: async ({ dialog }) => {
+    return await dialog.confirm('Are you sure?')
+  },
+  successMessage: 'User deleted',
+})
 ```
 
 ### useValidation
@@ -1026,8 +1008,8 @@ function validateForm(data: FormData): ValidationResults<FormData> {
     errorMessages: errors,
     validatedFields: {
       email: { isInvalid: !!errors.email, errorMessage: errors.email },
-      password: { isInvalid: !!errors.password, errorMessage: errors.password }
-    }
+      password: { isInvalid: !!errors.password, errorMessage: errors.password },
+    },
   }
 }
 
@@ -1065,7 +1047,6 @@ Allows registering custom icon libraries (Heroicons, FontAwesome, etc.)
 Utilities for normalizing various option formats into a consistent Option[] structure.
 Used by Select, Autocomplete, RadioGroup, CheckboxGroup, and RadioButtonGroup components.
 
-
 ## Option Parsing
 
 Components that display selectable options (Select, Autocomplete, RadioGroup, CheckboxGroup,
@@ -1074,25 +1055,27 @@ are parsed:
 
 ### Extractor Props
 
-| Prop | Description | Components |
-|------|-------------|------------|
-| `option-value` | Key or function to extract the option's value | All |
-| `option-label` | Key or function to extract the display label | All |
-| `option-disabled` | Key or function to determine if option is disabled | All |
-| `option-description` | Key or function to extract description text | RadioGroup, CheckboxGroup, Autocomplete, RadioButtonGroup |
-| `option-icon` | Key or function to extract icon name | Autocomplete, RadioButtonGroup |
-| `group-label` | Key or function to extract group label | Select, Autocomplete |
-| `group-options` | Key or function to extract group's options array | Select, Autocomplete |
+| Prop                 | Description                                        | Components                                                |
+| -------------------- | -------------------------------------------------- | --------------------------------------------------------- |
+| `option-value`       | Key or function to extract the option's value      | All                                                       |
+| `option-label`       | Key or function to extract the display label       | All                                                       |
+| `option-disabled`    | Key or function to determine if option is disabled | All                                                       |
+| `option-description` | Key or function to extract description text        | RadioGroup, CheckboxGroup, Autocomplete, RadioButtonGroup |
+| `option-icon`        | Key or function to extract icon name               | Autocomplete, RadioButtonGroup                            |
+| `group-label`        | Key or function to extract group label             | Select, Autocomplete                                      |
+| `group-options`      | Key or function to extract group's options array   | Select, Autocomplete                                      |
 
 ### Supported Option Formats
 
 **1. Primitive Array** - Value and label are the same
+
 ```ts
 :options="['Apple', 'Banana', 'Cherry']"
 :options="[1, 2, 3, 4, 5]"
 ```
 
 **2. Object Array** - Use extractors to specify which properties to use
+
 ```ts
 :options="[{ id: 1, name: 'Apple' }, { id: 2, name: 'Banana' }]"
 option-value="id"
@@ -1100,11 +1083,13 @@ option-label="name"
 ```
 
 **3. Key-Value Object** - Keys become values, values become labels
+
 ```ts
 :options="{ draft: 'Draft', published: 'Published', archived: 'Archived' }"
 ```
 
 **4. Grouped Options** - For Select and Autocomplete with optgroup support
+
 ```ts
 :options="[
   { category: 'Fruits', items: [{ id: 1, name: 'Apple' }] },
@@ -1119,6 +1104,7 @@ option-label="name"
 ### Function Extractors
 
 Instead of property keys, you can use functions for complex extraction:
+
 ```ts
 :option-label="(user) => `${user.firstName} ${user.lastName}`"
 :option-value="(item) => item.id"
@@ -1133,4 +1119,3 @@ Instead of property keys, you can use functions for complex extraction:
 
 Core type definitions for vuiii components.
 Import these types for TypeScript support in your application.
-

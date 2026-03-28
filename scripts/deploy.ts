@@ -41,7 +41,7 @@ console.log(`\nVersion: ${oldVersion} → ${newVersion}`)
 
 // 4. Confirm before publishing
 const rl = createInterface({ input: process.stdin, output: process.stdout })
-const answer = await new Promise<string>(resolve => rl.question(`\nPublish ${tag}? (Y/n) `, resolve))
+const answer = await new Promise<string>((resolve) => rl.question(`\nPublish ${tag}? (Y/n) `, resolve))
 rl.close()
 
 if (answer.trim().toLowerCase() === 'n') {

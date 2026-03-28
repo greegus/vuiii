@@ -24,11 +24,11 @@ npm install vuiii@latest
 No global setup is required. Import the stylesheet once in your app entry point and use components directly.
 
 ```typescript
-import "vuiii/style.css";
+import 'vuiii/style.css'
 ```
 
 ```typescript
-import { Button, Input, Select, FormFields } from "vuiii";
+import { Button, Input, Select, FormFields } from 'vuiii'
 ```
 
 ### Custom Icons
@@ -36,12 +36,12 @@ import { Button, Input, Select, FormFields } from "vuiii";
 Register a custom icon resolver to integrate your icon library (Heroicons, FontAwesome, etc.):
 
 ```typescript
-import { registerCustomIconResolver } from "vuiii";
-import { defineAsyncComponent } from "vue";
+import { registerCustomIconResolver } from 'vuiii'
+import { defineAsyncComponent } from 'vue'
 
 registerCustomIconResolver((name) => {
-  return defineAsyncComponent(() => import(`./icons/${name}.vue`));
-});
+  return defineAsyncComponent(() => import(`./icons/${name}.vue`))
+})
 ```
 
 ## Documentation and examples

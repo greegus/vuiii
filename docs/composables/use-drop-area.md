@@ -35,22 +35,13 @@ const { isDropzoneActive } = useDropArea(
 
 ```typescript
 // With file type filter
-useDropArea(
-  dropElement,
-  handleFiles,
-  { accept: 'image/*' }
-)
+useDropArea(dropElement, handleFiles, { accept: 'image/*' })
 ```
 
 ```typescript
 // Multiple files with specific types
-useDropArea(
-  dropElement,
-  handleFiles,
-  {
-    accept: ['image/png', 'image/jpeg', 'application/pdf'],
-    multiple: true
-  }
-)
+useDropArea(dropElement, handleFiles, {
+  accept: ['image/png', 'image/jpeg', 'application/pdf'],
+  multiple: true,
+})
 ```
-

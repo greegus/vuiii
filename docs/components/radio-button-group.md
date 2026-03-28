@@ -91,7 +91,10 @@ Use `option-value` and `option-label` props to extract values from object arrays
 ```vue
 <RadioButtonGroup
   v-model="status"
-  :options="[{ id: 'active', name: 'Active' }, { id: 'inactive', name: 'Inactive' }]"
+  :options="[
+    { id: 'active', name: 'Active' },
+    { id: 'inactive', name: 'Inactive' },
+  ]"
   option-value="id"
   option-label="name"
 />
@@ -121,7 +124,7 @@ Use the `option-icon` extractor to display prefix icons on each button.
   :options="[
     { value: 'list', label: 'List', icon: 'list-bullet' },
     { value: 'grid', label: 'Grid', icon: 'squares-2x2' },
-    { value: 'table', label: 'Table', icon: 'table-cells' }
+    { value: 'table', label: 'Table', icon: 'table-cells' },
   ]"
   option-value="value"
   option-label="label"

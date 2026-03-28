@@ -41,4 +41,3 @@ useOnClickOutside(modalRef, (event) => {
   closeModal()
 })
 ```
-

@@ -1,17 +1,17 @@
-import { type Meta, StoryObj } from "@storybook/vue3-vite";
-import { ref } from "vue";
+import { type Meta, StoryObj } from '@storybook/vue3-vite'
+import { ref } from 'vue'
 
-import RadioGroup from "../components/RadioGroup.vue";
-import { objectOptions, plainObjectOptions } from "./assets/options";
-import DumpValue from "./helpers/components/DumpValue.vue";
+import RadioGroup from '../components/RadioGroup.vue'
+import { objectOptions, plainObjectOptions } from './assets/options'
+import DumpValue from './helpers/components/DumpValue.vue'
 
 export default {
-  title: "Components/RadioGroup",
+  title: 'Components/RadioGroup',
   component: RadioGroup,
   parameters: {
     docs: {
       description: {
-        component: "Standard radio group",
+        component: 'Standard radio group',
       },
     },
   },
@@ -19,13 +19,13 @@ export default {
   args: {
     options: plainObjectOptions,
   },
-} as Meta<typeof RadioGroup>;
+} as Meta<typeof RadioGroup>
 
-export const Default: StoryObj<typeof RadioGroup> = {};
+export const Default: StoryObj<typeof RadioGroup> = {}
 
 export const Disabled: StoryObj<typeof RadioGroup> = {
   args: { disabled: true },
-};
+}
 
 // export const Sizes: StoryObj<typeof RadioGroup> = {
 //   render: (args) => ({
@@ -44,15 +44,15 @@ export const Disabled: StoryObj<typeof RadioGroup> = {
 export const OptionPropsMapping: StoryObj<typeof RadioGroup> = {
   args: {
     options: objectOptions,
-    optionValue: "value",
-    optionLabel: "label",
-    optionDisabled: "disabled",
-    optionDescription: "description",
+    optionValue: 'value',
+    optionLabel: 'label',
+    optionDisabled: 'disabled',
+    optionDescription: 'description',
   },
-};
+}
 
 export const ValueCasting: StoryObj<typeof RadioGroup> = {
-  args: { options: plainObjectOptions, type: "number" },
+  args: { options: plainObjectOptions, type: 'number' },
   render: (args) => ({
     components: { RadioGroup, DumpValue },
     setup: () => ({ args, value: ref() }),
@@ -61,7 +61,7 @@ export const ValueCasting: StoryObj<typeof RadioGroup> = {
       <DumpValue :value="value" />
     `,
   }),
-};
+}
 
 export const CustomRadioSymbol: StoryObj<typeof RadioGroup> = {
   args: {
@@ -79,5 +79,4 @@ export const CustomRadioSymbol: StoryObj<typeof RadioGroup> = {
       <DumpValue :value="value" />
     `,
   }),
-};
-
+}

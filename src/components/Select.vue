@@ -128,56 +128,56 @@
  */
 export default {
   inheritAttrs: false,
-};
+}
 </script>
 
 <script lang="ts" setup>
-import { computed } from "vue";
+import { computed } from 'vue'
 
-import Icon from "@/components/Icon.vue";
-import InputWrapper from "@/components/InputWrapper.vue";
-import { useAttrsWithoutClass } from "@/composables/useAttrsWithoutClass";
-import type { Extractor, InputSize, ValueParser } from "@/types";
-import { createTypeParser } from "@/utils/createTypeParser";
-import { normalizeGroups, normalizeOptions } from "@/utils/normalizeOptions";
+import Icon from '@/components/Icon.vue'
+import InputWrapper from '@/components/InputWrapper.vue'
+import { useAttrsWithoutClass } from '@/composables/useAttrsWithoutClass'
+import type { Extractor, InputSize, ValueParser } from '@/types'
+import { createTypeParser } from '@/utils/createTypeParser'
+import { normalizeGroups, normalizeOptions } from '@/utils/normalizeOptions'
 
-const modelValue = defineModel<any>();
+const modelValue = defineModel<any>()
 
-const attrsWithoutClass = useAttrsWithoutClass();
+const attrsWithoutClass = useAttrsWithoutClass()
 
 const props = withDefaults(
   defineProps<{
-    options: any[] | any;
-    optionLabel?: Extractor;
-    optionValue?: Extractor;
-    optionDisabled?: Extractor;
-    groupLabel?: Extractor;
-    groupOptions?: Extractor;
-    valueParser?: ValueParser<string>;
-    placeholder?: string;
-    size?: InputSize;
-    required?: boolean;
-    inputClass?: any;
-    invalid?: boolean;
-    disabled?: boolean;
-    pill?: boolean;
-    type?: "string" | "number" | "boolean" | "date";
+    options: any[] | any
+    optionLabel?: Extractor
+    optionValue?: Extractor
+    optionDisabled?: Extractor
+    groupLabel?: Extractor
+    groupOptions?: Extractor
+    valueParser?: ValueParser<string>
+    placeholder?: string
+    size?: InputSize
+    required?: boolean
+    inputClass?: any
+    invalid?: boolean
+    disabled?: boolean
+    pill?: boolean
+    type?: 'string' | 'number' | 'boolean' | 'date'
   }>(),
   {
-    size: "normal",
-    type: "string",
+    size: 'normal',
+    type: 'string',
   },
-);
+)
 
 const optionParser = computed(() => {
-  return props.valueParser || createTypeParser(props.type);
-});
+  return props.valueParser || createTypeParser(props.type)
+})
 
-const serializedModelValue = computed(() => optionParser.value.stringify(modelValue.value));
+const serializedModelValue = computed(() => optionParser.value.stringify(modelValue.value))
 
 const groups = computed(() => {
   if (!props.groupOptions) {
-    return;
+    return
   }
 
   return normalizeGroups(
@@ -191,12 +191,12 @@ const groups = computed(() => {
       stringifyValue: optionParser.value.stringify,
     },
     modelValue.value,
-  );
-});
+  )
+})
 
 const options = computed(() => {
   if (groups.value) {
-    return;
+    return
   }
 
   return normalizeOptions(
@@ -208,11 +208,11 @@ const options = computed(() => {
       stringifyValue: optionParser.value.stringify,
     },
     modelValue.value,
-  );
-});
+  )
+})
 
 function handleInput(e: Event) {
-  modelValue.value = optionParser.value.parse((e.target as HTMLSelectElement).value);
+  modelValue.value = optionParser.value.parse((e.target as HTMLSelectElement).value)
 }
 </script>
 

@@ -1,24 +1,24 @@
 /* eslint vue/one-component-per-file: 0 */
 
-import { type Meta, type StoryFn } from "@storybook/vue3-vite";
-import { defineComponent } from "vue";
+import { type Meta, type StoryFn } from '@storybook/vue3-vite'
+import { defineComponent } from 'vue'
 
-import Button from "../components/Button.vue";
-import DialogLayout from "../components/dialogStack/DialogLayout.vue";
-import DialogStack from "../components/dialogStack/DialogStack.vue";
-import { useCloseDialog, useDialogStack } from "../dialogStack";
+import Button from '../components/Button.vue'
+import DialogLayout from '../components/dialogStack/DialogLayout.vue'
+import DialogStack from '../components/dialogStack/DialogStack.vue'
+import { useCloseDialog, useDialogStack } from '../dialogStack'
 
 export default {
-  title: "Components/Dialog",
+  title: 'Components/Dialog',
   component: DialogStack,
   parameters: {
     docs: {
       description: {
-        component: "Dialog",
+        component: 'Dialog',
       },
     },
   },
-} as Meta<typeof DialogStack>;
+} as Meta<typeof DialogStack>
 
 const AnotheropenSimpleDialog = defineComponent({
   components: {
@@ -26,7 +26,7 @@ const AnotheropenSimpleDialog = defineComponent({
   },
 
   setup() {
-    return { close: useCloseDialog() };
+    return { close: useCloseDialog() }
   },
 
   template: `
@@ -34,7 +34,7 @@ const AnotheropenSimpleDialog = defineComponent({
       <button @click="close()">Close</button>
     </DialogLayout>
   `,
-});
+})
 
 const OpenSimpleDialog = defineComponent({
   components: {
@@ -42,14 +42,14 @@ const OpenSimpleDialog = defineComponent({
   },
 
   setup() {
-    const dialog = useDialogStack();
-    const close = useCloseDialog();
+    const dialog = useDialogStack()
+    const close = useCloseDialog()
 
     const openAnotheropenSimpleDialog = async () => {
-      await dialog.open(AnotheropenSimpleDialog);
-    };
+      await dialog.open(AnotheropenSimpleDialog)
+    }
 
-    return { close, openAnotheropenSimpleDialog };
+    return { close, openAnotheropenSimpleDialog }
   },
 
   template: `
@@ -58,7 +58,7 @@ const OpenSimpleDialog = defineComponent({
       <button @click="openAnotheropenSimpleDialog()">Another dialog</button>
     </DialogLayout>
   `,
-});
+})
 
 const SimpleDialogWithBeforeClose = defineComponent({
   components: {
@@ -68,11 +68,11 @@ const SimpleDialogWithBeforeClose = defineComponent({
   setup() {
     return {
       close: useCloseDialog((close) => {
-        if (confirm("Are you sure?")) {
-          close();
+        if (confirm('Are you sure?')) {
+          close()
         }
       }),
-    };
+    }
   },
 
   template: `
@@ -80,7 +80,7 @@ const SimpleDialogWithBeforeClose = defineComponent({
         <button @click="close()">Confirm and close</button>
     </DialogLayout>
   `,
-});
+})
 
 const SimpleModalDialog = defineComponent({
   components: {
@@ -88,7 +88,7 @@ const SimpleModalDialog = defineComponent({
   },
 
   setup() {
-    return { close: useCloseDialog() };
+    return { close: useCloseDialog() }
   },
 
   template: `
@@ -96,7 +96,7 @@ const SimpleModalDialog = defineComponent({
       This modal cannot be closed by ESC or clicking outside.
     </DialogLayout>
   `,
-});
+})
 
 const Template: StoryFn<typeof DialogStack> = () => ({
   components: {
@@ -105,27 +105,27 @@ const Template: StoryFn<typeof DialogStack> = () => ({
   },
 
   setup() {
-    const dialog = useDialogStack();
+    const dialog = useDialogStack()
 
     const openSimpleDialog = async () => {
-      await dialog.open(OpenSimpleDialog);
-    };
+      await dialog.open(OpenSimpleDialog)
+    }
 
     const openSimpleDialogWithBeforeClose = async () => {
-      await dialog.open(SimpleDialogWithBeforeClose);
-    };
+      await dialog.open(SimpleDialogWithBeforeClose)
+    }
 
     const openConfirmationDialog = async () => {
-      await dialog.confirm("Are you sure?");
-    };
+      await dialog.confirm('Are you sure?')
+    }
 
     const openAlert = () => {
-      dialog.alert("Alert!");
-    };
+      dialog.alert('Alert!')
+    }
 
     const openModalDialog = () => {
-      dialog.open(SimpleModalDialog, {}, { modal: true });
-    };
+      dialog.open(SimpleModalDialog, {}, { modal: true })
+    }
 
     return {
       openSimpleDialog,
@@ -133,7 +133,7 @@ const Template: StoryFn<typeof DialogStack> = () => ({
       openSimpleDialogWithBeforeClose,
       openAlert,
       openModalDialog,
-    };
+    }
   },
 
   template: `
@@ -163,8 +163,8 @@ const Template: StoryFn<typeof DialogStack> = () => ({
         </div>
     </div>
   `,
-});
+})
 
 export const Default = {
   render: Template,
-};
+}

@@ -1,76 +1,76 @@
-import { type Meta, StoryObj } from "@storybook/vue3-vite";
-import { ref } from "vue";
+import { type Meta, StoryObj } from '@storybook/vue3-vite'
+import { ref } from 'vue'
 
-import Button from "../components/Button.vue";
-import ButtonGroupComponent from "../components/ButtonGroup.vue";
-import { icons } from "./assets/icons";
+import Button from '../components/Button.vue'
+import ButtonGroupComponent from '../components/ButtonGroup.vue'
+import { icons } from './assets/icons'
 
 export default {
-  title: "Components/Button",
+  title: 'Components/Button',
   component: Button,
   parameters: {
-    layout: "centered",
+    layout: 'centered',
     docs: {
       description: {
-        component: "Standard button",
+        component: 'Standard button',
       },
     },
   },
   argTypes: {
     size: {
-      control: "select",
-      options: ["small", "normal", "large"],
+      control: 'select',
+      options: ['small', 'normal', 'large'],
     },
     variant: {
-      control: "select",
-      options: ["default", "primary", "secondary", "danger", "success"],
+      control: 'select',
+      options: ['default', 'primary', 'secondary', 'danger', 'success'],
     },
     prefixIcon: {
-      control: "select",
+      control: 'select',
       options: icons,
     },
     suffixIcon: {
-      control: "select",
+      control: 'select',
       options: icons,
     },
     block: {
-      control: "boolean",
+      control: 'boolean',
     },
     pill: {
-      control: "boolean",
+      control: 'boolean',
     },
   },
   args: {
-    variant: "primary",
-    label: "Add to Cart",
+    variant: 'primary',
+    label: 'Add to Cart',
   },
-} as Meta<typeof Button>;
+} as Meta<typeof Button>
 
-export const Default = {};
+export const Default = {}
 
 export const Disabled: StoryObj<typeof Button> = {
   args: { disabled: true },
-};
+}
 
 export const PrefixIcon: StoryObj<typeof Button> = {
-  args: { prefixIcon: "check" },
-};
+  args: { prefixIcon: 'check' },
+}
 
 export const SuffixIcon: StoryObj<typeof Button> = {
-  args: { suffixIcon: "arrow-narrow-right" },
-};
+  args: { suffixIcon: 'arrow-narrow-right' },
+}
 
 export const Loading: StoryObj<typeof Button> = {
   args: { loading: true },
-};
+}
 
 export const Pill: StoryObj<typeof Button> = {
   args: { pill: true },
-};
+}
 
 export const Link: StoryObj<typeof Button> = {
-  args: { href: "https://google.com", target: "_blank", label: "Link to Google" },
-};
+  args: { href: 'https://google.com', target: '_blank', label: 'Link to Google' },
+}
 
 export const ButtonGroup: StoryObj<typeof Button> = {
   render: () => ({
@@ -84,7 +84,7 @@ export const ButtonGroup: StoryObj<typeof Button> = {
       </ButtonGroup>
     `,
   }),
-};
+}
 
 export const Sizes: StoryObj<typeof Button> = {
   render: (args) => ({
@@ -98,7 +98,7 @@ export const Sizes: StoryObj<typeof Button> = {
       </div>
     `,
   }),
-};
+}
 
 export const Variants: StoryObj<typeof Button> = {
   render: (args) => ({
@@ -114,4 +114,4 @@ export const Variants: StoryObj<typeof Button> = {
       </div>
     `,
   }),
-};
+}

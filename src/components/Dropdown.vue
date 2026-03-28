@@ -78,108 +78,109 @@
  * @emits open - When dropdown opens
  * @emits close - When dropdown closes
  */
-import type { ComputedRef } from "vue";
-import type { ButtonVariant } from "@/types";
+import type { ComputedRef } from 'vue'
+
+import type { ButtonVariant } from '@/types'
 
 export type DropdownProps = {
-  label?: string;
-  variant?: ButtonVariant;
-  block?: boolean;
-  icon?: string;
-  dropdownPlacement?: "left" | "right" | "center";
-  fullDropdownWidth?: boolean;
-};
+  label?: string
+  variant?: ButtonVariant
+  block?: boolean
+  icon?: string
+  dropdownPlacement?: 'left' | 'right' | 'center'
+  fullDropdownWidth?: boolean
+}
 
 export type DropdownRef = {
-  open: () => void;
-  close: () => void;
-  toggle: (state?: boolean) => void;
-  isOpen: ComputedRef<boolean>;
-};
+  open: () => void
+  close: () => void
+  toggle: (state?: boolean) => void
+  isOpen: ComputedRef<boolean>
+}
 </script>
 
 <script lang="ts" generic="Item extends any = any" setup>
-import { computed, ref, useId, useTemplateRef } from "vue";
+import { computed, ref, useId, useTemplateRef } from 'vue'
 
-import Button from "@/components/Button.vue";
-import FadeTransition from "@/components/transitions/FadeTransition.vue";
-import { useOnClickOutside } from "@/composables/useOnClickOutside";
-import { useOnKeyPress } from "@/composables/useOnKeyPress";
+import Button from '@/components/Button.vue'
+import FadeTransition from '@/components/transitions/FadeTransition.vue'
+import { useOnClickOutside } from '@/composables/useOnClickOutside'
+import { useOnKeyPress } from '@/composables/useOnKeyPress'
 
-const props = defineProps<DropdownProps>();
+const props = defineProps<DropdownProps>()
 
 const emit = defineEmits<{
-  open: [];
-  close: [];
-}>();
+  open: []
+  close: []
+}>()
 
-const isOpen = ref(false);
+const isOpen = ref(false)
 
-const rootElement = useTemplateRef("rootElement");
+const rootElement = useTemplateRef('rootElement')
 
-const anchorName = `--anchor-${useId()}`;
+const anchorName = `--anchor-${useId()}`
 
 const positionArea = computed(() => {
-  if (props.dropdownPlacement === "center") return "bottom";
-  if (props.dropdownPlacement === "right") return "bottom span-left";
-  return "bottom span-right";
-});
+  if (props.dropdownPlacement === 'center') return 'bottom'
+  if (props.dropdownPlacement === 'right') return 'bottom span-left'
+  return 'bottom span-right'
+})
 
 function open() {
   if (isOpen.value) {
-    return;
+    return
   }
 
-  isOpen.value = true;
+  isOpen.value = true
 
-  emit("open");
+  emit('open')
 }
 
 function close() {
   if (!isOpen.value) {
-    return;
+    return
   }
 
-  isOpen.value = false;
+  isOpen.value = false
 
-  emit("close");
+  emit('close')
 }
 
 function toggle(state?: boolean) {
   if (state ?? !isOpen.value) {
-    open();
+    open()
   } else {
-    close();
+    close()
   }
 }
 
 // Close by click outside
 useOnClickOutside(rootElement, (event: MouseEvent) => {
   if (isOpen.value && !event.defaultPrevented) {
-    event.preventDefault();
-    close();
+    event.preventDefault()
+    close()
   }
-});
+})
 
 // Close by Escape key
-useOnKeyPress("Escape", (event: KeyboardEvent) => {
+useOnKeyPress('Escape', (event: KeyboardEvent) => {
   if (isOpen.value && !event.defaultPrevented) {
-    event.preventDefault();
-    close();
+    event.preventDefault()
+    close()
   }
-});
+})
 
 defineSlots<{
-  default?: (props: { close: () => void }) => any;
-  trigger?: (props: { open: () => void; close: () => void; toggle: (state?: boolean) => void; isOpen: boolean }) => any;
-}>();
+  default?: (props: { close: () => void }) => any
+  trigger?: (props: { open: () => void; close: () => void; toggle: (state?: boolean) => void; isOpen: boolean }) => any
+}>()
 
 defineExpose({
   open,
   close,
   toggle,
   isOpen: computed(() => isOpen.value),
-});
+})
 </script>
 
 <style>

@@ -1,36 +1,36 @@
-import { type Meta, StoryObj } from "@storybook/vue3-vite";
+import { type Meta, StoryObj } from '@storybook/vue3-vite'
 
-import Icon from "../components/Icon.vue";
-import { icons } from "./assets/icons";
-import { iconSizes } from "./assets/iconSizes";
+import Icon from '../components/Icon.vue'
+import { icons } from './assets/icons'
+import { iconSizes } from './assets/iconSizes'
 
 export default {
-  title: "Components/Icon",
+  title: 'Components/Icon',
   component: Icon,
   parameters: {
     docs: {
       description: {
-        component: "Standard icon",
+        component: 'Standard icon',
       },
     },
   },
   argTypes: {
     name: {
-      control: "select",
+      control: 'select',
       options: icons,
     },
     size: {
-      control: "select",
+      control: 'select',
       options: iconSizes,
     },
   },
   args: {
-    name: "spinner",
-    size: "normal",
+    name: 'spinner',
+    size: 'normal',
   },
-} as Meta<typeof Icon>;
+} as Meta<typeof Icon>
 
-export const Default: StoryObj<typeof Icon> = {};
+export const Default: StoryObj<typeof Icon> = {}
 
 export const Gallery: StoryObj<typeof Icon> = {
   render: (args) => ({
@@ -48,4 +48,4 @@ export const Gallery: StoryObj<typeof Icon> = {
       </div>
     `,
   }),
-};
+}

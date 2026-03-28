@@ -1,22 +1,22 @@
 /* eslint vue/one-component-per-file: 0 */
 
-import { type Meta, type StoryFn } from "@storybook/vue3-vite";
+import { type Meta, type StoryFn } from '@storybook/vue3-vite'
 
-import Button from "../components/Button.vue";
-import SnackbarStack from "../components/snackbar/SnackbarStack.vue";
-import { useSnackbar } from "../snackbar";
+import Button from '../components/Button.vue'
+import SnackbarStack from '../components/snackbar/SnackbarStack.vue'
+import { useSnackbar } from '../snackbar'
 
 export default {
-  title: "Components/Snackbar",
+  title: 'Components/Snackbar',
   component: SnackbarStack,
   parameters: {
     docs: {
       description: {
-        component: "Snackbar",
+        component: 'Snackbar',
       },
     },
   },
-} as Meta<typeof SnackbarStack>;
+} as Meta<typeof SnackbarStack>
 
 const Template: StoryFn<typeof SnackbarStack> = () => ({
   components: {
@@ -25,20 +25,20 @@ const Template: StoryFn<typeof SnackbarStack> = () => ({
   },
 
   setup() {
-    const snackbar = useSnackbar();
+    const snackbar = useSnackbar()
 
     const showSuccessMessage = async () => {
-      snackbar.success("Success message!");
-    };
+      snackbar.success('Success message!')
+    }
 
     const showErrorMessage = async () => {
-      snackbar.error("Errror message!");
-    };
+      snackbar.error('Errror message!')
+    }
 
     return {
       showSuccessMessage,
       showErrorMessage,
-    };
+    }
   },
 
   template: `
@@ -56,8 +56,8 @@ const Template: StoryFn<typeof SnackbarStack> = () => ({
         </div>
     </div>
   `,
-});
+})
 
 export const Default = {
   render: Template,
-};
+}

@@ -16,10 +16,7 @@
     <div
       v-if="title || $slots.title"
       class="Tooltip__bubble"
-      :class="[
-        `Tooltip__bubble--${placement}`,
-        { 'Tooltip__bubble--withArrow': withArrow }
-      ]"
+      :class="[`Tooltip__bubble--${placement}`, { 'Tooltip__bubble--withArrow': withArrow }]"
       role="tooltip"
     >
       <slot name="title">{{ title }}</slot>
@@ -80,41 +77,46 @@
  * @slot title - Custom tooltip title content (alternative to title prop)
  */
 
-export type TooltipPlacement = "top" | "bottom" | "left" | "right";
+export type TooltipPlacement = 'top' | 'bottom' | 'left' | 'right'
 
 export type TooltipProps = {
-  title?: string;
-  placement?: TooltipPlacement;
-  showOnFocus?: boolean;
-  delay?: number;
-  withArrow?: boolean;
-  offset?: number;
-};
+  title?: string
+  placement?: TooltipPlacement
+  showOnFocus?: boolean
+  delay?: number
+  withArrow?: boolean
+  offset?: number
+}
 </script>
 
 <script lang="ts" setup>
-import { computed, useId } from "vue";
+import { computed, useId } from 'vue'
 
 const props = withDefaults(defineProps<TooltipProps>(), {
-  placement: "top",
-});
+  placement: 'top',
+})
 
 defineSlots<{
-  default?: () => any;
-  title?: () => any;
-}>();
+  default?: () => any
+  title?: () => any
+}>()
 
-const anchorName = `--anchor-${useId()}`;
+const anchorName = `--anchor-${useId()}`
 
 const positionArea = computed(() => {
   switch (props.placement) {
-    case "top": return "top";
-    case "bottom": return "bottom";
-    case "left": return "left";
-    case "right": return "right";
-    default: return "top";
+    case 'top':
+      return 'top'
+    case 'bottom':
+      return 'bottom'
+    case 'left':
+      return 'left'
+    case 'right':
+      return 'right'
+    default:
+      return 'top'
   }
-});
+})
 </script>
 
 <style>
@@ -152,7 +154,9 @@ const positionArea = computed(() => {
 
   opacity: 0;
   visibility: hidden;
-  transition: opacity 150ms, visibility 150ms;
+  transition:
+    opacity 150ms,
+    visibility 150ms;
   transition-delay: 0ms;
 }
 
@@ -191,7 +195,7 @@ const positionArea = computed(() => {
 /* Arrow via ::after pseudo-element */
 
 .Tooltip__bubble--withArrow::after {
-  content: "";
+  content: '';
   position: absolute;
   width: var(--arrow-size);
   height: var(--arrow-size);

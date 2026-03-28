@@ -37,17 +37,17 @@
  *   { label: 'John Doe', link: { name: 'user', params: { id: 123 } } }
  * ]
  */
-import Icon from "@/components/Icon.vue";
-import type { BreadcrumbItems } from "@/types";
+import Icon from '@/components/Icon.vue'
+import type { BreadcrumbItems } from '@/types'
 
 withDefaults(
   defineProps<{
-    breadcrumbs: BreadcrumbItems;
+    breadcrumbs: BreadcrumbItems
   }>(),
   {
     breadcrumbs: () => [],
   },
-);
+)
 </script>
 
 <style scoped>

@@ -192,94 +192,91 @@
  * @emits mouseleave-row - When mouse leaves a row. Payload: { item: T, index: number }
  * @emits sort - When sort column or direction changes. Payload: { sortColumnName, sortDirection }
  */
-import "@/assets/css/table.css";
-import "@/assets/css/typography.css";
+import '@/assets/css/table.css'
+import '@/assets/css/typography.css'
+import { computed } from 'vue'
 
-import { computed } from "vue";
-
-import Icon from "@/components/Icon.vue";
-import type { TableColumn } from "@/types";
+import Icon from '@/components/Icon.vue'
+import type { TableColumn } from '@/types'
 
 type TableCell = {
-  column: TableColumn<T>;
-  item: T;
-  value: any;
-  formattedValue: string;
-  cellClass?: string;
-};
+  column: TableColumn<T>
+  item: T
+  value: any
+  formattedValue: string
+  cellClass?: string
+}
 
 type TableRow = {
-  item: T;
-  rowClass?: string;
-  cells: TableCell[];
-};
+  item: T
+  rowClass?: string
+  cells: TableCell[]
+}
 
-const sortColumnName = defineModel<TableColumn<T>["name"] | null>("sortColumnName", {
+const sortColumnName = defineModel<TableColumn<T>['name'] | null>('sortColumnName', {
   default: null,
-});
+})
 
-const sortDirection = defineModel<"asc" | "desc">("sortDirection", {
-  default: "asc",
-});
+const sortDirection = defineModel<'asc' | 'desc'>('sortDirection', {
+  default: 'asc',
+})
 
 const props = defineProps<{
-  items: T[];
-  columns: TableColumn<T>[];
-  rowClass?: string | ((row: { item: T; index: number }) => any);
-  highlightOnHover?: boolean;
-  noDataMessage?: string;
-}>();
+  items: T[]
+  columns: TableColumn<T>[]
+  rowClass?: string | ((row: { item: T; index: number }) => any)
+  highlightOnHover?: boolean
+  noDataMessage?: string
+}>()
 
 const emit = defineEmits<{
-  "click-row": [payload: { item: T; index: number }];
-  "mouseenter-row": [payload: { item: T; index: number }];
-  "mouseleave-row": [payload: { item: T; index: number }];
-  "sort": [payload: { sortColumnName: string; sortDirection: "asc" | "desc" }];
-}>();
+  'click-row': [payload: { item: T; index: number }]
+  'mouseenter-row': [payload: { item: T; index: number }]
+  'mouseleave-row': [payload: { item: T; index: number }]
+  'sort': [payload: { sortColumnName: string; sortDirection: 'asc' | 'desc' }]
+}>()
 
 defineSlots<
   {
-    [K in `column:${(typeof props.columns)[number]["name"]}`]: (props: {
-      column: TableColumn<T>;
-      item: T;
-      value: any;
-      index: number;
-    }) => any;
+    [K in `column:${(typeof props.columns)[number]['name']}`]: (props: {
+      column: TableColumn<T>
+      item: T
+      value: any
+      index: number
+    }) => any
   } & {
-    [K in `header:${(typeof props.columns)[number]["name"]}`]: (props: {
-      column: TableColumn<T>;
-    }) => any;
+    [K in `header:${(typeof props.columns)[number]['name']}`]: (props: { column: TableColumn<T> }) => any
   } & {
-    rowOptions?: (props: { item: T; index: number }) => any;
-    noDataMessage?: () => any;
-    tools?: () => any;
+    rowOptions?: (props: { item: T; index: number }) => any
+    noDataMessage?: () => any
+    tools?: () => any
   }
->();
+>()
 
 const normalizedColumns = computed<TableColumn<T>[]>(() => {
   return props.columns.reduce(
-    (result, column) => [...result, typeof column === "string" ? ({ name: column } as TableColumn<T>) : column],
+    (result, column) => [...result, typeof column === 'string' ? ({ name: column } as TableColumn<T>) : column],
     [] as TableColumn<T>[],
-  );
-});
+  )
+})
 
 const hasHeader = computed(() => {
-  return normalizedColumns.value.some((column) => column.label);
-});
+  return normalizedColumns.value.some((column) => column.label)
+})
 
 function defaultSorted(a: any, b: any) {
-  if (typeof a === "string" && typeof b === "string") {
-    return a.localeCompare(b);
+  if (typeof a === 'string' && typeof b === 'string') {
+    return a.localeCompare(b)
   }
 
-  return a - b;
+  return a - b
 }
 
 const tableRows = computed<TableRow[]>(() => {
   const generateCell = (column: TableColumn<T>, item: any, index: number): TableCell => {
-    const value = typeof column.value === "function" ? column.value(item, index) : item[column.name];
-    const formattedValue = typeof column.formatter === "function" ? column.formatter(value) : value;
-    const cellClass = typeof column.cellClass === "function" ? column.cellClass({ item, value }) : column.cellClass;
+    const value = typeof column.value === 'function' ? column.value(item, index) : item[column.name]
+    const formattedValue = typeof column.formatter === 'function' ? column.formatter(value) : value
+    const cellClass = typeof column.cellClass === 'function' ? column.cellClass({ item, value }) : column.cellClass
 
     return {
       column,
@@ -287,51 +284,51 @@ const tableRows = computed<TableRow[]>(() => {
       formattedValue,
       cellClass,
       item,
-    };
-  };
+    }
+  }
 
   const rows =
     props.items?.map((item, index) => {
-      const rowClass = typeof props.rowClass === "function" ? props.rowClass({ item, index }) : props.rowClass;
+      const rowClass = typeof props.rowClass === 'function' ? props.rowClass({ item, index }) : props.rowClass
 
       const cells = normalizedColumns.value.reduce((result, column) => {
-        return [...result, generateCell(column, item, index)];
-      }, [] as TableCell[]);
+        return [...result, generateCell(column, item, index)]
+      }, [] as TableCell[])
 
       return {
         item,
         rowClass,
         cells,
-      } as TableRow;
-    }) || [];
+      } as TableRow
+    }) || []
 
   if (sortColumnName.value) {
-    const index = normalizedColumns.value.findIndex((column) => column.name === sortColumnName.value);
-    const sorter = normalizedColumns.value[index]?.sorter ?? defaultSorted;
+    const index = normalizedColumns.value.findIndex((column) => column.name === sortColumnName.value)
+    const sorter = normalizedColumns.value[index]?.sorter ?? defaultSorted
 
     rows.sort(
       (a: TableRow, b: TableRow) =>
-        sorter(a.cells[index]?.value, b.cells[index]?.value) * (sortDirection.value === "asc" ? 1 : -1),
-    );
+        sorter(a.cells[index]?.value, b.cells[index]?.value) * (sortDirection.value === 'asc' ? 1 : -1),
+    )
   }
 
-  return rows;
-});
+  return rows
+})
 
 function handleRowClick(event: MouseEvent, { index, item }: { index: number; item: T }) {
   if (!event.defaultPrevented) {
-    emit("click-row", { index, item });
+    emit('click-row', { index, item })
   }
 }
 
 function setSortBy(columnName: string) {
   if (sortColumnName.value === columnName) {
-    sortDirection.value = sortDirection.value === "asc" ? "desc" : "asc";
+    sortDirection.value = sortDirection.value === 'asc' ? 'desc' : 'asc'
   } else {
-    sortColumnName.value = columnName;
-    sortDirection.value = "asc";
+    sortColumnName.value = columnName
+    sortDirection.value = 'asc'
   }
 
-  emit("sort", { sortColumnName: sortColumnName.value, sortDirection: sortDirection.value });
+  emit('sort', { sortColumnName: sortColumnName.value, sortDirection: sortDirection.value })
 }
 </script>

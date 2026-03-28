@@ -1,27 +1,26 @@
-import { type Meta, type StoryFn } from "@storybook/vue3-vite";
+import { type Meta, type StoryFn } from '@storybook/vue3-vite'
 
-import type { FormField, FormFieldOrRow } from "../types";
-import { FORM_DIVIDER } from "../types";
-
-import Checkbox from "../components/Checkbox.vue";
-import FormFields from "../components/FormFields.vue";
-import Input from "../components/Input.vue";
-import RadioGroup from "../components/RadioGroup.vue";
-import Select from "../components/Select.vue";
-import { DateValueParser } from "../valueParsers/dateValueParser";
-import { NumberValueParser } from "../valueParsers/numberValueParser";
+import Checkbox from '../components/Checkbox.vue'
+import FormFields from '../components/FormFields.vue'
+import Input from '../components/Input.vue'
+import RadioGroup from '../components/RadioGroup.vue'
+import Select from '../components/Select.vue'
+import type { FormField, FormFieldOrRow } from '../types'
+import { FORM_DIVIDER } from '../types'
+import { DateValueParser } from '../valueParsers/dateValueParser'
+import { NumberValueParser } from '../valueParsers/numberValueParser'
 
 type FormData = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  gender: string;
-  position: string;
-  acceptTerms: boolean;
-};
+  firstName: string
+  lastName: string
+  email: string
+  gender: string
+  position: string
+  acceptTerms: boolean
+}
 
 export default {
-  title: "Components/FormFields",
+  title: 'Components/FormFields',
   component: FormFields,
   parameters: {
     docs: {
@@ -32,59 +31,59 @@ export default {
       },
     },
   },
-} as Meta<typeof FormFields>;
+} as Meta<typeof FormFields>
 
 const Template: StoryFn<typeof FormFields> = () => ({
   components: { FormFields },
   setup: () => {
     const fields: FormField<FormData>[] = [
       {
-        name: "firstName",
+        name: 'firstName',
         component: Input,
-        label: "First Name",
-        props: { required: true, placeholder: "First name" },
+        label: 'First Name',
+        props: { required: true, placeholder: 'First name' },
       },
-      { name: "lastName", component: Input, label: "Last Name", props: { required: true, placeholder: "Last name" } },
+      { name: 'lastName', component: Input, label: 'Last Name', props: { required: true, placeholder: 'Last name' } },
       {
-        name: "email",
+        name: 'email',
         component: Input,
-        label: "Email",
-        props: { required: true, placeholder: "Email", type: "email" },
+        label: 'Email',
+        props: { required: true, placeholder: 'Email', type: 'email' },
       },
       {
-        name: "gender",
+        name: 'gender',
         component: RadioGroup,
-        label: "Gender",
-        props: { required: true, options: ["male", "female"] },
+        label: 'Gender',
+        props: { required: true, options: ['male', 'female'] },
       },
       {
-        name: "position",
+        name: 'position',
         component: Select,
-        label: "Position",
+        label: 'Position',
         props: {
           required: true,
-          placeholder: "Select your position…",
-          options: ["developer", "manager", "customer support"],
+          placeholder: 'Select your position…',
+          options: ['developer', 'manager', 'customer support'],
         },
       },
-      { name: "acceptTerms", component: Checkbox, props: { label: "Accept Terms" } },
-    ];
+      { name: 'acceptTerms', component: Checkbox, props: { label: 'Accept Terms' } },
+    ]
 
-    const formData: Partial<FormData> = {};
+    const formData: Partial<FormData> = {}
 
     return {
       fields,
       formData,
-    };
+    }
   },
   template: `
     <FormFields :fields="fields" v-model="formData" />
 `,
-});
+})
 
 export const Default = {
   render: Template,
-};
+}
 
 const RowLayoutTemplate: StoryFn<typeof FormFields> = () => ({
   components: { FormFields },
@@ -93,59 +92,59 @@ const RowLayoutTemplate: StoryFn<typeof FormFields> = () => ({
       // First and last name in a row
       [
         {
-          name: "firstName",
+          name: 'firstName',
           component: Input,
-          label: "First Name",
-          props: { required: true, placeholder: "First name" },
+          label: 'First Name',
+          props: { required: true, placeholder: 'First name' },
         },
         {
-          name: "lastName",
+          name: 'lastName',
           component: Input,
-          label: "Last Name",
-          props: { required: true, placeholder: "Last name" },
+          label: 'Last Name',
+          props: { required: true, placeholder: 'Last name' },
         },
       ],
       // Email as single field
       {
-        name: "email",
+        name: 'email',
         component: Input,
-        label: "Email",
-        props: { required: true, placeholder: "Email", type: "email" },
+        label: 'Email',
+        props: { required: true, placeholder: 'Email', type: 'email' },
       },
       {
-        name: "gender",
+        name: 'gender',
         component: RadioGroup,
-        label: "Gender",
-        props: { required: true, options: ["male", "female"] },
+        label: 'Gender',
+        props: { required: true, options: ['male', 'female'] },
       },
       {
-        name: "position",
+        name: 'position',
         component: Select,
-        label: "Position",
+        label: 'Position',
         props: {
           required: true,
-          placeholder: "Select your position…",
-          options: ["developer", "manager", "customer support"],
+          placeholder: 'Select your position…',
+          options: ['developer', 'manager', 'customer support'],
         },
       },
-      { name: "acceptTerms", component: Checkbox, props: { label: "Accept Terms" } },
-    ];
+      { name: 'acceptTerms', component: Checkbox, props: { label: 'Accept Terms' } },
+    ]
 
-    const formData: Partial<FormData> = {};
+    const formData: Partial<FormData> = {}
 
     return {
       fields,
       formData,
-    };
+    }
   },
   template: `
     <FormFields :fields="fields" v-model="formData" />
   `,
-});
+})
 
 export const WithRowLayout = {
   render: RowLayoutTemplate,
-};
+}
 
 const WithDividersTemplate: StoryFn<typeof FormFields> = () => ({
   components: { FormFields },
@@ -154,23 +153,23 @@ const WithDividersTemplate: StoryFn<typeof FormFields> = () => ({
       // Personal information section
       [
         {
-          name: "firstName",
+          name: 'firstName',
           component: Input,
-          label: "First Name",
-          props: { required: true, placeholder: "First name" },
+          label: 'First Name',
+          props: { required: true, placeholder: 'First name' },
         },
         {
-          name: "lastName",
+          name: 'lastName',
           component: Input,
-          label: "Last Name",
-          props: { required: true, placeholder: "Last name" },
+          label: 'Last Name',
+          props: { required: true, placeholder: 'Last name' },
         },
       ],
       {
-        name: "email",
+        name: 'email',
         component: Input,
-        label: "Email",
-        props: { required: true, placeholder: "Email", type: "email" },
+        label: 'Email',
+        props: { required: true, placeholder: 'Email', type: 'email' },
       },
 
       // Divider separating sections
@@ -178,51 +177,51 @@ const WithDividersTemplate: StoryFn<typeof FormFields> = () => ({
 
       // Professional information section
       {
-        name: "position",
+        name: 'position',
         component: Select,
-        label: "Position",
+        label: 'Position',
         props: {
           required: true,
-          placeholder: "Select your position…",
-          options: ["developer", "manager", "customer support"],
+          placeholder: 'Select your position…',
+          options: ['developer', 'manager', 'customer support'],
         },
       },
       {
-        name: "gender",
+        name: 'gender',
         component: RadioGroup,
-        label: "Gender",
-        props: { required: true, options: ["male", "female"] },
+        label: 'Gender',
+        props: { required: true, options: ['male', 'female'] },
       },
 
       // Another divider
       FORM_DIVIDER,
 
       // Terms and conditions
-      { name: "acceptTerms", component: Checkbox, props: { label: "Accept Terms" } },
-    ];
+      { name: 'acceptTerms', component: Checkbox, props: { label: 'Accept Terms' } },
+    ]
 
-    const formData: Partial<FormData> = {};
+    const formData: Partial<FormData> = {}
 
     return {
       fields,
       formData,
-    };
+    }
   },
   template: `
     <FormFields :fields="fields" v-model="formData" />
   `,
-});
+})
 
 export const WithDividers = {
   render: WithDividersTemplate,
-};
+}
 
 type FormDataWithParsers = {
-  name: string;
-  birthDate: Date;
-  age: number;
-  salary: number;
-};
+  name: string
+  birthDate: Date
+  age: number
+  salary: number
+}
 
 /**
  * Use Value Parsers to bind typed values (Date, number) instead of strings.
@@ -233,44 +232,44 @@ const WithValueParsersTemplate: StoryFn<typeof FormFields> = () => ({
   setup: () => {
     const fields: FormField<FormDataWithParsers>[] = [
       {
-        name: "name",
+        name: 'name',
         component: Input,
-        label: "Name",
-        props: { placeholder: "Enter your name" },
+        label: 'Name',
+        props: { placeholder: 'Enter your name' },
       },
       {
-        name: "birthDate",
+        name: 'birthDate',
         component: Input,
-        label: "Birth Date",
-        description: "Uses DateValueParser to bind a Date object",
-        props: { type: "date", valueParser: DateValueParser },
+        label: 'Birth Date',
+        description: 'Uses DateValueParser to bind a Date object',
+        props: { type: 'date', valueParser: DateValueParser },
       },
       {
-        name: "age",
+        name: 'age',
         component: Input,
-        label: "Age",
-        description: "Uses NumberValueParser to bind a number",
-        props: { type: "number", valueParser: NumberValueParser, min: 0, max: 150 },
+        label: 'Age',
+        description: 'Uses NumberValueParser to bind a number',
+        props: { type: 'number', valueParser: NumberValueParser, min: 0, max: 150 },
       },
       {
-        name: "salary",
+        name: 'salary',
         component: Input,
-        label: "Annual Salary",
-        description: "Uses NumberValueParser to bind a number",
-        props: { type: "number", valueParser: NumberValueParser, step: 1000 },
+        label: 'Annual Salary',
+        description: 'Uses NumberValueParser to bind a number',
+        props: { type: 'number', valueParser: NumberValueParser, step: 1000 },
       },
-    ];
+    ]
 
     const formData: Partial<FormDataWithParsers> = {
-      birthDate: new Date("1990-01-15"),
+      birthDate: new Date('1990-01-15'),
       age: 34,
       salary: 75000,
-    };
+    }
 
     return {
       fields,
       formData,
-    };
+    }
   },
   template: `
     <div>
@@ -286,8 +285,8 @@ const WithValueParsersTemplate: StoryFn<typeof FormFields> = () => ({
       </div>
     </div>
   `,
-});
+})
 
 export const WithValueParsers = {
   render: WithValueParsersTemplate,
-};
+}

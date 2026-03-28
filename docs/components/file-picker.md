@@ -21,8 +21,7 @@ import { FilePicker } from '../../src'
 </ComponentDemo>
 
 ```vue
-// Basic usage
-import { FilePicker } from 'vuiii'
+// Basic usage import { FilePicker } from 'vuiii'
 
 <FilePicker @files="handleFiles" />
 ```
@@ -31,21 +30,12 @@ import { FilePicker } from 'vuiii'
 
 ```vue
 // Multiple files with accept filter
-<FilePicker
-  multiple
-  accept="image/*"
-  label="Upload Images"
-  @files="(files) => images = files"
-/>
+<FilePicker multiple accept="image/*" label="Upload Images" @files="(files) => (images = files)" />
 ```
 
 ```vue
 // Multiple accept types as array
-<FilePicker
-  :accept="['image/png', 'image/jpeg', '.pdf']"
-  label="Upload Documents"
-  @files="handleFiles"
-/>
+<FilePicker :accept="['image/png', 'image/jpeg', '.pdf']" label="Upload Documents" @files="handleFiles" />
 ```
 
 ```vue

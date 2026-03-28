@@ -1,41 +1,37 @@
-import { type Meta, StoryObj } from "@storybook/vue3-vite";
-import { defineComponent, h } from "vue";
+import { type Meta, StoryObj } from '@storybook/vue3-vite'
+import { defineComponent, h } from 'vue'
 
 // Helper component for rendering token documentation
 const TokenDocs = defineComponent({
-  name: "TokenDocs",
+  name: 'TokenDocs',
   props: {
     title: String,
   },
   setup(props, { slots }) {
     return () =>
-      h(
-        "div",
-        { style: { padding: "2rem", maxWidth: "1200px", margin: "0 auto" } },
-        [
-          props.title &&
-            h(
-              "h1",
-              {
-                style: {
-                  fontSize: "2rem",
-                  fontWeight: "600",
-                  marginBottom: "1.5rem",
-                  borderBottom: "1px solid #e5e5e5",
-                  paddingBottom: "0.5rem",
-                },
+      h('div', { style: { padding: '2rem', maxWidth: '1200px', margin: '0 auto' } }, [
+        props.title &&
+          h(
+            'h1',
+            {
+              style: {
+                fontSize: '2rem',
+                fontWeight: '600',
+                marginBottom: '1.5rem',
+                borderBottom: '1px solid #e5e5e5',
+                paddingBottom: '0.5rem',
               },
-              props.title
-            ),
-          slots.default?.(),
-        ]
-      );
+            },
+            props.title,
+          ),
+        slots.default?.(),
+      ])
   },
-});
+})
 
 // Color swatch component
 const ColorSwatch = defineComponent({
-  name: "ColorSwatch",
+  name: 'ColorSwatch',
   props: {
     name: { type: String, required: true },
     cssVar: { type: String, required: true },
@@ -44,61 +40,61 @@ const ColorSwatch = defineComponent({
   setup(props) {
     return () =>
       h(
-        "div",
+        'div',
         {
           style: {
-            display: "flex",
-            alignItems: "center",
-            gap: "1rem",
-            padding: "0.5rem",
-            borderRadius: "0.25rem",
+            display: 'flex',
+            alignItems: 'center',
+            gap: '1rem',
+            padding: '0.5rem',
+            borderRadius: '0.25rem',
           },
         },
         [
-          h("div", {
+          h('div', {
             style: {
-              width: "3rem",
-              height: "3rem",
-              borderRadius: "0.25rem",
+              width: '3rem',
+              height: '3rem',
+              borderRadius: '0.25rem',
               backgroundColor: `var(${props.cssVar})`,
-              border: "1px solid #e5e5e5",
-              flexShrink: "0",
+              border: '1px solid #e5e5e5',
+              flexShrink: '0',
             },
           }),
-          h("div", { style: { flex: "1", minWidth: "0" } }, [
+          h('div', { style: { flex: '1', minWidth: '0' } }, [
             h(
-              "code",
+              'code',
               {
                 style: {
-                  fontSize: "0.85rem",
-                  fontWeight: "500",
-                  display: "block",
+                  fontSize: '0.85rem',
+                  fontWeight: '500',
+                  display: 'block',
                 },
               },
-              props.cssVar
+              props.cssVar,
             ),
             props.value &&
               h(
-                "span",
+                'span',
                 {
                   style: {
-                    fontSize: "0.75rem",
-                    color: "#666",
-                    display: "block",
-                    marginTop: "0.25rem",
+                    fontSize: '0.75rem',
+                    color: '#666',
+                    display: 'block',
+                    marginTop: '0.25rem',
                   },
                 },
-                props.value
+                props.value,
               ),
           ]),
-        ]
-      );
+        ],
+      )
   },
-});
+})
 
 // Token table component
 const TokenTable = defineComponent({
-  name: "TokenTable",
+  name: 'TokenTable',
   props: {
     tokens: {
       type: Array as () => Array<{ name: string; value: string; description?: string }>,
@@ -108,70 +104,70 @@ const TokenTable = defineComponent({
   setup(props) {
     return () =>
       h(
-        "table",
+        'table',
         {
           style: {
-            width: "100%",
-            borderCollapse: "collapse",
-            fontSize: "0.875rem",
-            marginBottom: "2rem",
+            width: '100%',
+            borderCollapse: 'collapse',
+            fontSize: '0.875rem',
+            marginBottom: '2rem',
           },
         },
         [
-          h("thead", [
+          h('thead', [
             h(
-              "tr",
+              'tr',
               {
                 style: {
-                  borderBottom: "2px solid #e5e5e5",
-                  textAlign: "left",
+                  borderBottom: '2px solid #e5e5e5',
+                  textAlign: 'left',
                 },
               },
               [
-                h("th", { style: { padding: "0.75rem", fontWeight: "600" } }, "Token"),
-                h("th", { style: { padding: "0.75rem", fontWeight: "600" } }, "Value"),
-                h("th", { style: { padding: "0.75rem", fontWeight: "600" } }, "Description"),
-              ]
+                h('th', { style: { padding: '0.75rem', fontWeight: '600' } }, 'Token'),
+                h('th', { style: { padding: '0.75rem', fontWeight: '600' } }, 'Value'),
+                h('th', { style: { padding: '0.75rem', fontWeight: '600' } }, 'Description'),
+              ],
             ),
           ]),
           h(
-            "tbody",
+            'tbody',
             props.tokens.map((token, index) =>
               h(
-                "tr",
+                'tr',
                 {
                   key: index,
                   style: {
-                    borderBottom: "1px solid #f0f0f0",
+                    borderBottom: '1px solid #f0f0f0',
                   },
                 },
                 [
-                  h("td", { style: { padding: "0.75rem" } }, [
-                    h("code", { style: { fontSize: "0.8rem" } }, token.name),
+                  h('td', { style: { padding: '0.75rem' } }, [
+                    h('code', { style: { fontSize: '0.8rem' } }, token.name),
                   ]),
-                  h("td", { style: { padding: "0.75rem", fontFamily: "monospace", fontSize: "0.8rem" } }, token.value),
-                  h("td", { style: { padding: "0.75rem", color: "#666" } }, token.description || ""),
-                ]
-              )
-            )
+                  h('td', { style: { padding: '0.75rem', fontFamily: 'monospace', fontSize: '0.8rem' } }, token.value),
+                  h('td', { style: { padding: '0.75rem', color: '#666' } }, token.description || ''),
+                ],
+              ),
+            ),
           ),
-        ]
-      );
+        ],
+      )
   },
-});
+})
 
 export default {
-  title: "Design Tokens",
+  title: 'Design Tokens',
   parameters: {
-    layout: "fullscreen",
+    layout: 'fullscreen',
     docs: {
       description: {
         component:
-          "CSS custom properties (design tokens) used throughout the VUIII component library. Override these in your CSS to customize the theme.",
+          'CSS custom properties (design tokens) used throughout the VUIII component library. Override these in your CSS to customize the theme.',
       },
     },
   },
-} as Meta;
+} as Meta
 
 export const Overview: StoryObj = {
   render: () => ({
@@ -258,7 +254,7 @@ export const Overview: StoryObj = {
       </TokenDocs>
     `,
   }),
-};
+}
 
 export const Colors: StoryObj = {
   render: () => ({
@@ -319,7 +315,7 @@ export const Colors: StoryObj = {
       </TokenDocs>
     `,
   }),
-};
+}
 
 export const Typography: StoryObj = {
   render: () => ({
@@ -445,7 +441,7 @@ export const Typography: StoryObj = {
       </TokenDocs>
     `,
   }),
-};
+}
 
 export const Fields: StoryObj = {
   render: () => ({
@@ -475,33 +471,53 @@ export const Fields: StoryObj = {
     `,
     setup() {
       const baseTokens = [
-        { name: "--vuiii-field-height", value: "2.5em", description: "Default field height" },
-        { name: "--vuiii-field-padding", value: "1.35em", description: "Horizontal padding" },
-        { name: "--vuiii-field-borderRadius", value: "0.25em", description: "Corner radius" },
-        { name: "--vuiii-field-fontSize", value: "var(--vuiii-fontSize)", description: "Text size" },
-        { name: "--vuiii-field-borderWidth", value: "1px", description: "Border thickness" },
-        { name: "--vuiii-field-bgColor", value: "var(--vuiii-color-white)", description: "Background color" },
-        { name: "--vuiii-field-borderColor", value: "var(--vuiii-color-gray)", description: "Border color" },
-        { name: "--vuiii-field-ringColor", value: "color-mix(...)", description: "Focus ring color" },
-        { name: "--vuiii-field-ringSize", value: "0.25em", description: "Focus ring width" },
-        { name: "--vuiii-field-transition", value: "all 0.05s ease-in-out", description: "Animation timing" },
-        { name: "--vuiii-field-opacity--disabled", value: "0.6", description: "Disabled state opacity" },
-      ];
+        { name: '--vuiii-field-height', value: '2.5em', description: 'Default field height' },
+        { name: '--vuiii-field-padding', value: '1.35em', description: 'Horizontal padding' },
+        { name: '--vuiii-field-borderRadius', value: '0.25em', description: 'Corner radius' },
+        { name: '--vuiii-field-fontSize', value: 'var(--vuiii-fontSize)', description: 'Text size' },
+        { name: '--vuiii-field-borderWidth', value: '1px', description: 'Border thickness' },
+        { name: '--vuiii-field-bgColor', value: 'var(--vuiii-color-white)', description: 'Background color' },
+        { name: '--vuiii-field-borderColor', value: 'var(--vuiii-color-gray)', description: 'Border color' },
+        { name: '--vuiii-field-ringColor', value: 'color-mix(...)', description: 'Focus ring color' },
+        { name: '--vuiii-field-ringSize', value: '0.25em', description: 'Focus ring width' },
+        { name: '--vuiii-field-transition', value: 'all 0.05s ease-in-out', description: 'Animation timing' },
+        { name: '--vuiii-field-opacity--disabled', value: '0.6', description: 'Disabled state opacity' },
+      ]
       const stateTokens = [
-        { name: "--vuiii-field-borderColor--active", value: "var(--vuiii-color-gray--dark)", description: "Active state border" },
-        { name: "--vuiii-field-borderColor--focus", value: "var(--vuiii-color-gray--dark)", description: "Focus state border" },
-        { name: "--vuiii-field-borderColor--invalid", value: "var(--vuiii-color-danger)", description: "Invalid state border" },
-      ];
+        {
+          name: '--vuiii-field-borderColor--active',
+          value: 'var(--vuiii-color-gray--dark)',
+          description: 'Active state border',
+        },
+        {
+          name: '--vuiii-field-borderColor--focus',
+          value: 'var(--vuiii-color-gray--dark)',
+          description: 'Focus state border',
+        },
+        {
+          name: '--vuiii-field-borderColor--invalid',
+          value: 'var(--vuiii-color-danger)',
+          description: 'Invalid state border',
+        },
+      ]
       const sizeTokens = [
-        { name: "--vuiii-field-fontSize--small", value: "var(--vuiii-fontSize--small)", description: "Small size font" },
-        { name: "--vuiii-field-height--small", value: "var(--vuiii-field-height)", description: "Small size height" },
-        { name: "--vuiii-field-fontSize--large", value: "var(--vuiii-fontSize--large)", description: "Large size font" },
-        { name: "--vuiii-field-height--large", value: "var(--vuiii-field-height)", description: "Large size height" },
-      ];
-      return { baseTokens, stateTokens, sizeTokens };
+        {
+          name: '--vuiii-field-fontSize--small',
+          value: 'var(--vuiii-fontSize--small)',
+          description: 'Small size font',
+        },
+        { name: '--vuiii-field-height--small', value: 'var(--vuiii-field-height)', description: 'Small size height' },
+        {
+          name: '--vuiii-field-fontSize--large',
+          value: 'var(--vuiii-fontSize--large)',
+          description: 'Large size font',
+        },
+        { name: '--vuiii-field-height--large', value: 'var(--vuiii-field-height)', description: 'Large size height' },
+      ]
+      return { baseTokens, stateTokens, sizeTokens }
     },
   }),
-};
+}
 
 export const Buttons: StoryObj = {
   render: () => ({
@@ -578,26 +594,54 @@ export const Buttons: StoryObj = {
     `,
     setup() {
       const baseTokens = [
-        { name: "--vuiii-button-fontSize", value: "var(--vuiii-field-fontSize)", description: "Inherits from field" },
-        { name: "--vuiii-button-fontFamily", value: "var(--vuiii-typeface-body)", description: "Font family" },
-        { name: "--vuiii-button-fontWeight", value: "normal", description: "Text weight" },
-        { name: "--vuiii-button-height", value: "var(--vuiii-field-height)", description: "Inherits from field" },
-        { name: "--vuiii-button-padding", value: "var(--vuiii-field-padding)", description: "Inherits from field" },
-        { name: "--vuiii-button-borderRadius", value: "var(--vuiii-field-borderRadius)", description: "Inherits from field" },
-        { name: "--vuiii-button-borderWidth", value: "var(--vuiii-field-borderWidth)", description: "Inherits from field" },
-        { name: "--vuiii-button-transition", value: "var(--vuiii-field-transition)", description: "Animation timing" },
-        { name: "--vuiii-button-opacity--disabled", value: "var(--vuiii-field-opacity--disabled)", description: "Disabled opacity" },
-      ];
+        { name: '--vuiii-button-fontSize', value: 'var(--vuiii-field-fontSize)', description: 'Inherits from field' },
+        { name: '--vuiii-button-fontFamily', value: 'var(--vuiii-typeface-body)', description: 'Font family' },
+        { name: '--vuiii-button-fontWeight', value: 'normal', description: 'Text weight' },
+        { name: '--vuiii-button-height', value: 'var(--vuiii-field-height)', description: 'Inherits from field' },
+        { name: '--vuiii-button-padding', value: 'var(--vuiii-field-padding)', description: 'Inherits from field' },
+        {
+          name: '--vuiii-button-borderRadius',
+          value: 'var(--vuiii-field-borderRadius)',
+          description: 'Inherits from field',
+        },
+        {
+          name: '--vuiii-button-borderWidth',
+          value: 'var(--vuiii-field-borderWidth)',
+          description: 'Inherits from field',
+        },
+        { name: '--vuiii-button-transition', value: 'var(--vuiii-field-transition)', description: 'Animation timing' },
+        {
+          name: '--vuiii-button-opacity--disabled',
+          value: 'var(--vuiii-field-opacity--disabled)',
+          description: 'Disabled opacity',
+        },
+      ]
       const sizeTokens = [
-        { name: "--vuiii-button-fontSize--small", value: "var(--vuiii-field-fontSize)", description: "Small font size" },
-        { name: "--vuiii-button-height--small", value: "var(--vuiii-field-height--small)", description: "Small height" },
-        { name: "--vuiii-button-fontSize--large", value: "var(--vuiii-field-fontSize--large)", description: "Large font size" },
-        { name: "--vuiii-button-height--large", value: "var(--vuiii-field-height--large)", description: "Large height" },
-      ];
-      return { baseTokens, sizeTokens };
+        {
+          name: '--vuiii-button-fontSize--small',
+          value: 'var(--vuiii-field-fontSize)',
+          description: 'Small font size',
+        },
+        {
+          name: '--vuiii-button-height--small',
+          value: 'var(--vuiii-field-height--small)',
+          description: 'Small height',
+        },
+        {
+          name: '--vuiii-button-fontSize--large',
+          value: 'var(--vuiii-field-fontSize--large)',
+          description: 'Large font size',
+        },
+        {
+          name: '--vuiii-button-height--large',
+          value: 'var(--vuiii-field-height--large)',
+          description: 'Large height',
+        },
+      ]
+      return { baseTokens, sizeTokens }
     },
   }),
-};
+}
 
 export const Inputs: StoryObj = {
   render: () => ({
@@ -635,28 +679,44 @@ export const Inputs: StoryObj = {
     `,
     setup() {
       const baseTokens = [
-        { name: "--vuiii-input-height", value: "var(--vuiii-field-height)", description: "Inherits from field" },
-        { name: "--vuiii-input-padding", value: "var(--vuiii-field-padding)", description: "Inherits from field" },
-        { name: "--vuiii-input-fontSize", value: "var(--vuiii-field-fontSize)", description: "Inherits from field" },
-        { name: "--vuiii-input-borderRadius", value: "var(--vuiii-field-borderRadius)", description: "Inherits from field" },
-        { name: "--vuiii-input-textColor", value: "inherit", description: "Text color" },
-        { name: "--vuiii-input-borderColor", value: "var(--vuiii-field-borderColor)", description: "Border color" },
-        { name: "--vuiii-input-borderColor--focus", value: "color-mix(...)", description: "Focus border color" },
-        { name: "--vuiii-input-bgColor", value: "var(--vuiii-color-white)", description: "Background color" },
-        { name: "--vuiii-input-placeholderColor", value: "color-mix(currentColor 50%)", description: "Placeholder text" },
-        { name: "--vuiii-input-iconColor", value: "color-mix(currentColor 50%)", description: "Icon color" },
-        { name: "--vuiii-input-shadow", value: "0 0", description: "Box shadow" },
-      ];
+        { name: '--vuiii-input-height', value: 'var(--vuiii-field-height)', description: 'Inherits from field' },
+        { name: '--vuiii-input-padding', value: 'var(--vuiii-field-padding)', description: 'Inherits from field' },
+        { name: '--vuiii-input-fontSize', value: 'var(--vuiii-field-fontSize)', description: 'Inherits from field' },
+        {
+          name: '--vuiii-input-borderRadius',
+          value: 'var(--vuiii-field-borderRadius)',
+          description: 'Inherits from field',
+        },
+        { name: '--vuiii-input-textColor', value: 'inherit', description: 'Text color' },
+        { name: '--vuiii-input-borderColor', value: 'var(--vuiii-field-borderColor)', description: 'Border color' },
+        { name: '--vuiii-input-borderColor--focus', value: 'color-mix(...)', description: 'Focus border color' },
+        { name: '--vuiii-input-bgColor', value: 'var(--vuiii-color-white)', description: 'Background color' },
+        {
+          name: '--vuiii-input-placeholderColor',
+          value: 'color-mix(currentColor 50%)',
+          description: 'Placeholder text',
+        },
+        { name: '--vuiii-input-iconColor', value: 'color-mix(currentColor 50%)', description: 'Icon color' },
+        { name: '--vuiii-input-shadow', value: '0 0', description: 'Box shadow' },
+      ]
       const sizeTokens = [
-        { name: "--vuiii-input-height--small", value: "var(--vuiii-field-height--small)", description: "Small height" },
-        { name: "--vuiii-input-fontSize--small", value: "var(--vuiii-field-fontSize--small)", description: "Small font" },
-        { name: "--vuiii-input-height--large", value: "var(--vuiii-field-height--large)", description: "Large height" },
-        { name: "--vuiii-input-fontSize--large", value: "var(--vuiii-field-fontSize--large)", description: "Large font" },
-      ];
-      return { baseTokens, sizeTokens };
+        { name: '--vuiii-input-height--small', value: 'var(--vuiii-field-height--small)', description: 'Small height' },
+        {
+          name: '--vuiii-input-fontSize--small',
+          value: 'var(--vuiii-field-fontSize--small)',
+          description: 'Small font',
+        },
+        { name: '--vuiii-input-height--large', value: 'var(--vuiii-field-height--large)', description: 'Large height' },
+        {
+          name: '--vuiii-input-fontSize--large',
+          value: 'var(--vuiii-field-fontSize--large)',
+          description: 'Large font',
+        },
+      ]
+      return { baseTokens, sizeTokens }
     },
   }),
-};
+}
 
 export const Components: StoryObj = {
   render: () => ({
@@ -719,50 +779,82 @@ export const Components: StoryObj = {
     `,
     setup() {
       const dividerTokens = [
-        { name: "--vuiii-divider-color", value: "var(--vuiii-color-gray--light)", description: "Line color" },
-        { name: "--vuiii-divider-width", value: "1px", description: "Line thickness" },
-        { name: "--vuiii-divider-margin", value: "1rem", description: "Vertical spacing" },
-      ];
+        { name: '--vuiii-divider-color', value: 'var(--vuiii-color-gray--light)', description: 'Line color' },
+        { name: '--vuiii-divider-width', value: '1px', description: 'Line thickness' },
+        { name: '--vuiii-divider-margin', value: '1rem', description: 'Vertical spacing' },
+      ]
       const checkboxTokens = [
-        { name: "--vuiii-checkbox-bgColor--checked", value: "var(--vuiii-color-primary)", description: "Checked background" },
-        { name: "--vuiii-checkbox-borderColor--checked", value: "var(--vuiii-checkbox-bgColor--checked)", description: "Checked border" },
-        { name: "--vuiii-checkbox-iconColor--checked", value: "var(--vuiii-color-white)", description: "Checkmark color" },
-      ];
+        {
+          name: '--vuiii-checkbox-bgColor--checked',
+          value: 'var(--vuiii-color-primary)',
+          description: 'Checked background',
+        },
+        {
+          name: '--vuiii-checkbox-borderColor--checked',
+          value: 'var(--vuiii-checkbox-bgColor--checked)',
+          description: 'Checked border',
+        },
+        {
+          name: '--vuiii-checkbox-iconColor--checked',
+          value: 'var(--vuiii-color-white)',
+          description: 'Checkmark color',
+        },
+      ]
       const iconTokens = [
-        { name: "--vuiii-icon-size--small", value: "1.1rem", description: "Small icon size" },
-        { name: "--vuiii-icon-size", value: "1.3rem", description: "Default icon size" },
-        { name: "--vuiii-icon-size--large", value: "1.75rem", description: "Large icon size" },
-      ];
+        { name: '--vuiii-icon-size--small', value: '1.1rem', description: 'Small icon size' },
+        { name: '--vuiii-icon-size', value: '1.3rem', description: 'Default icon size' },
+        { name: '--vuiii-icon-size--large', value: '1.75rem', description: 'Large icon size' },
+      ]
       const tableTokens = [
-        { name: "--vuiii-table-fontSize", value: "var(--vuiii-fontSize)", description: "Table text size" },
-        { name: "--vuiii-table-dividerColor", value: "var(--vuiii-divider-color)", description: "Row divider color" },
-        { name: "--vuiii-table-dividerWidth", value: "var(--vuiii-divider-width)", description: "Row divider width" },
-        { name: "--vuiii-table-headBgColor", value: "transparent", description: "Header background" },
-        { name: "--vuiii-table-headTextColor", value: "var(--vuiii-color-gray--dark)", description: "Header text color" },
-        { name: "--vuiii-table-rowBgColor", value: "transparent", description: "Row background" },
-        { name: "--vuiii-table-rowBgColor--hover", value: "color-mix(...)", description: "Row hover background" },
-      ];
+        { name: '--vuiii-table-fontSize', value: 'var(--vuiii-fontSize)', description: 'Table text size' },
+        { name: '--vuiii-table-dividerColor', value: 'var(--vuiii-divider-color)', description: 'Row divider color' },
+        { name: '--vuiii-table-dividerWidth', value: 'var(--vuiii-divider-width)', description: 'Row divider width' },
+        { name: '--vuiii-table-headBgColor', value: 'transparent', description: 'Header background' },
+        {
+          name: '--vuiii-table-headTextColor',
+          value: 'var(--vuiii-color-gray--dark)',
+          description: 'Header text color',
+        },
+        { name: '--vuiii-table-rowBgColor', value: 'transparent', description: 'Row background' },
+        { name: '--vuiii-table-rowBgColor--hover', value: 'color-mix(...)', description: 'Row hover background' },
+      ]
       const dialogTokens = [
-        { name: "--vuiii-dialog-title-fontSize", value: "var(--vuiii-fontSize--x-large)", description: "Title font size" },
-        { name: "--vuiii-dialog-bgColor", value: "var(--vuiii-color-light)", description: "Dialog background" },
-        { name: "--vuiii-dialog-textColor", value: "var(--vuiii-color-dark)", description: "Dialog text color" },
-        { name: "--vuiii-dialog-borderRadius", value: "var(--vuiii-button-borderRadius)", description: "Corner radius" },
-        { name: "--vuiii-dialog-padding", value: "1.5rem", description: "Content padding" },
-        { name: "--vuiii-dialog-boxShadow", value: "0 2px 10px rgb(0 0 0 / 0.1)", description: "Drop shadow" },
-        { name: "--vuiii-dialog-backdropBgColor", value: "rgb(0 0 0 / 0.35)", description: "Overlay color" },
-      ];
+        {
+          name: '--vuiii-dialog-title-fontSize',
+          value: 'var(--vuiii-fontSize--x-large)',
+          description: 'Title font size',
+        },
+        { name: '--vuiii-dialog-bgColor', value: 'var(--vuiii-color-light)', description: 'Dialog background' },
+        { name: '--vuiii-dialog-textColor', value: 'var(--vuiii-color-dark)', description: 'Dialog text color' },
+        {
+          name: '--vuiii-dialog-borderRadius',
+          value: 'var(--vuiii-button-borderRadius)',
+          description: 'Corner radius',
+        },
+        { name: '--vuiii-dialog-padding', value: '1.5rem', description: 'Content padding' },
+        { name: '--vuiii-dialog-boxShadow', value: '0 2px 10px rgb(0 0 0 / 0.1)', description: 'Drop shadow' },
+        { name: '--vuiii-dialog-backdropBgColor', value: 'rgb(0 0 0 / 0.35)', description: 'Overlay color' },
+      ]
       const dropdownTokens = [
-        { name: "--vuiii-dropdownMenu-bgColor", value: "var(--vuiii-field-bgColor)", description: "Menu background" },
-        { name: "--vuiii-dropdownMenu-textColor", value: "var(--vuiii-field-textColor)", description: "Menu text color" },
-        { name: "--vuiii-dropdownMenu-borderRadius", value: "var(--vuiii-field-borderRadius)", description: "Corner radius" },
-        { name: "--vuiii-dropdownMenu-boxShadow", value: "var(--vuiii-shadow--large)", description: "Drop shadow" },
-        { name: "--vuiii-dropdownMenu-cursor-bgColor", value: "color-mix(...)", description: "Cursor highlight" },
-        { name: "--vuiii-dropdownMenu-button-bgColor--hover", value: "color-mix(...)", description: "Item hover" },
-      ];
-      return { dividerTokens, checkboxTokens, iconTokens, tableTokens, dialogTokens, dropdownTokens };
+        { name: '--vuiii-dropdownMenu-bgColor', value: 'var(--vuiii-field-bgColor)', description: 'Menu background' },
+        {
+          name: '--vuiii-dropdownMenu-textColor',
+          value: 'var(--vuiii-field-textColor)',
+          description: 'Menu text color',
+        },
+        {
+          name: '--vuiii-dropdownMenu-borderRadius',
+          value: 'var(--vuiii-field-borderRadius)',
+          description: 'Corner radius',
+        },
+        { name: '--vuiii-dropdownMenu-boxShadow', value: 'var(--vuiii-shadow--large)', description: 'Drop shadow' },
+        { name: '--vuiii-dropdownMenu-cursor-bgColor', value: 'color-mix(...)', description: 'Cursor highlight' },
+        { name: '--vuiii-dropdownMenu-button-bgColor--hover', value: 'color-mix(...)', description: 'Item hover' },
+      ]
+      return { dividerTokens, checkboxTokens, iconTokens, tableTokens, dialogTokens, dropdownTokens }
     },
   }),
-};
+}
 
 export const ZIndex: StoryObj = {
   render: () => ({
@@ -799,16 +891,16 @@ export const ZIndex: StoryObj = {
     `,
     setup() {
       const zIndexTokens = [
-        { name: "--vuiii-zIndex-header", value: "10", description: "Fixed headers and navbars" },
-        { name: "--vuiii-zIndex-dialog", value: "1000", description: "Modal dialogs" },
-        { name: "--vuiii-zIndex-dropdown", value: "1010", description: "Dropdown menus" },
-        { name: "--vuiii-zIndex-tooltip", value: "1020", description: "Tooltips" },
-        { name: "--vuiii-zIndex-snackbar", value: "1030", description: "Toast notifications" },
-      ];
-      return { zIndexTokens };
+        { name: '--vuiii-zIndex-header', value: '10', description: 'Fixed headers and navbars' },
+        { name: '--vuiii-zIndex-dialog', value: '1000', description: 'Modal dialogs' },
+        { name: '--vuiii-zIndex-dropdown', value: '1010', description: 'Dropdown menus' },
+        { name: '--vuiii-zIndex-tooltip', value: '1020', description: 'Tooltips' },
+        { name: '--vuiii-zIndex-snackbar', value: '1030', description: 'Toast notifications' },
+      ]
+      return { zIndexTokens }
     },
   }),
-};
+}
 
 export const AllTokens: StoryObj = {
   render: () => ({
@@ -845,161 +937,168 @@ export const AllTokens: StoryObj = {
       </TokenDocs>
     `,
     setup() {
-      const { ref, computed } = require("vue");
-      const search = ref("");
+      const { ref, computed } = require('vue')
+      const search = ref('')
 
       const tokens = [
         // Colors
-        { name: "--vuiii-color-white", value: "white" },
-        { name: "--vuiii-color-black", value: "black" },
-        { name: "--vuiii-color-light", value: "var(--vuiii-color-white)" },
-        { name: "--vuiii-color-dark", value: "var(--vuiii-color-black)" },
-        { name: "--vuiii-color-gray", value: "rgb(212 212 216)" },
-        { name: "--vuiii-color-gray--light", value: "rgb(229 229 229)" },
-        { name: "--vuiii-color-gray--lighter", value: "rgb(245 245 245)" },
-        { name: "--vuiii-color-gray--lightest", value: "rgb(250 250 250)" },
-        { name: "--vuiii-color-gray--dark", value: "rgb(163 163 163)" },
-        { name: "--vuiii-color-gray--darker", value: "rgb(115 115 115)" },
-        { name: "--vuiii-color-gray--darkest", value: "rgb(82 82 82)" },
-        { name: "--vuiii-color-primary", value: "rgb(79 70 229)" },
-        { name: "--vuiii-color-primary--darker", value: "color-mix(in srgb, var(--vuiii-color-primary) 95%, black)" },
-        { name: "--vuiii-color-primary--darkest", value: "color-mix(in srgb, var(--vuiii-color-primary) 85%, black)" },
-        { name: "--vuiii-color-danger", value: "rgb(225 29 72)" },
-        { name: "--vuiii-color-danger--darker", value: "color-mix(in srgb, var(--vuiii-color-danger) 95%, black)" },
-        { name: "--ui-color-warning", value: "rgb(234, 179, 8)" },
-        { name: "--ui-color-warning--darker", value: "color-mix(in srgb, var(--ui-color-warning) 95%, black)" },
-        { name: "--vuiii-color-success", value: "rgb(77 124 15)" },
-        { name: "--vuiii-color-success--darker", value: "color-mix(in srgb, var(--vuiii-color-success) 95%, black)" },
-        { name: "--vuiii-shadow", value: "0 1px 3px 0 rgb(0 0 0/0.1), 0 1px 2px -1px rgb(0 0 0/0.1)" },
-        { name: "--vuiii-shadow--large", value: "0 2px 15px 0 rgb(0 0 0/0.2), 0 1px 2px -1px rgb(0 0 0/0.1)" },
+        { name: '--vuiii-color-white', value: 'white' },
+        { name: '--vuiii-color-black', value: 'black' },
+        { name: '--vuiii-color-light', value: 'var(--vuiii-color-white)' },
+        { name: '--vuiii-color-dark', value: 'var(--vuiii-color-black)' },
+        { name: '--vuiii-color-gray', value: 'rgb(212 212 216)' },
+        { name: '--vuiii-color-gray--light', value: 'rgb(229 229 229)' },
+        { name: '--vuiii-color-gray--lighter', value: 'rgb(245 245 245)' },
+        { name: '--vuiii-color-gray--lightest', value: 'rgb(250 250 250)' },
+        { name: '--vuiii-color-gray--dark', value: 'rgb(163 163 163)' },
+        { name: '--vuiii-color-gray--darker', value: 'rgb(115 115 115)' },
+        { name: '--vuiii-color-gray--darkest', value: 'rgb(82 82 82)' },
+        { name: '--vuiii-color-primary', value: 'rgb(79 70 229)' },
+        { name: '--vuiii-color-primary--darker', value: 'color-mix(in srgb, var(--vuiii-color-primary) 95%, black)' },
+        { name: '--vuiii-color-primary--darkest', value: 'color-mix(in srgb, var(--vuiii-color-primary) 85%, black)' },
+        { name: '--vuiii-color-danger', value: 'rgb(225 29 72)' },
+        { name: '--vuiii-color-danger--darker', value: 'color-mix(in srgb, var(--vuiii-color-danger) 95%, black)' },
+        { name: '--ui-color-warning', value: 'rgb(234, 179, 8)' },
+        { name: '--ui-color-warning--darker', value: 'color-mix(in srgb, var(--ui-color-warning) 95%, black)' },
+        { name: '--vuiii-color-success', value: 'rgb(77 124 15)' },
+        { name: '--vuiii-color-success--darker', value: 'color-mix(in srgb, var(--vuiii-color-success) 95%, black)' },
+        { name: '--vuiii-shadow', value: '0 1px 3px 0 rgb(0 0 0/0.1), 0 1px 2px -1px rgb(0 0 0/0.1)' },
+        { name: '--vuiii-shadow--large', value: '0 2px 15px 0 rgb(0 0 0/0.2), 0 1px 2px -1px rgb(0 0 0/0.1)' },
         // Typography
-        { name: "--vuiii-typeface-body", value: '"Inter", "Helvetica Neue", Helvetica, Arial, sans-serif' },
-        { name: "--vuiii-typeface-display", value: "var(--vuiii-typeface-body)" },
-        { name: "--vuiii-fontSize", value: "1rem" },
-        { name: "--vuiii-fontSize--tiny", value: "calc(var(--vuiii-fontSize) * 0.75)" },
-        { name: "--vuiii-fontSize--small", value: "calc(var(--vuiii-fontSize) * 0.85)" },
-        { name: "--vuiii-fontSize--large", value: "calc(var(--vuiii-fontSize) * 1.25)" },
-        { name: "--vuiii-fontSize--x-large", value: "calc(var(--vuiii-fontSize) * 1.5)" },
-        { name: "--vuiii-fontSize--2x-large", value: "calc(var(--vuiii-fontSize) * 2)" },
-        { name: "--vuiii-fontSize--3x-large", value: "calc(var(--vuiii-fontSize) * 3)" },
-        { name: "--vuiii-fontSize--4x-large", value: "calc(var(--vuiii-fontSize) * 4)" },
+        { name: '--vuiii-typeface-body', value: '"Inter", "Helvetica Neue", Helvetica, Arial, sans-serif' },
+        { name: '--vuiii-typeface-display', value: 'var(--vuiii-typeface-body)' },
+        { name: '--vuiii-fontSize', value: '1rem' },
+        { name: '--vuiii-fontSize--tiny', value: 'calc(var(--vuiii-fontSize) * 0.75)' },
+        { name: '--vuiii-fontSize--small', value: 'calc(var(--vuiii-fontSize) * 0.85)' },
+        { name: '--vuiii-fontSize--large', value: 'calc(var(--vuiii-fontSize) * 1.25)' },
+        { name: '--vuiii-fontSize--x-large', value: 'calc(var(--vuiii-fontSize) * 1.5)' },
+        { name: '--vuiii-fontSize--2x-large', value: 'calc(var(--vuiii-fontSize) * 2)' },
+        { name: '--vuiii-fontSize--3x-large', value: 'calc(var(--vuiii-fontSize) * 3)' },
+        { name: '--vuiii-fontSize--4x-large', value: 'calc(var(--vuiii-fontSize) * 4)' },
         // Typography variants (display)
-        { name: "--vuiii-typography-display-fontSize", value: "var(--vuiii-fontSize--4x-large)" },
-        { name: "--vuiii-typography-display-fontWeight", value: "600" },
-        { name: "--vuiii-typography-display-lineHeight", value: "1.2" },
-        { name: "--vuiii-typography-display-textTransform", value: "none" },
-        { name: "--vuiii-typography-display-color", value: "inherit" },
-        { name: "--vuiii-typography-display-opacity", value: "1" },
+        { name: '--vuiii-typography-display-fontSize', value: 'var(--vuiii-fontSize--4x-large)' },
+        { name: '--vuiii-typography-display-fontWeight', value: '600' },
+        { name: '--vuiii-typography-display-lineHeight', value: '1.2' },
+        { name: '--vuiii-typography-display-textTransform', value: 'none' },
+        { name: '--vuiii-typography-display-color', value: 'inherit' },
+        { name: '--vuiii-typography-display-opacity', value: '1' },
         // Typography variants (heading1-6, body1-2, label, caption, description)
-        { name: "--vuiii-typography-heading1-fontSize", value: "var(--vuiii-fontSize--2x-large)" },
-        { name: "--vuiii-typography-heading1-fontWeight", value: "600" },
-        { name: "--vuiii-typography-heading2-fontSize", value: "var(--vuiii-fontSize--large)" },
-        { name: "--vuiii-typography-heading2-fontWeight", value: "600" },
-        { name: "--vuiii-typography-heading3-fontSize", value: "var(--vuiii-fontSize)" },
-        { name: "--vuiii-typography-heading3-fontWeight", value: "600" },
-        { name: "--vuiii-typography-body1-fontSize", value: "var(--vuiii-fontSize)" },
-        { name: "--vuiii-typography-body1-fontWeight", value: "400" },
-        { name: "--vuiii-typography-body2-fontSize", value: "var(--vuiii-fontSize)" },
-        { name: "--vuiii-typography-body2-opacity", value: "0.65" },
-        { name: "--vuiii-typography-label-fontSize", value: "var(--vuiii-fontSize--small)" },
-        { name: "--vuiii-typography-label-fontWeight", value: "600" },
-        { name: "--vuiii-typography-caption-fontSize", value: "var(--vuiii-fontSize--tiny)" },
-        { name: "--vuiii-typography-caption-textTransform", value: "uppercase" },
-        { name: "--vuiii-typography-description-fontSize", value: "var(--vuiii-fontSize--tiny)" },
-        { name: "--vuiii-typography-description-opacity", value: "0.65" },
+        { name: '--vuiii-typography-heading1-fontSize', value: 'var(--vuiii-fontSize--2x-large)' },
+        { name: '--vuiii-typography-heading1-fontWeight', value: '600' },
+        { name: '--vuiii-typography-heading2-fontSize', value: 'var(--vuiii-fontSize--large)' },
+        { name: '--vuiii-typography-heading2-fontWeight', value: '600' },
+        { name: '--vuiii-typography-heading3-fontSize', value: 'var(--vuiii-fontSize)' },
+        { name: '--vuiii-typography-heading3-fontWeight', value: '600' },
+        { name: '--vuiii-typography-body1-fontSize', value: 'var(--vuiii-fontSize)' },
+        { name: '--vuiii-typography-body1-fontWeight', value: '400' },
+        { name: '--vuiii-typography-body2-fontSize', value: 'var(--vuiii-fontSize)' },
+        { name: '--vuiii-typography-body2-opacity', value: '0.65' },
+        { name: '--vuiii-typography-label-fontSize', value: 'var(--vuiii-fontSize--small)' },
+        { name: '--vuiii-typography-label-fontWeight', value: '600' },
+        { name: '--vuiii-typography-caption-fontSize', value: 'var(--vuiii-fontSize--tiny)' },
+        { name: '--vuiii-typography-caption-textTransform', value: 'uppercase' },
+        { name: '--vuiii-typography-description-fontSize', value: 'var(--vuiii-fontSize--tiny)' },
+        { name: '--vuiii-typography-description-opacity', value: '0.65' },
         // Fields
-        { name: "--vuiii-field-height", value: "2.5em" },
-        { name: "--vuiii-field-padding", value: "1.35em" },
-        { name: "--vuiii-field-borderRadius", value: "0.25em" },
-        { name: "--vuiii-field-fontSize", value: "var(--vuiii-fontSize)" },
-        { name: "--vuiii-field-borderWidth", value: "1px" },
-        { name: "--vuiii-field-bgColor", value: "var(--vuiii-color-white)" },
-        { name: "--vuiii-field-borderColor", value: "var(--vuiii-color-gray)" },
-        { name: "--vuiii-field-ringColor", value: "color-mix(in srgb, var(--vuiii-color-gray--dark) 10%, transparent)" },
-        { name: "--vuiii-field-ringSize", value: "0.25em" },
-        { name: "--vuiii-field-borderColor--active", value: "var(--vuiii-color-gray--dark)" },
-        { name: "--vuiii-field-borderColor--focus", value: "var(--vuiii-color-gray--dark)" },
-        { name: "--vuiii-field-borderColor--invalid", value: "var(--vuiii-color-danger)" },
-        { name: "--vuiii-field-transition", value: "all 0.05s ease-in-out" },
-        { name: "--vuiii-field-opacity--disabled", value: "0.6" },
+        { name: '--vuiii-field-height', value: '2.5em' },
+        { name: '--vuiii-field-padding', value: '1.35em' },
+        { name: '--vuiii-field-borderRadius', value: '0.25em' },
+        { name: '--vuiii-field-fontSize', value: 'var(--vuiii-fontSize)' },
+        { name: '--vuiii-field-borderWidth', value: '1px' },
+        { name: '--vuiii-field-bgColor', value: 'var(--vuiii-color-white)' },
+        { name: '--vuiii-field-borderColor', value: 'var(--vuiii-color-gray)' },
+        {
+          name: '--vuiii-field-ringColor',
+          value: 'color-mix(in srgb, var(--vuiii-color-gray--dark) 10%, transparent)',
+        },
+        { name: '--vuiii-field-ringSize', value: '0.25em' },
+        { name: '--vuiii-field-borderColor--active', value: 'var(--vuiii-color-gray--dark)' },
+        { name: '--vuiii-field-borderColor--focus', value: 'var(--vuiii-color-gray--dark)' },
+        { name: '--vuiii-field-borderColor--invalid', value: 'var(--vuiii-color-danger)' },
+        { name: '--vuiii-field-transition', value: 'all 0.05s ease-in-out' },
+        { name: '--vuiii-field-opacity--disabled', value: '0.6' },
         // Buttons
-        { name: "--vuiii-button-fontSize", value: "var(--vuiii-field-fontSize)" },
-        { name: "--vuiii-button-fontFamily", value: "var(--vuiii-typeface-body)" },
-        { name: "--vuiii-button-fontWeight", value: "normal" },
-        { name: "--vuiii-button-height", value: "var(--vuiii-field-height)" },
-        { name: "--vuiii-button-padding", value: "var(--vuiii-field-padding)" },
-        { name: "--vuiii-button-borderRadius", value: "var(--vuiii-field-borderRadius)" },
-        { name: "--vuiii-button-bgColor", value: "transparent" },
-        { name: "--vuiii-button-textColor", value: "var(--vuiii-color-primary)" },
-        { name: "--vuiii-button-bgColor--primary", value: "var(--vuiii-color-primary)" },
-        { name: "--vuiii-button-textColor--primary", value: "white" },
-        { name: "--vuiii-button-bgColor--secondary", value: "var(--vuiii-color-gray--light)" },
-        { name: "--vuiii-button-textColor--secondary", value: "var(--vuiii-color-gray--darkest)" },
-        { name: "--vuiii-button-bgColor--danger", value: "var(--vuiii-color-danger)" },
-        { name: "--vuiii-button-textColor--danger", value: "white" },
-        { name: "--vuiii-button-bgColor--success", value: "var(--vuiii-color-success)" },
-        { name: "--vuiii-button-textColor--success", value: "white" },
+        { name: '--vuiii-button-fontSize', value: 'var(--vuiii-field-fontSize)' },
+        { name: '--vuiii-button-fontFamily', value: 'var(--vuiii-typeface-body)' },
+        { name: '--vuiii-button-fontWeight', value: 'normal' },
+        { name: '--vuiii-button-height', value: 'var(--vuiii-field-height)' },
+        { name: '--vuiii-button-padding', value: 'var(--vuiii-field-padding)' },
+        { name: '--vuiii-button-borderRadius', value: 'var(--vuiii-field-borderRadius)' },
+        { name: '--vuiii-button-bgColor', value: 'transparent' },
+        { name: '--vuiii-button-textColor', value: 'var(--vuiii-color-primary)' },
+        { name: '--vuiii-button-bgColor--primary', value: 'var(--vuiii-color-primary)' },
+        { name: '--vuiii-button-textColor--primary', value: 'white' },
+        { name: '--vuiii-button-bgColor--secondary', value: 'var(--vuiii-color-gray--light)' },
+        { name: '--vuiii-button-textColor--secondary', value: 'var(--vuiii-color-gray--darkest)' },
+        { name: '--vuiii-button-bgColor--danger', value: 'var(--vuiii-color-danger)' },
+        { name: '--vuiii-button-textColor--danger', value: 'white' },
+        { name: '--vuiii-button-bgColor--success', value: 'var(--vuiii-color-success)' },
+        { name: '--vuiii-button-textColor--success', value: 'white' },
         // Inputs
-        { name: "--vuiii-input-height", value: "var(--vuiii-field-height)" },
-        { name: "--vuiii-input-padding", value: "var(--vuiii-field-padding)" },
-        { name: "--vuiii-input-fontSize", value: "var(--vuiii-field-fontSize)" },
-        { name: "--vuiii-input-borderRadius", value: "var(--vuiii-field-borderRadius)" },
-        { name: "--vuiii-input-textColor", value: "inherit" },
-        { name: "--vuiii-input-borderColor", value: "var(--vuiii-field-borderColor)" },
-        { name: "--vuiii-input-bgColor", value: "var(--vuiii-color-white)" },
-        { name: "--vuiii-input-placeholderColor", value: "color-mix(in srgb, currentColor 50%, transparent)" },
-        { name: "--vuiii-input-iconColor", value: "color-mix(in srgb, currentColor 50%, transparent)" },
-        { name: "--vuiii-input-borderColor--valid", value: "var(--vuiii-color-success)" },
-        { name: "--vuiii-input-borderColor--invalid", value: "var(--vuiii-color-danger)" },
+        { name: '--vuiii-input-height', value: 'var(--vuiii-field-height)' },
+        { name: '--vuiii-input-padding', value: 'var(--vuiii-field-padding)' },
+        { name: '--vuiii-input-fontSize', value: 'var(--vuiii-field-fontSize)' },
+        { name: '--vuiii-input-borderRadius', value: 'var(--vuiii-field-borderRadius)' },
+        { name: '--vuiii-input-textColor', value: 'inherit' },
+        { name: '--vuiii-input-borderColor', value: 'var(--vuiii-field-borderColor)' },
+        { name: '--vuiii-input-bgColor', value: 'var(--vuiii-color-white)' },
+        { name: '--vuiii-input-placeholderColor', value: 'color-mix(in srgb, currentColor 50%, transparent)' },
+        { name: '--vuiii-input-iconColor', value: 'color-mix(in srgb, currentColor 50%, transparent)' },
+        { name: '--vuiii-input-borderColor--valid', value: 'var(--vuiii-color-success)' },
+        { name: '--vuiii-input-borderColor--invalid', value: 'var(--vuiii-color-danger)' },
         // Divider
-        { name: "--vuiii-divider-color", value: "var(--vuiii-color-gray--light)" },
-        { name: "--vuiii-divider-width", value: "1px" },
-        { name: "--vuiii-divider-margin", value: "1rem" },
+        { name: '--vuiii-divider-color', value: 'var(--vuiii-color-gray--light)' },
+        { name: '--vuiii-divider-width', value: '1px' },
+        { name: '--vuiii-divider-margin', value: '1rem' },
         // Checkbox
-        { name: "--vuiii-checkbox-bgColor--checked", value: "var(--vuiii-color-primary)" },
-        { name: "--vuiii-checkbox-borderColor--checked", value: "var(--vuiii-checkbox-bgColor--checked)" },
-        { name: "--vuiii-checkbox-iconColor--checked", value: "var(--vuiii-color-white)" },
+        { name: '--vuiii-checkbox-bgColor--checked', value: 'var(--vuiii-color-primary)' },
+        { name: '--vuiii-checkbox-borderColor--checked', value: 'var(--vuiii-checkbox-bgColor--checked)' },
+        { name: '--vuiii-checkbox-iconColor--checked', value: 'var(--vuiii-color-white)' },
         // Icons
-        { name: "--vuiii-icon-size--small", value: "1.1rem" },
-        { name: "--vuiii-icon-size", value: "1.3rem" },
-        { name: "--vuiii-icon-size--large", value: "1.75rem" },
+        { name: '--vuiii-icon-size--small', value: '1.1rem' },
+        { name: '--vuiii-icon-size', value: '1.3rem' },
+        { name: '--vuiii-icon-size--large', value: '1.75rem' },
         // Table
-        { name: "--vuiii-table-fontSize", value: "var(--vuiii-fontSize)" },
-        { name: "--vuiii-table-dividerColor", value: "var(--vuiii-divider-color)" },
-        { name: "--vuiii-table-headBgColor", value: "transparent" },
-        { name: "--vuiii-table-headTextColor", value: "var(--vuiii-color-gray--dark)" },
-        { name: "--vuiii-table-rowBgColor", value: "transparent" },
-        { name: "--vuiii-table-rowBgColor--hover", value: "color-mix(in srgb, var(--vuiii-color-dark) 4%, transparent)" },
+        { name: '--vuiii-table-fontSize', value: 'var(--vuiii-fontSize)' },
+        { name: '--vuiii-table-dividerColor', value: 'var(--vuiii-divider-color)' },
+        { name: '--vuiii-table-headBgColor', value: 'transparent' },
+        { name: '--vuiii-table-headTextColor', value: 'var(--vuiii-color-gray--dark)' },
+        { name: '--vuiii-table-rowBgColor', value: 'transparent' },
+        {
+          name: '--vuiii-table-rowBgColor--hover',
+          value: 'color-mix(in srgb, var(--vuiii-color-dark) 4%, transparent)',
+        },
         // Dialog
-        { name: "--vuiii-dialog-title-fontSize", value: "var(--vuiii-fontSize--x-large)" },
-        { name: "--vuiii-dialog-bgColor", value: "var(--vuiii-color-light)" },
-        { name: "--vuiii-dialog-textColor", value: "var(--vuiii-color-dark)" },
-        { name: "--vuiii-dialog-borderRadius", value: "var(--vuiii-button-borderRadius)" },
-        { name: "--vuiii-dialog-padding", value: "1.5rem" },
-        { name: "--vuiii-dialog-boxShadow", value: "0 2px 10px rgb(0 0 0 / 0.1)" },
-        { name: "--vuiii-dialog-backdropBgColor", value: "rgb(0 0 0 / 0.35)" },
+        { name: '--vuiii-dialog-title-fontSize', value: 'var(--vuiii-fontSize--x-large)' },
+        { name: '--vuiii-dialog-bgColor', value: 'var(--vuiii-color-light)' },
+        { name: '--vuiii-dialog-textColor', value: 'var(--vuiii-color-dark)' },
+        { name: '--vuiii-dialog-borderRadius', value: 'var(--vuiii-button-borderRadius)' },
+        { name: '--vuiii-dialog-padding', value: '1.5rem' },
+        { name: '--vuiii-dialog-boxShadow', value: '0 2px 10px rgb(0 0 0 / 0.1)' },
+        { name: '--vuiii-dialog-backdropBgColor', value: 'rgb(0 0 0 / 0.35)' },
         // Dropdown Menu
-        { name: "--vuiii-dropdownMenu-bgColor", value: "var(--vuiii-field-bgColor)" },
-        { name: "--vuiii-dropdownMenu-borderRadius", value: "var(--vuiii-field-borderRadius)" },
-        { name: "--vuiii-dropdownMenu-boxShadow", value: "var(--vuiii-shadow--large)" },
-        { name: "--vuiii-dropdownMenu-cursor-bgColor", value: "color-mix(in srgb, var(--vuiii-color-black) 6%, transparent)" },
+        { name: '--vuiii-dropdownMenu-bgColor', value: 'var(--vuiii-field-bgColor)' },
+        { name: '--vuiii-dropdownMenu-borderRadius', value: 'var(--vuiii-field-borderRadius)' },
+        { name: '--vuiii-dropdownMenu-boxShadow', value: 'var(--vuiii-shadow--large)' },
+        {
+          name: '--vuiii-dropdownMenu-cursor-bgColor',
+          value: 'color-mix(in srgb, var(--vuiii-color-black) 6%, transparent)',
+        },
         // Z-Index
-        { name: "--vuiii-zIndex-header", value: "10" },
-        { name: "--vuiii-zIndex-dialog", value: "1000" },
-        { name: "--vuiii-zIndex-dropdown", value: "1010" },
-        { name: "--vuiii-zIndex-tooltip", value: "1020" },
-        { name: "--vuiii-zIndex-snackbar", value: "1030" },
-      ];
+        { name: '--vuiii-zIndex-header', value: '10' },
+        { name: '--vuiii-zIndex-dialog', value: '1000' },
+        { name: '--vuiii-zIndex-dropdown', value: '1010' },
+        { name: '--vuiii-zIndex-tooltip', value: '1020' },
+        { name: '--vuiii-zIndex-snackbar', value: '1030' },
+      ]
 
       const filteredTokens = computed(() => {
-        if (!search.value) return tokens;
-        const query = search.value.toLowerCase();
-        return tokens.filter(
-          (t) => t.name.toLowerCase().includes(query) || t.value.toLowerCase().includes(query)
-        );
-      });
+        if (!search.value) return tokens
+        const query = search.value.toLowerCase()
+        return tokens.filter((t) => t.name.toLowerCase().includes(query) || t.value.toLowerCase().includes(query))
+      })
 
-      return { tokens, search, filteredTokens };
+      return { tokens, search, filteredTokens }
     },
   }),
-};
+}

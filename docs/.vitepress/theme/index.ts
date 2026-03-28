@@ -1,9 +1,8 @@
-import DefaultTheme from 'vitepress/theme'
 import type { Theme } from 'vitepress'
+import DefaultTheme from 'vitepress/theme'
 
 // Import vuiii styles
 import '../../../src/assets/css/style.css'
-
 // Custom components
 import ComponentDemo from './components/ComponentDemo.vue'
 import DesignToken from './components/DesignToken.vue'
