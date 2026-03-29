@@ -26,7 +26,7 @@ Button tokens control the appearance of the Button and IconButton components.
 | `--vuiii-button-bgColor`          | `transparent`                                                     | Background       |
 | `--vuiii-button-borderColor`      | `var(--vuiii-button-bgColor)`                                     | Border           |
 | `--vuiii-button-textColor`        | `var(--vuiii-color-primary)`                                      | Text color       |
-| `--vuiii-button-ringColor`        | `color-mix(in srgb, var(--vuiii-color-primary) 10%, transparent)` | Focus ring       |
+| `--vuiii-button-ringColor`        | `oklch(from var(--vuiii-color-primary) l c h / 0.10)` | Focus ring       |
 | `--vuiii-button-bgColor--hover`   | `transparent`                                                     | Hover background |
 | `--vuiii-button-textColor--hover` | `var(--vuiii-color-primary--darker)`                              | Hover text       |
 
@@ -37,7 +37,7 @@ Button tokens control the appearance of the Button and IconButton components.
 | `--vuiii-button-bgColor--primary`        | `var(--vuiii-color-primary)`                                      | Background       |
 | `--vuiii-button-borderColor--primary`    | `var(--vuiii-button-bgColor--primary)`                            | Border           |
 | `--vuiii-button-textColor--primary`      | `white`                                                           | Text color       |
-| `--vuiii-button-ringColor--primary`      | `color-mix(in srgb, var(--vuiii-color-primary) 10%, transparent)` | Focus ring       |
+| `--vuiii-button-ringColor--primary`      | `oklch(from var(--vuiii-color-primary) l c h / 0.10)` | Focus ring       |
 | `--vuiii-button-bgColor--primary--hover` | `var(--vuiii-color-primary--darker)`                              | Hover background |
 
 ### Secondary
@@ -47,7 +47,7 @@ Button tokens control the appearance of the Button and IconButton components.
 | `--vuiii-button-bgColor--secondary`          | `var(--vuiii-color-gray--light)`                                       | Background       |
 | `--vuiii-button-borderColor--secondary`      | `var(--vuiii-button-bgColor--secondary)`                               | Border           |
 | `--vuiii-button-textColor--secondary`        | `var(--vuiii-color-gray--darkest)`                                     | Text color       |
-| `--vuiii-button-ringColor--secondary`        | `color-mix(in srgb, var(--vuiii-color-gray--darker) 10%, transparent)` | Focus ring       |
+| `--vuiii-button-ringColor--secondary`        | `oklch(from var(--vuiii-color-gray--darker) l c h / 0.10)` | Focus ring       |
 | `--vuiii-button-bgColor--secondary--hover`   | `var(--vuiii-color-gray)`                                              | Hover background |
 | `--vuiii-button-textColor--secondary--hover` | `var(--vuiii-color-black)`                                             | Hover text       |
 
@@ -58,7 +58,7 @@ Button tokens control the appearance of the Button and IconButton components.
 | `--vuiii-button-bgColor--danger`        | `var(--vuiii-color-danger)`                                      | Background       |
 | `--vuiii-button-borderColor--danger`    | `var(--vuiii-color-danger)`                                      | Border           |
 | `--vuiii-button-textColor--danger`      | `white`                                                          | Text color       |
-| `--vuiii-button-ringColor--danger`      | `color-mix(in srgb, var(--vuiii-color-danger) 10%, transparent)` | Focus ring       |
+| `--vuiii-button-ringColor--danger`      | `oklch(from var(--vuiii-color-danger) l c h / 0.10)` | Focus ring       |
 | `--vuiii-button-bgColor--danger--hover` | `var(--vuiii-color-danger--darker)`                              | Hover background |
 
 ### Success
@@ -68,7 +68,7 @@ Button tokens control the appearance of the Button and IconButton components.
 | `--vuiii-button-bgColor--success`        | `var(--vuiii-color-success)`                                      | Background       |
 | `--vuiii-button-borderColor--success`    | `var(--vuiii-color-success)`                                      | Border           |
 | `--vuiii-button-textColor--success`      | `white`                                                           | Text color       |
-| `--vuiii-button-ringColor--success`      | `color-mix(in srgb, var(--vuiii-color-success) 10%, transparent)` | Focus ring       |
+| `--vuiii-button-ringColor--success`      | `oklch(from var(--vuiii-color-success) l c h / 0.10)` | Focus ring       |
 | `--vuiii-button-bgColor--success--hover` | `var(--vuiii-color-success--darker)`                              | Hover background |
 
 ## Size Variants

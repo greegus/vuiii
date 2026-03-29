@@ -274,28 +274,28 @@ export const Colors: StoryObj = {
         <section style="margin-bottom: 2rem;">
           <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">Gray Scale</h2>
           <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.5rem;">
-            <ColorSwatch name="Gray Lightest" cssVar="--vuiii-color-gray--lightest" value="rgb(250 250 250)" />
-            <ColorSwatch name="Gray Lighter" cssVar="--vuiii-color-gray--lighter" value="rgb(245 245 245)" />
-            <ColorSwatch name="Gray Light" cssVar="--vuiii-color-gray--light" value="rgb(229 229 229)" />
-            <ColorSwatch name="Gray" cssVar="--vuiii-color-gray" value="rgb(212 212 216)" />
-            <ColorSwatch name="Gray Dark" cssVar="--vuiii-color-gray--dark" value="rgb(163 163 163)" />
-            <ColorSwatch name="Gray Darker" cssVar="--vuiii-color-gray--darker" value="rgb(115 115 115)" />
-            <ColorSwatch name="Gray Darkest" cssVar="--vuiii-color-gray--darkest" value="rgb(82 82 82)" />
+            <ColorSwatch name="Gray Lightest" cssVar="--vuiii-color-gray--lightest" value="oklch(98.51% 0 0)" />
+            <ColorSwatch name="Gray Lighter" cssVar="--vuiii-color-gray--lighter" value="oklch(97.02% 0 0)" />
+            <ColorSwatch name="Gray Light" cssVar="--vuiii-color-gray--light" value="oklch(92.19% 0 0)" />
+            <ColorSwatch name="Gray" cssVar="--vuiii-color-gray" value="oklch(87.11% 0.0055 286.29)" />
+            <ColorSwatch name="Gray Dark" cssVar="--vuiii-color-gray--dark" value="oklch(71.55% 0 0)" />
+            <ColorSwatch name="Gray Darker" cssVar="--vuiii-color-gray--darker" value="oklch(55.55% 0 0)" />
+            <ColorSwatch name="Gray Darkest" cssVar="--vuiii-color-gray--darkest" value="oklch(43.86% 0 0)" />
           </div>
         </section>
 
         <section style="margin-bottom: 2rem;">
           <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">Semantic Colors</h2>
           <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.5rem;">
-            <ColorSwatch name="Primary" cssVar="--vuiii-color-primary" value="rgb(79 70 229) — indigo.600" />
-            <ColorSwatch name="Primary Darker" cssVar="--vuiii-color-primary--darker" value="color-mix 95% black" />
-            <ColorSwatch name="Primary Darkest" cssVar="--vuiii-color-primary--darkest" value="color-mix 85% black" />
-            <ColorSwatch name="Danger" cssVar="--vuiii-color-danger" value="rgb(225 29 72) — rose.600" />
-            <ColorSwatch name="Danger Darker" cssVar="--vuiii-color-danger--darker" value="color-mix 95% black" />
-            <ColorSwatch name="Success" cssVar="--vuiii-color-success" value="rgb(77 124 15) — lime.700" />
-            <ColorSwatch name="Success Darker" cssVar="--vuiii-color-success--darker" value="color-mix 95% black" />
-            <ColorSwatch name="Warning" cssVar="--vuiii-color-warning" value="rgb(234 179 8) — amber.400" />
-            <ColorSwatch name="Warning Darker" cssVar="--vuiii-color-warning--darker" value="color-mix 95% black" />
+            <ColorSwatch name="Primary" cssVar="--vuiii-color-primary" value="oklch(51.06% 0.2301 276.97) — indigo.600" />
+            <ColorSwatch name="Primary Darker" cssVar="--vuiii-color-primary--darker" value="oklch(from ... calc(l * 0.95))" />
+            <ColorSwatch name="Primary Darkest" cssVar="--vuiii-color-primary--darkest" value="oklch(from ... calc(l * 0.85))" />
+            <ColorSwatch name="Danger" cssVar="--vuiii-color-danger" value="oklch(58.58% 0.2220 17.58) — rose.600" />
+            <ColorSwatch name="Danger Darker" cssVar="--vuiii-color-danger--darker" value="oklch(from ... calc(l * 0.95))" />
+            <ColorSwatch name="Success" cssVar="--vuiii-color-success" value="oklch(53.22% 0.1405 131.59) — lime.700" />
+            <ColorSwatch name="Success Darker" cssVar="--vuiii-color-success--darker" value="oklch(from ... calc(l * 0.95))" />
+            <ColorSwatch name="Warning" cssVar="--vuiii-color-warning" value="oklch(79.52% 0.1617 86.05) — amber.400" />
+            <ColorSwatch name="Warning Darker" cssVar="--vuiii-color-warning--darker" value="oklch(from ... calc(l * 0.95))" />
           </div>
         </section>
 
@@ -478,7 +478,7 @@ export const Fields: StoryObj = {
         { name: '--vuiii-field-borderWidth', value: '1px', description: 'Border thickness' },
         { name: '--vuiii-field-bgColor', value: 'var(--vuiii-color-white)', description: 'Background color' },
         { name: '--vuiii-field-borderColor', value: 'var(--vuiii-color-gray)', description: 'Border color' },
-        { name: '--vuiii-field-ringColor', value: 'color-mix(...)', description: 'Focus ring color' },
+        { name: '--vuiii-field-ringColor', value: 'oklch(from ... l c h / 0.10)', description: 'Focus ring color' },
         { name: '--vuiii-field-ringSize', value: '0.25em', description: 'Focus ring width' },
         { name: '--vuiii-field-transition', value: 'all 0.05s ease-in-out', description: 'Animation timing' },
         { name: '--vuiii-field-opacity--disabled', value: '0.6', description: 'Disabled state opacity' },
@@ -689,7 +689,7 @@ export const Inputs: StoryObj = {
         },
         { name: '--vuiii-input-textColor', value: 'inherit', description: 'Text color' },
         { name: '--vuiii-input-borderColor', value: 'var(--vuiii-field-borderColor)', description: 'Border color' },
-        { name: '--vuiii-input-borderColor--focus', value: 'color-mix(...)', description: 'Focus border color' },
+        { name: '--vuiii-input-borderColor--focus', value: 'oklch(from ... calc(l * 0.80))', description: 'Focus border color' },
         { name: '--vuiii-input-bgColor', value: 'var(--vuiii-color-white)', description: 'Background color' },
         {
           name: '--vuiii-input-placeholderColor',
@@ -816,7 +816,7 @@ export const Components: StoryObj = {
           description: 'Header text color',
         },
         { name: '--vuiii-table-rowBgColor', value: 'transparent', description: 'Row background' },
-        { name: '--vuiii-table-rowBgColor--hover', value: 'color-mix(...)', description: 'Row hover background' },
+        { name: '--vuiii-table-rowBgColor--hover', value: 'oklch(from ... l c h / 0.04)', description: 'Row hover background' },
       ]
       const dialogTokens = [
         {
@@ -832,8 +832,8 @@ export const Components: StoryObj = {
           description: 'Corner radius',
         },
         { name: '--vuiii-dialog-padding', value: '1.5rem', description: 'Content padding' },
-        { name: '--vuiii-dialog-boxShadow', value: '0 2px 10px rgb(0 0 0 / 0.1)', description: 'Drop shadow' },
-        { name: '--vuiii-dialog-backdropBgColor', value: 'rgb(0 0 0 / 0.35)', description: 'Overlay color' },
+        { name: '--vuiii-dialog-boxShadow', value: '0 2px 10px oklch(0% 0 0 / 0.1)', description: 'Drop shadow' },
+        { name: '--vuiii-dialog-backdropBgColor', value: 'oklch(0% 0 0 / 0.35)', description: 'Overlay color' },
       ]
       const dropdownTokens = [
         { name: '--vuiii-dropdownMenu-bgColor', value: 'var(--vuiii-field-bgColor)', description: 'Menu background' },
@@ -848,8 +848,8 @@ export const Components: StoryObj = {
           description: 'Corner radius',
         },
         { name: '--vuiii-dropdownMenu-boxShadow', value: 'var(--vuiii-shadow--large)', description: 'Drop shadow' },
-        { name: '--vuiii-dropdownMenu-cursor-bgColor', value: 'color-mix(...)', description: 'Cursor highlight' },
-        { name: '--vuiii-dropdownMenu-button-bgColor--hover', value: 'color-mix(...)', description: 'Item hover' },
+        { name: '--vuiii-dropdownMenu-cursor-bgColor', value: 'oklch(from ... l c h / 0.06)', description: 'Cursor highlight' },
+        { name: '--vuiii-dropdownMenu-button-bgColor--hover', value: 'oklch(from ... l c h / 0.04)', description: 'Item hover' },
       ]
       return { dividerTokens, checkboxTokens, iconTokens, tableTokens, dialogTokens, dropdownTokens }
     },
@@ -946,24 +946,24 @@ export const AllTokens: StoryObj = {
         { name: '--vuiii-color-black', value: 'black' },
         { name: '--vuiii-color-light', value: 'var(--vuiii-color-white)' },
         { name: '--vuiii-color-dark', value: 'var(--vuiii-color-black)' },
-        { name: '--vuiii-color-gray', value: 'rgb(212 212 216)' },
-        { name: '--vuiii-color-gray--light', value: 'rgb(229 229 229)' },
-        { name: '--vuiii-color-gray--lighter', value: 'rgb(245 245 245)' },
-        { name: '--vuiii-color-gray--lightest', value: 'rgb(250 250 250)' },
-        { name: '--vuiii-color-gray--dark', value: 'rgb(163 163 163)' },
-        { name: '--vuiii-color-gray--darker', value: 'rgb(115 115 115)' },
-        { name: '--vuiii-color-gray--darkest', value: 'rgb(82 82 82)' },
-        { name: '--vuiii-color-primary', value: 'rgb(79 70 229)' },
-        { name: '--vuiii-color-primary--darker', value: 'color-mix(in srgb, var(--vuiii-color-primary) 95%, black)' },
-        { name: '--vuiii-color-primary--darkest', value: 'color-mix(in srgb, var(--vuiii-color-primary) 85%, black)' },
-        { name: '--vuiii-color-danger', value: 'rgb(225 29 72)' },
-        { name: '--vuiii-color-danger--darker', value: 'color-mix(in srgb, var(--vuiii-color-danger) 95%, black)' },
-        { name: '--vuiii-color-warning', value: 'rgb(234, 179, 8)' },
-        { name: '--vuiii-color-warning--darker', value: 'color-mix(in srgb, var(--vuiii-color-warning) 95%, black)' },
-        { name: '--vuiii-color-success', value: 'rgb(77 124 15)' },
-        { name: '--vuiii-color-success--darker', value: 'color-mix(in srgb, var(--vuiii-color-success) 95%, black)' },
-        { name: '--vuiii-shadow', value: '0 1px 3px 0 rgb(0 0 0/0.1), 0 1px 2px -1px rgb(0 0 0/0.1)' },
-        { name: '--vuiii-shadow--large', value: '0 2px 15px 0 rgb(0 0 0/0.2), 0 1px 2px -1px rgb(0 0 0/0.1)' },
+        { name: '--vuiii-color-gray', value: 'oklch(87.11% 0.0055 286.29)' },
+        { name: '--vuiii-color-gray--light', value: 'oklch(92.19% 0 0)' },
+        { name: '--vuiii-color-gray--lighter', value: 'oklch(97.02% 0 0)' },
+        { name: '--vuiii-color-gray--lightest', value: 'oklch(98.51% 0 0)' },
+        { name: '--vuiii-color-gray--dark', value: 'oklch(71.55% 0 0)' },
+        { name: '--vuiii-color-gray--darker', value: 'oklch(55.55% 0 0)' },
+        { name: '--vuiii-color-gray--darkest', value: 'oklch(43.86% 0 0)' },
+        { name: '--vuiii-color-primary', value: 'oklch(51.06% 0.2301 276.97)' },
+        { name: '--vuiii-color-primary--darker', value: 'oklch(from var(--vuiii-color-primary) calc(l * 0.95) c h)' },
+        { name: '--vuiii-color-primary--darkest', value: 'oklch(from var(--vuiii-color-primary) calc(l * 0.85) c h)' },
+        { name: '--vuiii-color-danger', value: 'oklch(58.58% 0.2220 17.58)' },
+        { name: '--vuiii-color-danger--darker', value: 'oklch(from var(--vuiii-color-danger) calc(l * 0.95) c h)' },
+        { name: '--vuiii-color-warning', value: 'oklch(79.52% 0.1617 86.05)' },
+        { name: '--vuiii-color-warning--darker', value: 'oklch(from var(--vuiii-color-warning) calc(l * 0.95) c h)' },
+        { name: '--vuiii-color-success', value: 'oklch(53.22% 0.1405 131.59)' },
+        { name: '--vuiii-color-success--darker', value: 'oklch(from var(--vuiii-color-success) calc(l * 0.95) c h)' },
+        { name: '--vuiii-shadow', value: '0 1px 3px 0 oklch(0% 0 0 / 0.1), 0 1px 2px -1px oklch(0% 0 0 / 0.1)' },
+        { name: '--vuiii-shadow--large', value: '0 2px 15px 0 oklch(0% 0 0 / 0.2), 0 1px 2px -1px oklch(0% 0 0 / 0.1)' },
         // Typography
         { name: '--vuiii-typeface-body', value: '"Inter", "Helvetica Neue", Helvetica, Arial, sans-serif' },
         { name: '--vuiii-typeface-display', value: 'var(--vuiii-typeface-body)' },
@@ -1009,7 +1009,7 @@ export const AllTokens: StoryObj = {
         { name: '--vuiii-field-borderColor', value: 'var(--vuiii-color-gray)' },
         {
           name: '--vuiii-field-ringColor',
-          value: 'color-mix(in srgb, var(--vuiii-color-gray--dark) 10%, transparent)',
+          value: 'oklch(from var(--vuiii-color-gray--dark) l c h / 0.10)',
         },
         { name: '--vuiii-field-ringSize', value: '0.25em' },
         { name: '--vuiii-field-borderColor--active', value: 'var(--vuiii-color-gray--dark)' },
@@ -1042,8 +1042,8 @@ export const AllTokens: StoryObj = {
         { name: '--vuiii-input-textColor', value: 'inherit' },
         { name: '--vuiii-input-borderColor', value: 'var(--vuiii-field-borderColor)' },
         { name: '--vuiii-input-bgColor', value: 'var(--vuiii-color-white)' },
-        { name: '--vuiii-input-placeholderColor', value: 'color-mix(in srgb, currentColor 50%, transparent)' },
-        { name: '--vuiii-input-iconColor', value: 'color-mix(in srgb, currentColor 50%, transparent)' },
+        { name: '--vuiii-input-placeholderColor', value: 'color-mix(in oklch, currentColor 50%, transparent)' },
+        { name: '--vuiii-input-iconColor', value: 'color-mix(in oklch, currentColor 50%, transparent)' },
         { name: '--vuiii-input-borderColor--valid', value: 'var(--vuiii-color-success)' },
         { name: '--vuiii-input-borderColor--invalid', value: 'var(--vuiii-color-danger)' },
         // Divider
@@ -1066,7 +1066,7 @@ export const AllTokens: StoryObj = {
         { name: '--vuiii-table-rowBgColor', value: 'transparent' },
         {
           name: '--vuiii-table-rowBgColor--hover',
-          value: 'color-mix(in srgb, var(--vuiii-color-dark) 4%, transparent)',
+          value: 'oklch(from var(--vuiii-color-dark) l c h / 0.04)',
         },
         // Dialog
         { name: '--vuiii-dialog-title-fontSize', value: 'var(--vuiii-fontSize--x-large)' },
@@ -1074,15 +1074,15 @@ export const AllTokens: StoryObj = {
         { name: '--vuiii-dialog-textColor', value: 'var(--vuiii-color-dark)' },
         { name: '--vuiii-dialog-borderRadius', value: 'var(--vuiii-button-borderRadius)' },
         { name: '--vuiii-dialog-padding', value: '1.5rem' },
-        { name: '--vuiii-dialog-boxShadow', value: '0 2px 10px rgb(0 0 0 / 0.1)' },
-        { name: '--vuiii-dialog-backdropBgColor', value: 'rgb(0 0 0 / 0.35)' },
+        { name: '--vuiii-dialog-boxShadow', value: '0 2px 10px oklch(0% 0 0 / 0.1)' },
+        { name: '--vuiii-dialog-backdropBgColor', value: 'oklch(0% 0 0 / 0.35)' },
         // Dropdown Menu
         { name: '--vuiii-dropdownMenu-bgColor', value: 'var(--vuiii-field-bgColor)' },
         { name: '--vuiii-dropdownMenu-borderRadius', value: 'var(--vuiii-field-borderRadius)' },
         { name: '--vuiii-dropdownMenu-boxShadow', value: 'var(--vuiii-shadow--large)' },
         {
           name: '--vuiii-dropdownMenu-cursor-bgColor',
-          value: 'color-mix(in srgb, var(--vuiii-color-black) 6%, transparent)',
+          value: 'oklch(from var(--vuiii-color-black) l c h / 0.06)',
         },
         // Z-Index
         { name: '--vuiii-zIndex-header', value: '10' },
