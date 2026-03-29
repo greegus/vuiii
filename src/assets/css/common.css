@@ -196,7 +196,7 @@
 
   /* Sizes */
 
-  --vuiii-button-fontSize--small: var(--vuiii-field-fontSize);
+  --vuiii-button-fontSize--small: var(--vuiii-field-fontSize--small);
   --vuiii-button-height--small: var(--vuiii-field-height--small);
   --vuiii-button-padding--small: var(--vuiii-field-padding--small);
   --vuiii-button-borderRadius--small: var(--vuiii-field-borderRadius--small);
