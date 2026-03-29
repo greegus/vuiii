@@ -10,5 +10,5 @@ export const parameters = {
       order: ['Introduction', 'Example', 'Guides'],
     },
   },
-};
-export const tags = ["autodocs"];
+}
+export const tags = ['autodocs']

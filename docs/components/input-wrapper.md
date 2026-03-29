@@ -21,8 +21,7 @@ import { InputWrapper } from '../../src'
 </ComponentDemo>
 
 ```vue
-// Typically used internally, but can be used for custom inputs
-import { InputWrapper } from 'vuiii'
+// Typically used internally, but can be used for custom inputs import { InputWrapper } from 'vuiii'
 
 <InputWrapper size="normal" prefix-icon="user">
   <input class="vuiii-input__nested" v-model="value" />
@@ -40,10 +39,7 @@ import { InputWrapper } from 'vuiii'
 
 ```vue
 // With clickable icons
-<InputWrapper
-  suffix-icon="x-mark"
-  @suffix-icon-click="clearValue"
->
+<InputWrapper suffix-icon="x-mark" @suffix-icon-click="clearValue">
   <input class="vuiii-input__nested" v-model="value" />
 </InputWrapper>
 ```

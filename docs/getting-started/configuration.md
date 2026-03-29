@@ -22,9 +22,7 @@ import { registerCustomIconResolver } from 'vuiii'
 import { defineAsyncComponent } from 'vue'
 
 registerCustomIconResolver((name) => {
-  return defineAsyncComponent(
-    () => import(`@heroicons/vue/24/outline/${pascalCase(name)}Icon.vue`)
-  )
+  return defineAsyncComponent(() => import(`@heroicons/vue/24/outline/${pascalCase(name)}Icon.vue`))
 })
 
 function pascalCase(str: string) {

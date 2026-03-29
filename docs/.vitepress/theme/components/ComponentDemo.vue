@@ -6,9 +6,7 @@ const props = defineProps<{
 }>()
 
 const storybookUrl = computed(() =>
-  props.storybook
-    ? `https://greegus.github.io/vuiii/storybook/?path=/story/${props.storybook}`
-    : null
+  props.storybook ? `https://greegus.github.io/vuiii/storybook/?path=/story/${props.storybook}` : null,
 )
 </script>
 

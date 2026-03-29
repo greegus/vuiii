@@ -30,46 +30,46 @@
  * <ShortcutIcon :shortcut="{ key: 'p', alt: true }" />
  * // macOS: [⌥] [P]  |  Windows: [Alt] [P]
  */
-import { computed } from "vue";
+import { computed } from 'vue'
 
-import type { Shortcut } from "@/types";
+import type { Shortcut } from '@/types'
 
 type KeyPart = {
-  label: string;
-  icon?: string;
-};
+  label: string
+  icon?: string
+}
 
 const props = defineProps<{
-  shortcut: Shortcut;
-}>();
+  shortcut: Shortcut
+}>()
 
-const isMac = typeof navigator !== "undefined" && /Mac|iPhone|iPad|iPod/.test(navigator.userAgent);
+const isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad|iPod/.test(navigator.userAgent)
 
 const keys = computed<KeyPart[]>(() => {
-  const parts: KeyPart[] = [];
-  const { key, shift, alt, mod, ctrl } = props.shortcut;
+  const parts: KeyPart[] = []
+  const { key, shift, alt, mod, ctrl } = props.shortcut
 
   if (ctrl) {
-    parts.push(isMac ? { label: "⌃" } : { label: "Ctrl" });
+    parts.push(isMac ? { label: '⌃' } : { label: 'Ctrl' })
   }
 
   if (alt) {
-    parts.push(isMac ? { label: "⌥", icon: "option" } : { label: "Alt" });
+    parts.push(isMac ? { label: '⌥', icon: 'option' } : { label: 'Alt' })
   }
 
   if (shift) {
-    parts.push(isMac ? { label: "⇧", icon: "shift" } : { label: "Shift" });
+    parts.push(isMac ? { label: '⇧', icon: 'shift' } : { label: 'Shift' })
   }
 
   if (mod) {
-    parts.push(isMac ? { label: "⌘", icon: "command" } : { label: "Ctrl" });
+    parts.push(isMac ? { label: '⌘', icon: 'command' } : { label: 'Ctrl' })
   }
 
-  const displayKey = key.length === 1 ? key.toUpperCase() : key;
-  parts.push({ label: displayKey });
+  const displayKey = key.length === 1 ? key.toUpperCase() : key
+  parts.push({ label: displayKey })
 
-  return parts;
-});
+  return parts
+})
 </script>
 
 <style>

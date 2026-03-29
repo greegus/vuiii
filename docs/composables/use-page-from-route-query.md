@@ -23,4 +23,3 @@ const { page, setPage } = usePageFromRouteQuery({
 // In template
 <Pagination :current="page" @change="setPage" />
 ```
-

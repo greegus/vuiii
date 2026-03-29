@@ -66,46 +66,46 @@
  *
  * @emits files - When files are selected or dropped. Payload: File[]
  */
-import { computed, ref } from "vue";
+import { computed, ref } from 'vue'
 
-import Button from "@/components/Button.vue";
-import { useDropArea } from "@/composables/useDropArea";
+import Button from '@/components/Button.vue'
+import { useDropArea } from '@/composables/useDropArea'
 
 const props = withDefaults(
   defineProps<{
-    multiple?: boolean;
-    accept?: string | string[];
-    label?: string;
+    multiple?: boolean
+    accept?: string | string[]
+    label?: string
   }>(),
   {
     multiple: false,
   },
-);
+)
 
 const emit = defineEmits<{
-  files: [files: File[]];
-}>();
+  files: [files: File[]]
+}>()
 
 defineSlots<{
-  default?: void;
-}>();
+  default?: void
+}>()
 
-const pickerOpener = ref<HTMLElement>();
-const fileInput = ref<HTMLInputElement>();
+const pickerOpener = ref<HTMLElement>()
+const fileInput = ref<HTMLInputElement>()
 
 const normalizedAccept = computed(() => {
-  return Array.isArray(props.accept) ? props.accept.join(",") : props.accept;
-});
+  return Array.isArray(props.accept) ? props.accept.join(',') : props.accept
+})
 
 function openFilePicker() {
-  fileInput.value?.click();
+  fileInput.value?.click()
 }
 
 function handleFileChange(event: Event) {
-  const input = event.target as HTMLInputElement;
-  const files = input.files ? Array.from(input.files) : [];
-  emit("files", files);
-  input.value = "";
+  const input = event.target as HTMLInputElement
+  const files = input.files ? Array.from(input.files) : []
+  emit('files', files)
+  input.value = ''
 }
 
 useDropArea(pickerOpener, (files) => emit('files', files), {

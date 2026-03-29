@@ -1,47 +1,47 @@
-import { type Meta, type StoryObj } from "@storybook/vue3-vite";
+import { type Meta, type StoryObj } from '@storybook/vue3-vite'
 
-import Button from "../components/Button.vue";
-import Input from "../components/Input.vue";
-import Tooltip from "../components/Tooltip.vue";
+import Button from '../components/Button.vue'
+import Input from '../components/Input.vue'
+import Tooltip from '../components/Tooltip.vue'
 
 export default {
-  title: "Components/Tooltip",
+  title: 'Components/Tooltip',
   component: Tooltip,
   parameters: {
-    layout: "centered",
+    layout: 'centered',
     docs: {
       description: {
-        component: "Tooltip that wraps content and shows a title on hover. Uses CSS Anchor Positioning for placement.",
+        component: 'Tooltip that wraps content and shows a title on hover. Uses CSS Anchor Positioning for placement.',
       },
     },
   },
   decorators: [() => ({ template: '<div style="padding: 80px;"><story /></div>' })],
   argTypes: {
     title: {
-      control: "text",
+      control: 'text',
     },
     placement: {
-      control: "select",
-      options: ["top", "bottom", "left", "right"],
+      control: 'select',
+      options: ['top', 'bottom', 'left', 'right'],
     },
     withArrow: {
-      control: "boolean",
+      control: 'boolean',
     },
     showOnFocus: {
-      control: "boolean",
+      control: 'boolean',
     },
     delay: {
-      control: "number",
+      control: 'number',
     },
     offset: {
-      control: "number",
+      control: 'number',
     },
   },
   args: {
-    title: "Tooltip title",
-    placement: "top",
+    title: 'Tooltip title',
+    placement: 'top',
   },
-} as Meta<typeof Tooltip>;
+} as Meta<typeof Tooltip>
 
 export const Default: StoryObj<typeof Tooltip> = {
   render: (args) => ({
@@ -53,7 +53,7 @@ export const Default: StoryObj<typeof Tooltip> = {
       </Tooltip>
     `,
   }),
-};
+}
 
 export const Placements: StoryObj<typeof Tooltip> = {
   render: (args) => ({
@@ -82,11 +82,11 @@ export const Placements: StoryObj<typeof Tooltip> = {
   parameters: {
     docs: {
       description: {
-        story: "Demonstrates the four placement options: top, bottom, left, and right.",
+        story: 'Demonstrates the four placement options: top, bottom, left, and right.',
       },
     },
   },
-};
+}
 
 export const WithArrow: StoryObj<typeof Tooltip> = {
   render: (args) => ({
@@ -115,15 +115,15 @@ export const WithArrow: StoryObj<typeof Tooltip> = {
   parameters: {
     docs: {
       description: {
-        story: "Tooltips with arrow indicator pointing towards the trigger element.",
+        story: 'Tooltips with arrow indicator pointing towards the trigger element.',
       },
     },
   },
-};
+}
 
 export const WithDelay: StoryObj<typeof Tooltip> = {
   args: {
-    title: "Delayed tooltip (500ms)",
+    title: 'Delayed tooltip (500ms)',
     delay: 500,
   },
   render: (args) => ({
@@ -138,11 +138,12 @@ export const WithDelay: StoryObj<typeof Tooltip> = {
   parameters: {
     docs: {
       description: {
-        story: "Tooltip with a 500ms delay before appearing. Moving the mouse away before the delay cancels the tooltip.",
+        story:
+          'Tooltip with a 500ms delay before appearing. Moving the mouse away before the delay cancels the tooltip.',
       },
     },
   },
-};
+}
 
 export const WithOffset: StoryObj<typeof Tooltip> = {
   render: (args) => ({
@@ -167,11 +168,11 @@ export const WithOffset: StoryObj<typeof Tooltip> = {
   parameters: {
     docs: {
       description: {
-        story: "Custom offset (in pixels) to adjust the gap between the trigger and the tooltip.",
+        story: 'Custom offset (in pixels) to adjust the gap between the trigger and the tooltip.',
       },
     },
   },
-};
+}
 
 export const ShowOnFocus: StoryObj<typeof Tooltip> = {
   render: (args) => ({
@@ -186,11 +187,12 @@ export const ShowOnFocus: StoryObj<typeof Tooltip> = {
   parameters: {
     docs: {
       description: {
-        story: "Tooltip that also appears when the trigger element receives focus. Useful for accessibility and form hints.",
+        story:
+          'Tooltip that also appears when the trigger element receives focus. Useful for accessibility and form hints.',
       },
     },
   },
-};
+}
 
 export const CustomTitle: StoryObj<typeof Tooltip> = {
   render: (args) => ({
@@ -208,8 +210,8 @@ export const CustomTitle: StoryObj<typeof Tooltip> = {
   parameters: {
     docs: {
       description: {
-        story: "Tooltip with custom rich content via the #title slot.",
+        story: 'Tooltip with custom rich content via the #title slot.',
       },
     },
   },
-};
+}

@@ -34,4 +34,3 @@ useOnFocusOutside(formRef, (event) => {
   validateForm()
 })
 ```
-

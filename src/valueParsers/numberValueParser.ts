@@ -1,4 +1,4 @@
-import type { ValueParser } from "@/types";
+import type { ValueParser } from '@/types'
 
 export const NumberValueParser: ValueParser<string, number> = {
   stringify: (value: number) => String(value),

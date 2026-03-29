@@ -4,12 +4,12 @@ VUIII uses CSS custom properties (design tokens) for consistent styling across a
 
 ## Token Categories
 
-| Category | Description |
-|----------|-------------|
-| [Colors](/design-tokens/colors) | Brand colors, text colors, backgrounds, shadows |
-| [Typography](/design-tokens/typography) | Font families, sizes, weights, text styles |
-| [Buttons](/design-tokens/buttons) | Button variants, sizes, states |
-| [Fields](/design-tokens/fields) | Form field styling, inputs, validation states |
+| Category                                | Description                                     |
+| --------------------------------------- | ----------------------------------------------- |
+| [Colors](/design-tokens/colors)         | Brand colors, text colors, backgrounds, shadows |
+| [Typography](/design-tokens/typography) | Font families, sizes, weights, text styles      |
+| [Buttons](/design-tokens/buttons)       | Button variants, sizes, states                  |
+| [Fields](/design-tokens/fields)         | Form field styling, inputs, validation states   |
 
 ## How to Use
 
@@ -31,6 +31,7 @@ Tokens follow a consistent naming pattern:
 ```
 
 Examples:
+
 - `--vuiii-color-primary` - Primary brand color
 - `--vuiii-color-primary-hover` - Primary color on hover
 - `--vuiii-button-height-small` - Small button height

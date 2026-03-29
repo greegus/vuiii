@@ -30,19 +30,13 @@ onMounted(load)
 
 ```typescript
 // With immediate loading
-const { isLoading, data } = useLoadData(
-  () => api.fetchUsers(),
-  { immediate: true }
-)
+const { isLoading, data } = useLoadData(() => api.fetchUsers(), { immediate: true })
 ```
 
 ```typescript
 // With parameters
-const { load, data } = useLoadData(
-  (userId: string) => api.getUser(userId)
-)
+const { load, data } = useLoadData((userId: string) => api.getUser(userId))
 
 await load('user-123')
 console.log(data.value) // user data
 ```
-

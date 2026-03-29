@@ -20,8 +20,7 @@ import { IconButton } from '../../src'
 </ComponentDemo>
 
 ```vue
-// Basic usage
-import { IconButton } from 'vuiii'
+// Basic usage import { IconButton } from 'vuiii'
 
 <IconButton icon="pencil" @click="edit()" />
 <IconButton icon="trash" variant="danger" @click="remove()" />

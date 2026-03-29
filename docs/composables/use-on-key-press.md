@@ -36,4 +36,3 @@ useOnKeyPress('s', (event) => {
 // With event listener options
 useOnKeyPress('Enter', handleSubmit, { capture: true })
 ```
-

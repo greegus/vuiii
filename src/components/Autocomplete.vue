@@ -135,80 +135,80 @@
  * @emits suffix-icon-click - When suffix icon is clicked
  */
 export type AutocompleteRef = {
-  inputElement: HTMLInputElement;
-  focus: () => void;
-  blur: () => void;
-  open: () => void;
-  close: () => void;
-};
+  inputElement: HTMLInputElement
+  focus: () => void
+  blur: () => void
+  open: () => void
+  close: () => void
+}
 
 export default {
   inheritAttrs: false,
-};
+}
 </script>
 
 <script lang="ts" setup generic="T = any">
-import { computed, ref, nextTick } from "vue";
+import { computed, ref, nextTick } from 'vue'
 
-import Dropdown from "@/components/Dropdown.vue";
-import type { DropdownRef } from "@/components/Dropdown.vue";
-import DropdownMenu from "@/components/DropdownMenu.vue";
+import Dropdown from '@/components/Dropdown.vue'
+import type { DropdownRef } from '@/components/Dropdown.vue'
+import DropdownMenu from '@/components/DropdownMenu.vue'
 import InputWrapper, {
   type InputWrapperEmits,
   type InputWrapperProps,
   type InputWrapperSlots,
-} from "@/components/InputWrapper.vue";
-import { useAttrsWithoutClass } from "@/composables/useAttrsWithoutClass";
-import { useCursor } from "@/composables/useCursor";
-import type { Extractor, Option } from "@/types";
-import { normalizeGroups, normalizeOptions } from "@/utils/normalizeOptions";
+} from '@/components/InputWrapper.vue'
+import { useAttrsWithoutClass } from '@/composables/useAttrsWithoutClass'
+import { useCursor } from '@/composables/useCursor'
+import type { Extractor, Option } from '@/types'
+import { normalizeGroups, normalizeOptions } from '@/utils/normalizeOptions'
 
-export type AutocompleteFilterFn<T = any> = (option: Option<T>, query: string) => boolean;
+export type AutocompleteFilterFn<T = any> = (option: Option<T>, query: string) => boolean
 
-const modelValue = defineModel<string>({ default: "" });
+const modelValue = defineModel<string>({ default: '' })
 
 const props = withDefaults(
   defineProps<
     InputWrapperProps & {
-      options: T[] | Record<string, any>;
-      optionLabel?: Extractor;
-      optionValue?: Extractor;
-      optionDisabled?: Extractor;
-      optionDescription?: Extractor;
-      optionIcon?: Extractor;
-      groupLabel?: Extractor;
-      groupOptions?: Extractor;
-      placeholder?: string;
-      disabled?: boolean;
-      inputClass?: any;
-      filter?: AutocompleteFilterFn<T>;
-      dropdownPlacement?: "left" | "right" | "center";
+      options: T[] | Record<string, any>
+      optionLabel?: Extractor
+      optionValue?: Extractor
+      optionDisabled?: Extractor
+      optionDescription?: Extractor
+      optionIcon?: Extractor
+      groupLabel?: Extractor
+      groupOptions?: Extractor
+      placeholder?: string
+      disabled?: boolean
+      inputClass?: any
+      filter?: AutocompleteFilterFn<T>
+      dropdownPlacement?: 'left' | 'right' | 'center'
     }
   >(),
   {
-    size: "normal",
+    size: 'normal',
   },
-);
+)
 
 const emit = defineEmits<
   InputWrapperEmits & {
-    select: [option: Option<T>];
+    select: [option: Option<T>]
   }
->();
+>()
 
 defineSlots<
   InputWrapperSlots & {
-    option?: (props: { option: Option<T>; index: number; isHighlighted: boolean }) => any;
+    option?: (props: { option: Option<T>; index: number; isHighlighted: boolean }) => any
   }
->();
+>()
 
-const attrsWithoutClass = useAttrsWithoutClass();
+const attrsWithoutClass = useAttrsWithoutClass()
 
-const dropdownRef = ref<DropdownRef>();
+const dropdownRef = ref<DropdownRef>()
 
-const inputElement = ref<HTMLInputElement>();
+const inputElement = ref<HTMLInputElement>()
 
-const isOpen = computed(() => dropdownRef.value?.isOpen ?? false);
+const isOpen = computed(() => dropdownRef.value?.isOpen ?? false)
 
 // Normalize options (flat list)
 const normalizedOptions = computed<Option<T>[]>(() => {
@@ -218,7 +218,7 @@ const normalizedOptions = computed<Option<T>[]>(() => {
     disabled: props.optionDisabled,
     description: props.optionDescription,
     icon: props.optionIcon,
-  };
+  }
 
   if (props.groupOptions) {
     const groups = normalizeGroups(
@@ -229,106 +229,106 @@ const normalizedOptions = computed<Option<T>[]>(() => {
         ...extractors,
       },
       modelValue.value,
-    );
+    )
     // Flatten groups into a single array
-    return groups.flatMap((group) => group.options);
+    return groups.flatMap((group) => group.options)
   }
 
-  return normalizeOptions(props.options, extractors, modelValue.value);
-});
+  return normalizeOptions(props.options, extractors, modelValue.value)
+})
 
 // Default filter function
 function defaultFilter(option: Option<T>, searchQuery: string): boolean {
   if (!searchQuery) {
-    return true;
+    return true
   }
 
-  const lowerQuery = searchQuery.toLowerCase();
-  const label = String(option.label).toLowerCase();
-  const description = option.description ? String(option.description).toLowerCase() : "";
-  return label.includes(lowerQuery) || description.includes(lowerQuery);
+  const lowerQuery = searchQuery.toLowerCase()
+  const label = String(option.label).toLowerCase()
+  const description = option.description ? String(option.description).toLowerCase() : ''
+  return label.includes(lowerQuery) || description.includes(lowerQuery)
 }
 
 // Filtered options based on modelValue
 const filteredOptions = computed(() => {
-  const filterFn = props.filter || defaultFilter;
-  return normalizedOptions.value.filter((option) => filterFn(option, modelValue.value));
-});
+  const filterFn = props.filter || defaultFilter
+  return normalizedOptions.value.filter((option) => filterFn(option, modelValue.value))
+})
 
 // Display options (what's shown in dropdown)
-const displayOptions = computed(() => filteredOptions.value);
+const displayOptions = computed(() => filteredOptions.value)
 
 // Cursor navigation
-const { cursorIndex, cursorItem, moveCursorForward, moveCursorBack, resetCursor } = useCursor(displayOptions);
+const { cursorIndex, cursorItem, moveCursorForward, moveCursorBack, resetCursor } = useCursor(displayOptions)
 
 function open() {
-  if (props.disabled) return;
-  dropdownRef.value?.open();
+  if (props.disabled) return
+  dropdownRef.value?.open()
 }
 
 function close() {
-  dropdownRef.value?.close();
+  dropdownRef.value?.close()
 }
 
 function handleInput(event: Event) {
-  modelValue.value = (event.target as HTMLInputElement).value;
-  open();
+  modelValue.value = (event.target as HTMLInputElement).value
+  open()
 }
 
 function handleKeydown(event: KeyboardEvent) {
   switch (event.key) {
-    case "ArrowDown":
-      event.preventDefault();
+    case 'ArrowDown':
+      event.preventDefault()
       if (!isOpen.value) {
-        open();
+        open()
       } else {
-        moveCursorForward();
+        moveCursorForward()
       }
-      break;
+      break
 
-    case "ArrowUp":
-      event.preventDefault();
+    case 'ArrowUp':
+      event.preventDefault()
       if (isOpen.value) {
-        moveCursorBack();
+        moveCursorBack()
       }
-      break;
+      break
 
-    case "Enter":
-      event.preventDefault();
+    case 'Enter':
+      event.preventDefault()
       if (isOpen.value && cursorItem.value) {
-        selectOption(cursorItem.value);
+        selectOption(cursorItem.value)
       }
-      break;
+      break
 
-    case "Tab":
-      close();
-      break;
+    case 'Tab':
+      close()
+      break
   }
 }
 
 function handleClick() {
   if (!isOpen.value) {
-    open();
+    open()
   }
 }
 
 function handleOptionSelect({ item }: { item: Option<T> }) {
-  selectOption(item);
+  selectOption(item)
 }
 
 function selectOption(option: Option<T>) {
   if (option.disabled) {
-    return;
+    return
   }
 
-  modelValue.value = String(option.label);
-  emit("select", option);
+  modelValue.value = String(option.label)
+  emit('select', option)
 
-  close();
+  close()
 
   nextTick(() => {
-    inputElement.value?.focus();
-  });
+    inputElement.value?.focus()
+  })
 }
 
 // Expose filter function and component methods
@@ -339,7 +339,7 @@ defineExpose({
   open,
   close,
   filter: defaultFilter,
-});
+})
 </script>
 
 <style scoped>

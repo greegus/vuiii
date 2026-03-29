@@ -31,7 +31,7 @@ const menuItems = [
 const menuItems = [
   { label: 'Edit', icon: 'pencil' },
   { label: 'Duplicate', icon: 'document-duplicate' },
-  { label: 'Delete', icon: 'trash' }
+  { label: 'Delete', icon: 'trash' },
 ]
 </script>
 
@@ -59,16 +59,15 @@ Use the `item` or `itemLabel` slot to customize how items are displayed:
 
 ## Props
 
-| Prop | Type | Description |
-|------|------|-------------|
-| `items` | `any[]` | Array of menu items |
+| Prop          | Type     | Description                                               |
+| ------------- | -------- | --------------------------------------------------------- |
+| `items`       | `any[]`  | Array of menu items                                       |
 | `cursorIndex` | `number` | Index of currently focused item (for keyboard navigation) |
 
 ## Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
-| `itemClick` | `{ item, index }` | Emitted when an item is clicked |
+| Event            | Payload           | Description                       |
+| ---------------- | ----------------- | --------------------------------- |
+| `itemClick`      | `{ item, index }` | Emitted when an item is clicked   |
 | `itemMouseenter` | `{ item, index }` | Emitted when mouse enters an item |
 | `itemMouseleave` | `{ item, index }` | Emitted when mouse leaves an item |
-

@@ -1,4 +1,4 @@
-import { onBeforeUnmount, onMounted } from "vue"
+import { onBeforeUnmount, onMounted } from 'vue'
 
 /**
  * Prevents the browser's default drag-and-drop file handling on an element.

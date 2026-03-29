@@ -20,7 +20,7 @@ const { queryParams, setQuery, setQueryParam } = useRouteQuery<{
   category: string
 }>({
   filter: ['search', 'category'],
-  defaults: { category: 'all' }
+  defaults: { category: 'all' },
 })
 
 // Read current params
@@ -41,7 +41,6 @@ const { queryParams } = useRouteQuery({
   filter: ['page', 'sort'],
   parse: { page: (v) => Number(v) || 1 },
   onChange: (params) => fetchData(params),
-  immediate: true
+  immediate: true,
 })
 ```
-

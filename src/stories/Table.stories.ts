@@ -1,102 +1,101 @@
-import { type Meta, type StoryObj } from "@storybook/vue3-vite";
-import { ref } from "vue";
+import { type Meta, type StoryObj } from '@storybook/vue3-vite'
+import { ref } from 'vue'
 
-import type { TableColumn } from "../types";
+import Button from '../components/Button.vue'
+import Table from '../components/Table.vue'
+import type { TableColumn } from '../types'
+import { type TableItem, tableItems } from './assets/tableItems'
 
-import Button from "../components/Button.vue";
-import Table from "../components/Table.vue";
-import { type TableItem, tableItems } from "./assets/tableItems";
+const sortColumnName = ref('total')
 
-const sortColumnName = ref("total");
-
-const sortDirection = ref<"asc" | "desc">("desc");
+const sortDirection = ref<'asc' | 'desc'>('desc')
 
 const formatDate = (date: number) => {
-  return Intl.DateTimeFormat("en", {
-    month: "short",
-    year: "numeric",
-    day: "numeric",
-  }).format(new Date(date * 1000));
-};
+  return Intl.DateTimeFormat('en', {
+    month: 'short',
+    year: 'numeric',
+    day: 'numeric',
+  }).format(new Date(date * 1000))
+}
 
 const formatCurrency = (value: number) => {
-  return Intl.NumberFormat("en", {
-    style: "currency",
-    currency: "USD",
-  }).format(value);
-};
+  return Intl.NumberFormat('en', {
+    style: 'currency',
+    currency: 'USD',
+  }).format(value)
+}
 
 const lastNameSorter = (a: string, b: string) => {
-  return a.split(" ")[1].localeCompare(b.split(" ")[1]);
-};
+  return a.split(' ')[1].localeCompare(b.split(' ')[1])
+}
 
 const tableColumns: TableColumn<TableItem>[] = [
   {
-    name: "name",
-    label: "Name",
-    href: () => "#",
+    name: 'name',
+    label: 'Name',
+    href: () => '#',
   },
   {
-    name: "date",
-    label: "Date",
-    align: "right",
+    name: 'date',
+    label: 'Date',
+    align: 'right',
     formatter: formatDate,
   },
   {
-    name: "sallary",
-    label: "Sallary",
-    align: "right",
+    name: 'sallary',
+    label: 'Sallary',
+    align: 'right',
     formatter: formatCurrency,
   },
   {
-    name: "bonus",
-    label: "Bonus",
-    align: "right",
+    name: 'bonus',
+    label: 'Bonus',
+    align: 'right',
     formatter: formatCurrency,
   },
   {
-    name: "total",
-    label: "Total",
-    align: "right",
+    name: 'total',
+    label: 'Total',
+    align: 'right',
     value: (item) => item.sallary + item.bonus,
     formatter: formatCurrency,
   },
-];
+]
 
-const sortableTableColumns = [...tableColumns];
+const sortableTableColumns = [...tableColumns]
 
-sortableTableColumns[0] = { ...sortableTableColumns[0], sortable: true, sorter: lastNameSorter };
-sortableTableColumns[1] = { ...sortableTableColumns[1], sortable: true };
-sortableTableColumns[4] = { ...sortableTableColumns[4], sortable: true };
+sortableTableColumns[0] = { ...sortableTableColumns[0], sortable: true, sorter: lastNameSorter }
+sortableTableColumns[1] = { ...sortableTableColumns[1], sortable: true }
+sortableTableColumns[4] = { ...sortableTableColumns[4], sortable: true }
 
 const meta: Meta<typeof Table<TableItem>> = {
-  title: "Components/Table",
+  title: 'Components/Table',
   component: Table as any,
   argTypes: {
     noDataMessage: {
-      control: "text",
-      defaultValue: "No items",
+      control: 'text',
+      defaultValue: 'No items',
     },
   },
   args: {
     items: tableItems,
     columns: tableColumns,
-    noDataMessage: "No items",
+    noDataMessage: 'No items',
     highlightOnHover: true,
   },
-};
+}
 
-export default meta;
+export default meta
 
-type Story = StoryObj<typeof Table<TableItem>>;
+type Story = StoryObj<typeof Table<TableItem>>
 
-export const Default: Story = {};
+export const Default: Story = {}
 
 export const HoverableRows: Story = {
   args: {
     highlightOnHover: true,
   },
-};
+}
 
 export const WithSorting: Story = {
   args: {
@@ -104,7 +103,7 @@ export const WithSorting: Story = {
     sortColumnName,
     sortDirection,
   },
-};
+}
 
 export const Empty: Story = {
   render: ({ columns }) => ({
@@ -116,14 +115,14 @@ export const Empty: Story = {
       return {
         items: [],
         columns,
-      };
+      }
     },
 
     template: `
       <Table :items="items" :columns="columns" noDataMessage="No items" />
     `,
   }),
-};
+}
 
 export const WithRowOptions: Story = {
   render: ({ columns, items }) => ({
@@ -136,7 +135,7 @@ export const WithRowOptions: Story = {
       return {
         items,
         columns,
-      };
+      }
     },
 
     template: `
@@ -148,7 +147,7 @@ export const WithRowOptions: Story = {
       </Table>
     `,
   }),
-};
+}
 
 export const WithRowClass: Story = {
   render: ({ items, columns }) => ({
@@ -160,7 +159,7 @@ export const WithRowClass: Story = {
       return {
         items,
         columns,
-      };
+      }
     },
 
     template: `
@@ -172,4 +171,4 @@ export const WithRowClass: Story = {
       />
     `,
   }),
-};
+}

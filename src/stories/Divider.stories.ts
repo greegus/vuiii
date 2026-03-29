@@ -1,32 +1,32 @@
-import { type Meta, StoryObj } from "@storybook/vue3-vite";
+import { type Meta, StoryObj } from '@storybook/vue3-vite'
 
-import Divider from "../components/Divider.vue";
+import Divider from '../components/Divider.vue'
 
 export default {
-  title: "Components/Divider",
+  title: 'Components/Divider',
   component: Divider,
   parameters: {
     docs: {
       description: {
-        component: "Divider component for visual separation between content",
+        component: 'Divider component for visual separation between content',
       },
     },
   },
   argTypes: {
     orientation: {
-      control: "select",
-      options: ["horizontal", "vertical"],
+      control: 'select',
+      options: ['horizontal', 'vertical'],
     },
   },
   args: {
-    orientation: "horizontal",
+    orientation: 'horizontal',
   },
-} as Meta<typeof Divider>;
+} as Meta<typeof Divider>
 
-export const Default: StoryObj<typeof Divider> = {};
+export const Default: StoryObj<typeof Divider> = {}
 
 export const Vertical: StoryObj<typeof Divider> = {
-  args: { orientation: "vertical" },
+  args: { orientation: 'vertical' },
   render: (args) => ({
     components: { Divider },
     setup: () => ({ args }),
@@ -38,7 +38,7 @@ export const Vertical: StoryObj<typeof Divider> = {
       </div>
     `,
   }),
-};
+}
 
 export const Orientations: StoryObj<typeof Divider> = {
   render: () => ({
@@ -63,7 +63,7 @@ export const Orientations: StoryObj<typeof Divider> = {
       </div>
     `,
   }),
-};
+}
 
 export const MultipleHorizontal: StoryObj<typeof Divider> = {
   render: () => ({
@@ -83,4 +83,4 @@ export const MultipleHorizontal: StoryObj<typeof Divider> = {
       </div>
     `,
   }),
-};
+}

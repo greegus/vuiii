@@ -1,6 +1,6 @@
 export function resolveFilesFromClipboardEvent(
   event: ClipboardEvent,
-  options: { multiple?: boolean; accept?: 'image' | 'audio' } = {}
+  options: { multiple?: boolean; accept?: 'image' | 'audio' } = {},
 ): File[] {
   let files: File[] = Array.from(event.clipboardData?.items || [])
     .filter((item) => item.kind === 'file')

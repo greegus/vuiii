@@ -1,6 +1,6 @@
-import { onUnmounted } from "vue";
+import { onUnmounted } from 'vue'
 
-import type { ElementRef } from "@/types";
+import type { ElementRef } from '@/types'
 
 /**
  * Detects clicks outside an element and triggers a callback.
@@ -36,13 +36,13 @@ import type { ElementRef } from "@/types";
 export function useOnClickOutside(element: ElementRef, callback: (e: MouseEvent) => void) {
   const handler = (e: MouseEvent) => {
     if (!element.value?.contains(e.target as HTMLElement)) {
-      callback(e);
+      callback(e)
     }
-  };
+  }
 
-  window.addEventListener("mousedown", handler);
+  window.addEventListener('mousedown', handler)
 
   onUnmounted(() => {
-    window.removeEventListener("mousedown", handler);
-  });
+    window.removeEventListener('mousedown', handler)
+  })
 }

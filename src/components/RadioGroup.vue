@@ -107,51 +107,51 @@
  */
 export default {
   inheritAttrs: false,
-};
+}
 </script>
 
 <script lang="ts" setup>
-import { computed, useAttrs, useId } from "vue";
+import { computed, useAttrs, useId } from 'vue'
 
-import { useAttrsWithoutClass } from "@/composables/useAttrsWithoutClass";
-import type { Extractor, Option, ValueParser } from "@/types";
-import { createTypeParser } from "@/utils/createTypeParser";
-import { normalizeOptions } from "@/utils/normalizeOptions";
+import { useAttrsWithoutClass } from '@/composables/useAttrsWithoutClass'
+import type { Extractor, Option, ValueParser } from '@/types'
+import { createTypeParser } from '@/utils/createTypeParser'
+import { normalizeOptions } from '@/utils/normalizeOptions'
 
-const modelValue = defineModel<any>();
+const modelValue = defineModel<any>()
 
 defineSlots<{
-  default?: (props: { option: Option }) => any;
-  symbol: (props: { checked: boolean; disabled: boolean }) => any;
-}>();
+  default?: (props: { option: Option }) => any
+  symbol: (props: { checked: boolean; disabled: boolean }) => any
+}>()
 
-const attrs = useAttrs();
+const attrs = useAttrs()
 
-const attrsWithoutClass = useAttrsWithoutClass();
+const attrsWithoutClass = useAttrsWithoutClass()
 
-const inputName = (attrs.name as string) || `RadioGroup-input-${useId()}`;
+const inputName = (attrs.name as string) || `RadioGroup-input-${useId()}`
 
 const props = withDefaults(
   defineProps<{
-    options: any[] | any;
-    optionLabel?: Extractor;
-    optionValue?: Extractor;
-    optionDisabled?: Extractor;
-    optionDescription?: Extractor;
-    valueParser?: ValueParser<string>;
-    disabled?: boolean;
-    readonly?: boolean;
-    inline?: boolean;
-    type?: "string" | "number" | "boolean" | "date";
+    options: any[] | any
+    optionLabel?: Extractor
+    optionValue?: Extractor
+    optionDisabled?: Extractor
+    optionDescription?: Extractor
+    valueParser?: ValueParser<string>
+    disabled?: boolean
+    readonly?: boolean
+    inline?: boolean
+    type?: 'string' | 'number' | 'boolean' | 'date'
   }>(),
   {
-    type: "string",
+    type: 'string',
   },
-);
+)
 
 const optionParser = computed(() => {
-  return props.valueParser || createTypeParser(props.type);
-});
+  return props.valueParser || createTypeParser(props.type)
+})
 
 const normalizedOptions = computed<Option[]>(() =>
   normalizeOptions(
@@ -165,10 +165,10 @@ const normalizedOptions = computed<Option[]>(() =>
     },
     modelValue.value,
   ),
-);
+)
 
 function handleInput(value: any) {
-  modelValue.value = optionParser.value.parse(value);
+  modelValue.value = optionParser.value.parse(value)
 }
 </script>
 

@@ -29,4 +29,3 @@ onMounted(() => {
   usePreventHandlingDrop(containerRef.value)
 })
 ```
-

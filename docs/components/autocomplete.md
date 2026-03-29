@@ -21,8 +21,7 @@ import { Autocomplete } from '../../src'
 </ComponentDemo>
 
 ```vue
-// Basic usage with string array
-import { Autocomplete } from 'vuiii'
+// Basic usage with string array import { Autocomplete } from 'vuiii'
 
 <Autocomplete v-model="search" :options="['Apple', 'Banana', 'Cherry']" />
 ```
@@ -30,11 +29,8 @@ import { Autocomplete } from 'vuiii'
 ## More Examples
 
 ```vue
-// With object options and extractors
-const users = [
-  { id: 1, name: 'John Doe', email: 'john@example.com' },
-  { id: 2, name: 'Jane Smith', email: 'jane@example.com' }
-]
+// With object options and extractors const users = [ { id: 1, name: 'John Doe', email: 'john@example.com' }, { id: 2,
+name: 'Jane Smith', email: 'jane@example.com' } ]
 
 <Autocomplete
   v-model="search"
@@ -42,21 +38,14 @@ const users = [
   option-label="name"
   option-value="id"
   option-description="email"
-  @select="(option) => selectedUser = option.data"
+  @select="(option) => (selectedUser = option.data)"
 />
 ```
 
 ```vue
-// With custom filter function
-const customFilter = (option, query) => {
-  return option.label.startsWith(query)
-}
+// With custom filter function const customFilter = (option, query) => { return option.label.startsWith(query) }
 
-<Autocomplete
-  v-model="search"
-  :options="options"
-  :filter="customFilter"
-/>
+<Autocomplete v-model="search" :options="options" :filter="customFilter" />
 ```
 
 ```vue

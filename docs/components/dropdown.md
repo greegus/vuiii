@@ -21,8 +21,7 @@ import { Dropdown } from '../../src'
 </ComponentDemo>
 
 ```vue
-// Basic dropdown with default button trigger
-import { Dropdown, DropdownMenu } from 'vuiii'
+// Basic dropdown with default button trigger import { Dropdown, DropdownMenu } from 'vuiii'
 
 <Dropdown label="Options" variant="primary">
   <DropdownMenu :items="menuItems" @itemClick="handleClick" />

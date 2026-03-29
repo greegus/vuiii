@@ -24,8 +24,8 @@
   --vuiii-color-danger: rgb(225 29 72); /* rose.600 */
   --vuiii-color-danger--darker: color-mix(in srgb, var(--vuiii-color-danger) 95%, black);
 
-  --ui-color-warning: rgb(234, 179, 8); /* amber.400 */
-  --ui-color-warning--darker: color-mix(in srgb, var(--ui-color-warning) 95%, black);
+  --vuiii-color-warning: rgb(234, 179, 8); /* amber.400 */
+  --vuiii-color-warning--darker: color-mix(in srgb, var(--vuiii-color-warning) 95%, black);
 
   --vuiii-color-success: rgb(77 124 15); /* lime.700 */
   --vuiii-color-success--darker: color-mix(in srgb, var(--vuiii-color-success) 95%, black);
@@ -39,7 +39,7 @@
 
   /* Tokens */
 
-  --vuiii-typeface-body: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --vuiii-typeface-body: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --vuiii-typeface-display: var(--vuiii-typeface-body);
 
   --vuiii-fontSize: 1rem;
@@ -122,7 +122,7 @@
   --vuiii-typography-caption-fontWeight: 400;
   --vuiii-typography-caption-lineHeight: 1.2;
   --vuiii-typography-caption-textTransform: uppercase;
-  --vuuii-typography-caption-letterSpacing: 0.1em;
+  --vuiii-typography-caption-letterSpacing: 0.1em;
   --vuiii-typography-caption-color: inherit;
   --vuiii-typography-caption-opacity: 0.65;
 
@@ -196,17 +196,17 @@
 
   /* Sizes */
 
-  --vuiii-button-fontSize--small: var(--vuiii-field-fontSize);
+  --vuiii-button-fontSize--small: var(--vuiii-field-fontSize--small);
   --vuiii-button-height--small: var(--vuiii-field-height--small);
   --vuiii-button-padding--small: var(--vuiii-field-padding--small);
   --vuiii-button-borderRadius--small: var(--vuiii-field-borderRadius--small);
-  --vuiii-button-ringSize-small: var(--vuiii-field-ringSize--small);
+  --vuiii-button-ringSize--small: var(--vuiii-field-ringSize--small);
 
   --vuiii-button-fontSize--large: var(--vuiii-field-fontSize--large);
   --vuiii-button-height--large: var(--vuiii-field-height--large);
   --vuiii-button-padding--large: var(--vuiii-field-padding--large);
   --vuiii-button-borderRadius--large: var(--vuiii-field-borderRadius--large);
-  --vuiii-button-ringSize-large: var(--vuiii-field-ringSize--large);
+  --vuiii-button-ringSize--large: var(--vuiii-field-ringSize--large);
 
   /* Default button */
 
@@ -348,9 +348,9 @@
   --vuiii-table-headTextColor: var(--vuiii-color-gray--dark);
   --vuiii-table-headDividerColor: var(--vuiii-table-dividerColor);
   --vuiii-table-headDividerWidth: var(--vuiii-table-dividerWidth);
-  --vuiii-table-headFontSize: var(--vuiii-label-fontSize);
-  --vuiii-table-headFontWeight: var(--vuiii-label-fontWeight);
-  --vuiii-table-headTextTransform: var(--vuiii-label-textTransform);
+  --vuiii-table-headFontSize: var(--vuiii-typography-label-fontSize);
+  --vuiii-table-headFontWeight: var(--vuiii-typography-label-fontWeight);
+  --vuiii-table-headTextTransform: var(--vuiii-typography-label-textTransform);
 
   --vuiii-table-rowBgColor: transparent;
   --vuiii-table-rowBgColor--hover: color-mix(in srgb, var(--vuiii-color-dark) 4%, transparent);
@@ -369,7 +369,7 @@
   --vuiii-dialog-borderRadius: var(--vuiii-button-borderRadius);
   --vuiii-dialog-boxShadow: 0 2px 10px rgb(0 0 0 / 0.1);
   --vuiii-dialog-borderColor: black;
-  --vuiii-dialog-borderWidth: 1;
+  --vuiii-dialog-borderWidth: 1px;
   --vuiii-dialog-padding: 1.5rem;
   --vuiii-dialog-dividerWidth: var(--vuiii-divider-width);
   --vuiii-dialog-dividerStyle: solid;

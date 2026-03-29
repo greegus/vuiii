@@ -21,8 +21,7 @@ import { Typography } from '../../src'
 </ComponentDemo>
 
 ```vue
-// Different variants
-import { Typography } from 'vuiii'
+// Different variants import { Typography } from 'vuiii'
 
 <Typography variant="display">Display Text</Typography>
 <Typography variant="heading1">Heading 1</Typography>
@@ -49,18 +48,8 @@ import { Typography } from 'vuiii'
 ```
 
 ```vue
-// Available variants and their default tags:
-// display -> h1
-// heading1 -> h1
-// heading2 -> h2
-// heading3 -> h3
-// heading4 -> h4
-// heading5 -> h5
-// heading6 -> h6
-// body1 -> p
-// body2 -> p
-// label -> span
-// caption -> span
+// Available variants and their default tags: // display -> h1 // heading1 -> h1 // heading2 -> h2 // heading3 -> h3 //
+heading4 -> h4 // heading5 -> h5 // heading6 -> h6 // body1 -> p // body2 -> p // label -> span // caption -> span
 ```
 
 ::: tip Storybook

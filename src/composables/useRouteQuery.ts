@@ -1,5 +1,5 @@
-import { computed, type Ref, watch } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { computed, type Ref, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 
 /**
  * Reactive binding for URL query parameters with Vue Router.
@@ -37,31 +37,31 @@ import { useRoute, useRouter } from "vue-router";
  */
 
 const valueIsNotEmpty = (value: any) => {
-  return value !== "" && value !== undefined && value !== null && (Array.isArray(value) ? value.length > 0 : true);
-};
+  return value !== '' && value !== undefined && value !== null && (Array.isArray(value) ? value.length > 0 : true)
+}
 
 export function useRouteQuery<QueryParams extends Record<string, unknown> = Record<string, string>>(options: {
-  onChange?: (params: QueryParams) => void;
-  filter?: (keyof QueryParams)[];
-  parse?: Record<keyof QueryParams, (value: string) => any>;
-  serialize?: Record<keyof QueryParams, (value: QueryParams[keyof QueryParams]) => string>;
-  immediate?: boolean;
-  defaults?: Partial<QueryParams>;
+  onChange?: (params: QueryParams) => void
+  filter?: (keyof QueryParams)[]
+  parse?: Record<keyof QueryParams, (value: string) => any>
+  serialize?: Record<keyof QueryParams, (value: QueryParams[keyof QueryParams]) => string>
+  immediate?: boolean
+  defaults?: Partial<QueryParams>
 }): {
-  queryParams: Ref<QueryParams>;
-  setQuery: (params: Partial<QueryParams>) => void;
-  setQueryParam: (key: keyof QueryParams, value: unknown) => void;
+  queryParams: Ref<QueryParams>
+  setQuery: (params: Partial<QueryParams>) => void
+  setQueryParam: (key: keyof QueryParams, value: unknown) => void
 } {
-  const router = useRouter();
-  const route = useRoute();
+  const router = useRouter()
+  const route = useRoute()
 
   const queryParams = computed<QueryParams>(() => {
-    let params = route.query as QueryParams;
+    let params = route.query as QueryParams
 
     if (options.filter?.length) {
       params = Object.fromEntries(
         Object.entries(params).filter(([key]) => options.filter?.includes(key)),
-      ) as QueryParams;
+      ) as QueryParams
     }
 
     params = Object.fromEntries(
@@ -69,50 +69,50 @@ export function useRouteQuery<QueryParams extends Record<string, unknown> = Reco
         key,
         decodeURIComponent(options.parse?.[key] ? options.parse[key](value as string) : value),
       ]),
-    ) as QueryParams;
+    ) as QueryParams
 
     if (options.defaults) {
       Object.entries(options.defaults).forEach(([key, value]) => {
         if (params[key] === undefined) {
-          params[key as keyof QueryParams] = value;
+          params[key as keyof QueryParams] = value
         }
-      });
+      })
     }
 
-    return params;
-  });
+    return params
+  })
 
   const serializeValue = (key: keyof QueryParams, value: any) => {
-    return encodeURIComponent(options.serialize?.[key] ? options.serialize[key](value) : value);
-  };
+    return encodeURIComponent(options.serialize?.[key] ? options.serialize[key](value) : value)
+  }
 
   const setQuery = (params: Partial<QueryParams>) => {
     const serializedParams = Object.fromEntries(
       Object.entries(params)
         .filter(([_key, value]) => valueIsNotEmpty(value))
         .map(([key, value]) => [key, serializeValue(key, value)]),
-    ) as Record<string, string>;
+    ) as Record<string, string>
 
     return router.push({
       query: serializedParams,
-    });
-  };
+    })
+  }
 
   const setQueryParam = (key: keyof QueryParams, value: any) => {
     const newQueryParams = {
       ...route.query,
-    };
+    }
 
-    newQueryParams[key as string] = valueIsNotEmpty(value) ? serializeValue(key, value) : (undefined as any);
+    newQueryParams[key as string] = valueIsNotEmpty(value) ? serializeValue(key, value) : (undefined as any)
 
-    return router.push({ query: newQueryParams });
-  };
+    return router.push({ query: newQueryParams })
+  }
 
-  watch(queryParams, () => options.onChange?.(queryParams.value), { immediate: options.immediate });
+  watch(queryParams, () => options.onChange?.(queryParams.value), { immediate: options.immediate })
 
   return {
     queryParams,
     setQuery,
     setQueryParam,
-  };
+  }
 }

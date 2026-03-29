@@ -21,8 +21,7 @@ import { CheckboxGroup } from '../../src'
 </ComponentDemo>
 
 ```vue
-// Basic usage with string array
-import { CheckboxGroup } from 'vuiii'
+// Basic usage with string array import { CheckboxGroup } from 'vuiii'
 
 <CheckboxGroup v-model="selectedFruits" :options="['Apple', 'Banana', 'Cherry']" />
 ```
@@ -30,12 +29,8 @@ import { CheckboxGroup } from 'vuiii'
 ## More Examples
 
 ```vue
-// With object options and extractors
-const permissions = [
-  { id: 'read', name: 'Read', info: 'View content' },
-  { id: 'write', name: 'Write', info: 'Edit content' },
-  { id: 'delete', name: 'Delete', info: 'Remove content' }
-]
+// With object options and extractors const permissions = [ { id: 'read', name: 'Read', info: 'View content' }, { id:
+'write', name: 'Write', info: 'Edit content' }, { id: 'delete', name: 'Delete', info: 'Remove content' } ]
 
 <CheckboxGroup
   v-model="selectedPermissions"
@@ -48,18 +43,17 @@ const permissions = [
 
 ```vue
 // Inline layout (horizontal)
-<CheckboxGroup
-  v-model="selected"
-  :options="['Option A', 'Option B', 'Option C']"
-  inline
-/>
+<CheckboxGroup v-model="selected" :options="['Option A', 'Option B', 'Option C']" inline />
 ```
 
 ```vue
 // With type parsing (values will be numbers)
 <CheckboxGroup
   v-model="selectedIds"
-  :options="[{ id: 1, name: 'One' }, { id: 2, name: 'Two' }]"
+  :options="[
+    { id: 1, name: 'One' },
+    { id: 2, name: 'Two' },
+  ]"
   option-value="id"
   option-label="name"
   type="number"

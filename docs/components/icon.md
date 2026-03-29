@@ -21,8 +21,7 @@ import { Icon } from '../../src'
 </ComponentDemo>
 
 ```vue
-// Basic usage
-import { Icon } from 'vuiii'
+// Basic usage import { Icon } from 'vuiii'
 
 <Icon name="check" />
 <Icon name="user" size="large" />
@@ -38,27 +37,19 @@ import { Icon } from 'vuiii'
 ```
 
 ```vue
-// Register custom icon resolver (typically in app setup)
-import { registerCustomIconResolver } from 'vuiii'
-import { defineAsyncComponent } from 'vue'
-
-registerCustomIconResolver((name) => {
-  return defineAsyncComponent(() => import(`./icons/${name}.vue`))
-})
+// Register custom icon resolver (typically in app setup) import { registerCustomIconResolver } from 'vuiii' import {
+defineAsyncComponent } from 'vue' registerCustomIconResolver((name) => { return defineAsyncComponent(() =>
+import(`./icons/${name}.vue`)) })
 ```
 
 ```vue
-// With Heroicons
-import * as HeroIcons from '@heroicons/vue/24/outline'
-
-registerCustomIconResolver((name) => {
-  const pascalName = name.split('-').map(s => s[0].toUpperCase() + s.slice(1)).join('') + 'Icon'
-  return HeroIcons[pascalName]
-})
-
+// With Heroicons import * as HeroIcons from '@heroicons/vue/24/outline' registerCustomIconResolver((name) => { const
+pascalName = name.split('-').map(s => s[0].toUpperCase() + s.slice(1)).join('') + 'Icon' return HeroIcons[pascalName] })
 // Then use in templates
-<Icon name="user" />      // resolves to UserIcon
-<Icon name="check" />     // resolves to CheckIcon
+<Icon name="user" />
+// resolves to UserIcon
+<Icon name="check" />
+// resolves to CheckIcon
 ```
 
 ::: tip Storybook

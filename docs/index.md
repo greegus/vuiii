@@ -2,8 +2,8 @@
 layout: home
 
 hero:
-  name: "VUIII"
-  text: "Vue 3 Component Library"
+  name: 'VUIII'
+  text: 'Vue 3 Component Library'
   tagline: A comprehensive set of UI components, composables, and utilities for building modern web applications.
   actions:
     - theme: brand
@@ -28,8 +28,8 @@ npm install vuiii
 Import components and styles:
 
 ```typescript
-import { Button, Input, Select, FormFields } from "vuiii";
-import "vuiii/style.css";
+import { Button, Input, Select, FormFields } from 'vuiii'
+import 'vuiii/style.css'
 ```
 
 Use in your Vue app:

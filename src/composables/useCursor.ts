@@ -1,4 +1,4 @@
-import { computed, type Ref, ref, unref, watch } from "vue";
+import { computed, type Ref, ref, unref, watch } from 'vue'
 
 /**
  * Manages cursor position for navigating through arrays.
@@ -46,31 +46,31 @@ export function useCursor<T = unknown>(
   items: Ref<T[]> | T[],
   options: { cycle?: boolean; onCursorMove?: () => void } = {},
 ) {
-  const cursorIndex = ref(0);
+  const cursorIndex = ref(0)
 
-  const cursorItem = computed(() => unref(items)[cursorIndex.value]);
+  const cursorItem = computed(() => unref(items)[cursorIndex.value])
 
   const moveCursorForward = () => {
-    const nextCursorIndex = cursorIndex.value + 1;
-    const itemsLength = unref(items).length;
+    const nextCursorIndex = cursorIndex.value + 1
+    const itemsLength = unref(items).length
 
-    cursorIndex.value = options.cycle ? nextCursorIndex % itemsLength : Math.min(nextCursorIndex, itemsLength - 1);
-  };
+    cursorIndex.value = options.cycle ? nextCursorIndex % itemsLength : Math.min(nextCursorIndex, itemsLength - 1)
+  }
 
   const moveCursorBack = () => {
-    const nextCursorIndex = cursorIndex.value - 1;
-    const itemsLength = unref(items).length;
+    const nextCursorIndex = cursorIndex.value - 1
+    const itemsLength = unref(items).length
 
-    cursorIndex.value = options.cycle ? (nextCursorIndex + itemsLength) % itemsLength : Math.max(nextCursorIndex, 0);
-  };
+    cursorIndex.value = options.cycle ? (nextCursorIndex + itemsLength) % itemsLength : Math.max(nextCursorIndex, 0)
+  }
 
   const resetCursor = () => {
-    cursorIndex.value = 0;
-  };
+    cursorIndex.value = 0
+  }
 
-  watch(cursorIndex, () => options.onCursorMove?.());
+  watch(cursorIndex, () => options.onCursorMove?.())
 
-  watch(() => unref(items).length, resetCursor);
+  watch(() => unref(items).length, resetCursor)
 
   return {
     cursorIndex,
@@ -78,5 +78,5 @@ export function useCursor<T = unknown>(
     moveCursorForward,
     moveCursorBack,
     resetCursor,
-  };
+  }
 }

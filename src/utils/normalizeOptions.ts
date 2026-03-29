@@ -63,41 +63,41 @@
  * :option-disabled="(item) => item.status === 'inactive'"
  * ```
  */
-import type { Extractor, Option, OptionGroup } from "../types";
+import type { Extractor, Option, OptionGroup } from '../types'
 
-type Stringifier = (value: any) => string;
+type Stringifier = (value: any) => string
 
 /**
  * Extracts a value from an item using an extractor (key, index, or function).
  * @internal
  */
 export function retrieveValue(item: any, extractor?: Extractor): any {
-  if (typeof extractor === "function") {
-    return extractor(item);
+  if (typeof extractor === 'function') {
+    return extractor(item)
   }
 
   if (extractor) {
-    return item[extractor];
+    return item[extractor]
   }
 
-  return item;
+  return item
 }
 
 export function normalizeOption(
   item: any,
   extractors: {
-    value?: Extractor;
-    label?: Extractor;
-    disabled?: Extractor;
-    description?: Extractor;
-    icon?: Extractor;
-    stringifyValue?: Stringifier;
+    value?: Extractor
+    label?: Extractor
+    disabled?: Extractor
+    description?: Extractor
+    icon?: Extractor
+    stringifyValue?: Stringifier
   } = {},
   selectedValue?: any,
 ): Option {
-  const stringifyValue = extractors.stringifyValue || String;
+  const stringifyValue = extractors.stringifyValue || String
 
-  const value = stringifyValue(retrieveValue(item, extractors.value));
+  const value = stringifyValue(retrieveValue(item, extractors.value))
 
   return {
     value,
@@ -107,7 +107,7 @@ export function normalizeOption(
     icon: extractors.icon && retrieveValue(item, extractors.icon),
     isSelected: selectedValue === undefined ? undefined : value === stringifyValue(selectedValue),
     data: item,
-  };
+  }
 }
 
 /**
@@ -149,43 +149,43 @@ export function normalizeOption(
 export function normalizeOptions(
   items: any[] | { [value: string | number]: string },
   extractors: {
-    value?: Extractor;
-    label?: Extractor;
-    disabled?: Extractor;
-    description?: Extractor;
-    icon?: Extractor;
-    stringifyValue?: Stringifier;
+    value?: Extractor
+    label?: Extractor
+    disabled?: Extractor
+    description?: Extractor
+    icon?: Extractor
+    stringifyValue?: Stringifier
   } = {},
   selectedValue?: any,
 ): Option[] {
   if (Array.isArray(items)) {
-    return items.map((item) => normalizeOption(item, extractors, selectedValue));
+    return items.map((item) => normalizeOption(item, extractors, selectedValue))
   }
 
-  if (typeof items === "object" && items !== null) {
+  if (typeof items === 'object' && items !== null) {
     return Object.entries(items || {}).reduce((options, [value, label]) => {
       return options.concat({
         ...normalizeOption(value, extractors, selectedValue),
         label,
         data: value,
-      });
-    }, [] as Option[]);
+      })
+    }, [] as Option[])
   }
 
-  return [];
+  return []
 }
 
 export function normalizeGroups(
   items: any[] | { [label: string]: any[] },
   extractors: {
-    groupLabel?: Extractor;
-    groupOptions?: Extractor;
-    value?: Extractor;
-    label?: Extractor;
-    disabled?: Extractor;
-    description?: Extractor;
-    icon?: Extractor;
-    stringifyValue?: Stringifier;
+    groupLabel?: Extractor
+    groupOptions?: Extractor
+    value?: Extractor
+    label?: Extractor
+    disabled?: Extractor
+    description?: Extractor
+    icon?: Extractor
+    stringifyValue?: Stringifier
   } = {},
   selectedValue?: any,
 ): OptionGroup[] {
@@ -193,16 +193,16 @@ export function normalizeGroups(
     return items.map((group) => ({
       label: retrieveValue(group, extractors.groupLabel),
       options: normalizeOptions(retrieveValue(group, extractors.groupOptions), extractors, selectedValue),
-    }));
+    }))
   }
 
-  if (typeof items === "object" && items !== null) {
+  if (typeof items === 'object' && items !== null) {
     return Object.entries(items || {}).reduce(
       (groups, [label, options]) =>
         groups.concat({ label, options: normalizeOptions(options, extractors, selectedValue) }),
       [] as OptionGroup[],
-    );
+    )
   }
 
-  return [];
+  return []
 }

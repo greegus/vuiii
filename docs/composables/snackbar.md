@@ -36,4 +36,3 @@ snackbar.success('Item saved!')
 // Show error message
 snackbar.error('Failed to save item')
 ```
-

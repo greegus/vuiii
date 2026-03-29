@@ -34,17 +34,12 @@ Use extractor props to specify which properties to use for value and label.
 const countries = [
   { code: 'us', name: 'United States' },
   { code: 'uk', name: 'United Kingdom' },
-  { code: 'de', name: 'Germany' }
+  { code: 'de', name: 'Germany' },
 ]
 ```
 
 ```vue
-<Select
-  v-model="country"
-  :options="countries"
-  option-value="code"
-  option-label="name"
-/>
+<Select v-model="country" :options="countries" option-value="code" option-label="name" />
 ```
 
 ### Key-Value Object
@@ -55,7 +50,7 @@ Keys become values, values become labels.
 const statuses = {
   draft: 'Draft',
   published: 'Published',
-  archived: 'Archived'
+  archived: 'Archived',
 }
 ```
 
@@ -74,16 +69,16 @@ const vehicles = [
     category: 'Cars',
     items: [
       { id: 1, name: 'Sedan' },
-      { id: 2, name: 'SUV' }
-    ]
+      { id: 2, name: 'SUV' },
+    ],
   },
   {
     category: 'Bikes',
     items: [
       { id: 3, name: 'Mountain' },
-      { id: 4, name: 'Road' }
-    ]
-  }
+      { id: 4, name: 'Road' },
+    ],
+  },
 ]
 ```
 
@@ -100,15 +95,15 @@ const vehicles = [
 
 ## Extractor Props Reference
 
-| Prop | Type | Description | Components |
-|------|------|-------------|------------|
-| `option-value` | `string \| Function` | Extracts the value from each option | All |
-| `option-label` | `string \| Function` | Extracts the display label | All |
-| `option-disabled` | `string \| Function` | Determines if option is disabled | All |
-| `option-description` | `string \| Function` | Extracts description/helper text | RadioGroup, CheckboxGroup, Autocomplete, RadioButtonGroup |
-| `option-icon` | `string \| Function` | Extracts icon name | Autocomplete, RadioButtonGroup |
-| `group-label` | `string \| Function` | Extracts group label | Select, Autocomplete |
-| `group-options` | `string \| Function` | Extracts array of options from group | Select, Autocomplete |
+| Prop                 | Type                 | Description                          | Components                                                |
+| -------------------- | -------------------- | ------------------------------------ | --------------------------------------------------------- |
+| `option-value`       | `string \| Function` | Extracts the value from each option  | All                                                       |
+| `option-label`       | `string \| Function` | Extracts the display label           | All                                                       |
+| `option-disabled`    | `string \| Function` | Determines if option is disabled     | All                                                       |
+| `option-description` | `string \| Function` | Extracts description/helper text     | RadioGroup, CheckboxGroup, Autocomplete, RadioButtonGroup |
+| `option-icon`        | `string \| Function` | Extracts icon name                   | Autocomplete, RadioButtonGroup                            |
+| `group-label`        | `string \| Function` | Extracts group label                 | Select, Autocomplete                                      |
+| `group-options`      | `string \| Function` | Extracts array of options from group | Select, Autocomplete                                      |
 
 ## Using Function Extractors
 
@@ -141,7 +136,10 @@ By default, option values are strings. Use the `type` prop to parse values as di
 <!-- Values will be numbers -->
 <Select
   v-model="count"
-  :options="[{ id: 1, name: 'One' }, { id: 2, name: 'Two' }]"
+  :options="[
+    { id: 1, name: 'One' },
+    { id: 2, name: 'Two' },
+  ]"
   option-value="id"
   option-label="name"
   type="number"
@@ -152,7 +150,7 @@ By default, option values are strings. Use the `type` prop to parse values as di
   v-model="enabled"
   :options="[
     { value: true, label: 'Enabled' },
-    { value: false, label: 'Disabled' }
+    { value: false, label: 'Disabled' },
   ]"
   option-value="value"
   option-label="label"
@@ -172,7 +170,7 @@ import { Select, CheckboxGroup, RadioGroup } from 'vuiii'
 const users = [
   { id: 1, firstName: 'John', lastName: 'Doe', role: 'admin', active: true },
   { id: 2, firstName: 'Jane', lastName: 'Smith', role: 'user', active: true },
-  { id: 3, firstName: 'Bob', lastName: 'Wilson', role: 'user', active: false }
+  { id: 3, firstName: 'Bob', lastName: 'Wilson', role: 'user', active: false },
 ]
 
 const selectedUser = ref(null)
@@ -195,7 +193,7 @@ const selectedRoles = ref([])
     :options="[
       { value: 'admin', label: 'Administrator', desc: 'Full access' },
       { value: 'user', label: 'User', desc: 'Limited access' },
-      { value: 'guest', label: 'Guest', desc: 'Read only' }
+      { value: 'guest', label: 'Guest', desc: 'Read only' },
     ]"
     option-value="value"
     option-label="label"

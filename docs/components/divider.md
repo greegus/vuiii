@@ -21,8 +21,7 @@ import { Divider } from '../../src'
 </ComponentDemo>
 
 ```vue
-// Horizontal divider (default)
-import { Divider } from 'vuiii'
+// Horizontal divider (default) import { Divider } from 'vuiii'
 
 <div>Section 1</div>
 <Divider />
@@ -41,14 +40,8 @@ import { Divider } from 'vuiii'
 ```
 
 ```vue
-// In FormFields (using FORM_DIVIDER constant)
-import { FORM_DIVIDER } from 'vuiii'
-
-const fields = [
-  { name: 'name', component: Input, label: 'Name' },
-  FORM_DIVIDER,
-  { name: 'email', component: Input, label: 'Email' }
-]
+// In FormFields (using FORM_DIVIDER constant) import { FORM_DIVIDER } from 'vuiii' const fields = [ { name: 'name',
+component: Input, label: 'Name' }, FORM_DIVIDER, { name: 'email', component: Input, label: 'Email' } ]
 ```
 
 ::: tip Storybook

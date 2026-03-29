@@ -70,14 +70,14 @@ export function useDropArea(
     accept?: string[] | string
     multiple?: boolean
     onError?: (error: unknown) => void
-  } = {}
+  } = {},
 ): {
   isDropzoneActive: Ref<boolean>
 } {
   const isDropzoneActive = ref(false)
 
   const normalizedAccept = computed<string[] | undefined>(() => {
-    return Array.isArray(options.accept) ? options.accept : options.accept?.split(',').map(type => type.trim())
+    return Array.isArray(options.accept) ? options.accept : options.accept?.split(',').map((type) => type.trim())
   })
 
   const setDropzoneActive = debounce((value: boolean) => (isDropzoneActive.value = value), 1)

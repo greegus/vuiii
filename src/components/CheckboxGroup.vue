@@ -75,37 +75,37 @@
  *
  * @slot symbol - Custom checkbox symbol. Props: { checked, disabled }
  */
-import { computed } from "vue";
+import { computed } from 'vue'
 
-import Checkbox from "@/components/Checkbox.vue";
-import type { Extractor, Option, ValueParser } from "@/types";
-import { createTypeParser } from "@/utils/createTypeParser";
-import { normalizeOptions } from "@/utils/normalizeOptions";
+import Checkbox from '@/components/Checkbox.vue'
+import type { Extractor, Option, ValueParser } from '@/types'
+import { createTypeParser } from '@/utils/createTypeParser'
+import { normalizeOptions } from '@/utils/normalizeOptions'
 
-const modelValue = defineModel<any[]>();
+const modelValue = defineModel<any[]>()
 
 const props = withDefaults(
   defineProps<{
-    options: any[] | any;
-    optionLabel?: Extractor;
-    optionValue?: Extractor;
-    optionDisabled?: Extractor;
-    optionDescription?: Extractor;
-    valueParser?: ValueParser;
-    type?: "string" | "number" | "boolean" | "date";
-    inline?: boolean;
+    options: any[] | any
+    optionLabel?: Extractor
+    optionValue?: Extractor
+    optionDisabled?: Extractor
+    optionDescription?: Extractor
+    valueParser?: ValueParser
+    type?: 'string' | 'number' | 'boolean' | 'date'
+    inline?: boolean
   }>(),
   {},
-);
+)
 
 defineSlots<{
-  default?: void;
-  symbol?: (props: { checked: boolean; disabled: boolean }) => any;
-}>();
+  default?: void
+  symbol?: (props: { checked: boolean; disabled: boolean }) => any
+}>()
 
 const valueParser = computed(() => {
-  return props.valueParser || createTypeParser(props.type);
-});
+  return props.valueParser || createTypeParser(props.type)
+})
 
 const normalizedOptions = computed<Option[]>(() => {
   return normalizeOptions(props.options, {
@@ -114,25 +114,25 @@ const normalizedOptions = computed<Option[]>(() => {
     disabled: props.optionDisabled,
     description: props.optionDescription,
     stringifyValue: valueParser.value.stringify,
-  });
-});
+  })
+})
 
 const checkedValues = computed<Set<string | number>>(() => {
-  return new Set(modelValue.value);
-});
+  return new Set(modelValue.value)
+})
 
 const toggleCheckedValue = (value: any, checked: boolean) => {
-  const newCheckedValues = new Set(checkedValues.value.values());
-  const parsedValue = valueParser.value.parse(value);
+  const newCheckedValues = new Set(checkedValues.value.values())
+  const parsedValue = valueParser.value.parse(value)
 
   if (checked) {
-    newCheckedValues.add(parsedValue);
+    newCheckedValues.add(parsedValue)
   } else {
-    newCheckedValues.delete(parsedValue);
+    newCheckedValues.delete(parsedValue)
   }
 
-  modelValue.value = Array.from(newCheckedValues);
-};
+  modelValue.value = Array.from(newCheckedValues)
+}
 </script>
 
 <style scoped>

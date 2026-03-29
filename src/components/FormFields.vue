@@ -129,87 +129,88 @@
  * @slot field:{fieldName} - Custom render slot for a specific field. Receives field config and index.
  *   @example <template #field:email="{ name, label, index }">Custom email input</template>
  */
-import { computed } from "vue";
+import { computed } from 'vue'
 
-import FormGroup from "@/components/FormGroup.vue";
-import Divider from "@/components/Divider.vue";
-import type { FormField, FormFieldOrRow, ObjectKeyOrAnyString, ValidationFieldResults } from "@/types";
-import { FORM_DIVIDER } from "@/types";
+import Divider from '@/components/Divider.vue'
+import FormGroup from '@/components/FormGroup.vue'
+import type { FormField, FormFieldOrRow, ObjectKeyOrAnyString, ValidationFieldResults } from '@/types'
+import { FORM_DIVIDER } from '@/types'
 
 const props = withDefaults(
   defineProps<{
-    fields: FormFieldOrRow<Data>[];
-    modelValue: any;
-    validationResults?: Partial<Record<ObjectKeyOrAnyString<Data>, ValidationFieldResults>>;
-    orientation?: "vertical" | "horizontal";
+    fields: FormFieldOrRow<Data>[]
+    modelValue: any
+    validationResults?: Partial<Record<ObjectKeyOrAnyString<Data>, ValidationFieldResults>>
+    orientation?: 'vertical' | 'horizontal'
   }>(),
   {
-    orientation: "vertical",
-  }
-);
+    orientation: 'vertical',
+  },
+)
 
 const emit = defineEmits<{
-  "update:model-value": [value: any];
-}>();
+  'update:model-value': [value: any]
+}>()
 
 // Get opposite orientation for nested arrays
-const oppositeOrientation = computed(() => (props.orientation === "vertical" ? "horizontal" : "vertical"));
+const oppositeOrientation = computed(() => (props.orientation === 'vertical' ? 'horizontal' : 'vertical'))
 
 // Helper for Vue keys
 const getItemKey = (item: FormFieldOrRow<Data>, index: number): string => {
   if (Array.isArray(item)) {
-    return item.map((f) => f.name).join("|");
+    return item.map((f) => f.name).join('|')
   }
   if (item === FORM_DIVIDER) {
-    return `divider-${index}`;
+    return `divider-${index}`
   }
-  return String(item.name);
-};
+  return String(item.name)
+}
 
 // Helper to normalize required prop
 const normalizeRequired = (field: FormField<Data>): boolean => {
-  return Boolean(resolveIfComputed(field.name, field.required));
-};
+  return Boolean(resolveIfComputed(field.name, field.required))
+}
 
 // Helper to normalize disabled prop
 const normalizeDisabled = (field: FormField<Data>): boolean => {
-  return Boolean(resolveIfComputed(field.name, field.disabled));
-};
+  return Boolean(resolveIfComputed(field.name, field.disabled))
+}
 
 const fieldsByName = computed(() => {
-  const flatFields: FormField<Data>[] = [];
+  const flatFields: FormField<Data>[] = []
   props.fields.forEach((item) => {
     if (Array.isArray(item)) {
-      flatFields.push(...item);
+      flatFields.push(...item)
     } else if (item !== FORM_DIVIDER) {
-      flatFields.push(item);
+      flatFields.push(item)
     }
     // Skip dividers - they don't have values
-  });
-  return new Map<FormField<Data>["name"], FormField<Data>>(flatFields.map((field) => [field.name, field]));
-});
+  })
+  return new Map<FormField<Data>['name'], FormField<Data>>(flatFields.map((field) => [field.name, field]))
+})
 
-const getFieldValue = (name: FormField<Data>["name"]): unknown => {
-  const getter = fieldsByName.value.get(name)!.value?.getter || ((modelValue: Data) => modelValue[name as keyof Data]);
+const getFieldValue = (name: FormField<Data>['name']): unknown => {
+  const getter = fieldsByName.value.get(name)!.value?.getter || ((modelValue: Data) => modelValue[name as keyof Data])
 
-  return getter(props.modelValue);
-};
+  return getter(props.modelValue)
+}
 
-const setFieldValue = (name: FormField<Data>["name"], value: unknown): void => {
+const setFieldValue = (name: FormField<Data>['name'], value: unknown): void => {
   const setter =
-    fieldsByName.value.get(name)!.value?.setter || ((value: unknown, modelValue: Data) => ({ ...modelValue, [name]: value }));
-  const modelValue = setter(value, props.modelValue);
+    fieldsByName.value.get(name)!.value?.setter ||
+    ((value: unknown, modelValue: Data) => ({ ...modelValue, [name]: value }))
+  const modelValue = setter(value, props.modelValue)
 
-  emit("update:model-value", modelValue);
-};
+  emit('update:model-value', modelValue)
+}
 
-const resolveIfComputed = <T = any,>(name: ObjectKeyOrAnyString<T>, property: any): T => {
-  if (typeof property === "function") {
-    return (property as any)?.(props.modelValue[name]);
+const resolveIfComputed = <T = any>(name: ObjectKeyOrAnyString<T>, property: any): T => {
+  if (typeof property === 'function') {
+    return (property as any)?.(props.modelValue[name])
   }
 
-  return property as T;
-};
+  return property as T
+}
 </script>
 
 <style scoped>

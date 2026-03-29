@@ -21,8 +21,7 @@ import { Textarea } from '../../src'
 </ComponentDemo>
 
 ```vue
-// Basic usage
-import { Textarea } from 'vuiii'
+// Basic usage import { Textarea } from 'vuiii'
 
 <Textarea v-model="description" placeholder="Enter description..." />
 ```
@@ -31,11 +30,7 @@ import { Textarea } from 'vuiii'
 
 ```vue
 // With rows and placeholder
-<Textarea
-  v-model="content"
-  placeholder="Write your message..."
-  rows="5"
-/>
+<Textarea v-model="content" placeholder="Write your message..." rows="5" />
 ```
 
 ```vue

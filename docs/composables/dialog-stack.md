@@ -39,4 +39,3 @@ if (confirmed) {
   deleteItem()
 }
 ```
-

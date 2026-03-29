@@ -21,8 +21,7 @@ import { FormGroup } from '../../src'
 </ComponentDemo>
 
 ```vue
-// Basic usage with label
-import { FormGroup, Input } from 'vuiii'
+// Basic usage with label import { FormGroup, Input } from 'vuiii'
 
 <FormGroup label="Email">
   <Input v-model="email" type="email" />
@@ -44,11 +43,7 @@ import { FormGroup, Input } from 'vuiii'
 
 ```vue
 // With required indicator and validation error
-<FormGroup
-  label="Username"
-  required
-  :error="errors.username"
->
+<FormGroup label="Username" required :error="errors.username">
   <Input v-model="username" :invalid="!!errors.username" />
 </FormGroup>
 ```

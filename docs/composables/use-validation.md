@@ -30,8 +30,8 @@ function validateForm(data: FormData): ValidationResults<FormData> {
     errorMessages: errors,
     validatedFields: {
       email: { isInvalid: !!errors.email, errorMessage: errors.email },
-      password: { isInvalid: !!errors.password, errorMessage: errors.password }
-    }
+      password: { isInvalid: !!errors.password, errorMessage: errors.password },
+    },
   }
 }
 
@@ -67,4 +67,3 @@ const { validate, isValidating } = useValidation(
 // isValidating is true while validation is in progress
 <Button :loading="isValidating" @click="validate(data)">Validate</Button>
 ```
-

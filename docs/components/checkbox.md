@@ -21,8 +21,7 @@ import { Checkbox } from '../../src'
 </ComponentDemo>
 
 ```vue
-// Basic usage
-import { Checkbox } from 'vuiii'
+// Basic usage import { Checkbox } from 'vuiii'
 
 <Checkbox v-model="accepted" label="I accept the terms" />
 ```
@@ -36,11 +35,7 @@ import { Checkbox } from 'vuiii'
 
 ```vue
 // With description
-<Checkbox
-  v-model="newsletter"
-  label="Subscribe to newsletter"
-  description="Get weekly updates about new features"
-/>
+<Checkbox v-model="newsletter" label="Subscribe to newsletter" description="Get weekly updates about new features" />
 ```
 
 ```vue

@@ -44,23 +44,23 @@
  * <Icon name="user" />      // resolves to UserIcon
  * <Icon name="check" />     // resolves to CheckIcon
  */
-import { shallowRef, watch } from "vue";
+import { shallowRef, watch } from 'vue'
 
-import type { IconSize } from "@/types";
-import { type IconComponent, resolveIconComponent } from "@/utils/iconsResolver";
+import type { IconSize } from '@/types'
+import { type IconComponent, resolveIconComponent } from '@/utils/iconsResolver'
 
 const props = defineProps<{
-  name: string;
-  size?: IconSize;
-}>();
+  name: string
+  size?: IconSize
+}>()
 
-const component = shallowRef<IconComponent>(undefined);
+const component = shallowRef<IconComponent>(undefined)
 
 watch(
   () => props.name,
   () => (component.value = resolveIconComponent(props.name)),
   { immediate: true },
-);
+)
 </script>
 
 <style scoped>
