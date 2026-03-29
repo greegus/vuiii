@@ -294,8 +294,8 @@ export const Colors: StoryObj = {
             <ColorSwatch name="Danger Darker" cssVar="--vuiii-color-danger--darker" value="color-mix 95% black" />
             <ColorSwatch name="Success" cssVar="--vuiii-color-success" value="rgb(77 124 15) — lime.700" />
             <ColorSwatch name="Success Darker" cssVar="--vuiii-color-success--darker" value="color-mix 95% black" />
-            <ColorSwatch name="Warning" cssVar="--ui-color-warning" value="rgb(234 179 8) — amber.400" />
-            <ColorSwatch name="Warning Darker" cssVar="--ui-color-warning--darker" value="color-mix 95% black" />
+            <ColorSwatch name="Warning" cssVar="--vuiii-color-warning" value="rgb(234 179 8) — amber.400" />
+            <ColorSwatch name="Warning Darker" cssVar="--vuiii-color-warning--darker" value="color-mix 95% black" />
           </div>
         </section>
 
@@ -958,8 +958,8 @@ export const AllTokens: StoryObj = {
         { name: '--vuiii-color-primary--darkest', value: 'color-mix(in srgb, var(--vuiii-color-primary) 85%, black)' },
         { name: '--vuiii-color-danger', value: 'rgb(225 29 72)' },
         { name: '--vuiii-color-danger--darker', value: 'color-mix(in srgb, var(--vuiii-color-danger) 95%, black)' },
-        { name: '--ui-color-warning', value: 'rgb(234, 179, 8)' },
-        { name: '--ui-color-warning--darker', value: 'color-mix(in srgb, var(--ui-color-warning) 95%, black)' },
+        { name: '--vuiii-color-warning', value: 'rgb(234, 179, 8)' },
+        { name: '--vuiii-color-warning--darker', value: 'color-mix(in srgb, var(--vuiii-color-warning) 95%, black)' },
         { name: '--vuiii-color-success', value: 'rgb(77 124 15)' },
         { name: '--vuiii-color-success--darker', value: 'color-mix(in srgb, var(--vuiii-color-success) 95%, black)' },
         { name: '--vuiii-shadow', value: '0 1px 3px 0 rgb(0 0 0/0.1), 0 1px 2px -1px rgb(0 0 0/0.1)' },

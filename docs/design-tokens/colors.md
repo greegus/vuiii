@@ -49,14 +49,10 @@ Color tokens define the visual palette for VUIII components.
 
 ### Warning
 
-| Token                        | Value                                                    | Description            |
-| ---------------------------- | -------------------------------------------------------- | ---------------------- |
-| `--ui-color-warning`         | `rgb(234 179 8)`                                         | Warning states (amber) |
-| `--ui-color-warning--darker` | `color-mix(in srgb, var(--ui-color-warning) 95%, black)` | Hover state            |
-
-::: warning Note
-The warning color uses `--ui-color-warning` prefix instead of `--vuiii-color-warning` for historical reasons.
-:::
+| Token                            | Value                                                        | Description            |
+| -------------------------------- | ------------------------------------------------------------ | ---------------------- |
+| `--vuiii-color-warning`          | `rgb(234 179 8)`                                             | Warning states (amber) |
+| `--vuiii-color-warning--darker`  | `color-mix(in srgb, var(--vuiii-color-warning) 95%, black)`  | Hover state            |
 
 ## Shadows
 
