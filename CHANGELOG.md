@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.1
+
+- The published package no longer contains type declarations for Storybook-only files
+  (`dist/stories/**`). Nothing in the public API ever referenced them, so this removes unused
+  files from the package rather than changing anything consumers could import.
+
 ## 1.2.0
 
 - `usePageFromRouteQuery` accepts a `replace` option and forwards it to `useRouteQuery`, so paging
