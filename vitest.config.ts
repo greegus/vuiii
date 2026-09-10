@@ -14,6 +14,9 @@ export default defineConfig({
 
   test: {
     environment: 'jsdom',
+    // Constructing jsdom per test file dominated the run. vmThreads builds one jsdom per worker
+    // and gives each file a fresh VM context and `window`, so per-file isolation is preserved.
+    pool: 'vmThreads',
     include: ['src/**/*.{test,spec}.ts'],
     coverage: {
       provider: 'v8',
