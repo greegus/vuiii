@@ -63,7 +63,7 @@
  *   }
  * })
  */
-import { type Component, computed, markRaw, ref } from 'vue'
+import { type Component, computed, markRaw, type Ref, ref } from 'vue'
 
 import { DialogLayout } from './index'
 import type { ButtonColor, DialogLayoutButton } from './types'
@@ -123,7 +123,9 @@ const config = defaultConfig
 
 const iteration = ref<number>(1)
 
-export const dialogs = ref<Dialog[]>([])
+// Annotated on purpose: without it vue-tsc infers `Ref<{...}>` and expands Vue's `Component`
+// type structurally, which alone accounted for 23 kB of the emitted declarations.
+export const dialogs: Ref<Dialog[]> = ref<Dialog[]>([])
 export const activeDialog = computed(() => dialogs.value[dialogs.value.length - 1])
 
 const getId = (): number => {
