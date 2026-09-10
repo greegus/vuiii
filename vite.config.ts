@@ -5,7 +5,16 @@ import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 
 export default defineConfig({
-  plugins: [vue(), dts({ tsconfigPath: './tsconfig.app.json' })],
+  plugins: [
+    vue(),
+    dts({
+      tsconfigPath: './tsconfig.app.json',
+      // Storybook-only files are not part of the public API, so they must not reach `dist`.
+      // This overrides the tsconfig `exclude`, which deliberately keeps `src/stories` in scope
+      // so the story assets and helpers are still type-checked by `npm run type-check`.
+      exclude: ['src/**/__tests__/**', 'src/stories/**'],
+    }),
+  ],
 
   build: {
     lib: {
