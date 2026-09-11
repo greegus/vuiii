@@ -16,6 +16,10 @@ export default defineConfig({
     }),
   ],
 
+  // The lib build has no use for `public/` — copying it only put an unreferenced favicon.ico
+  // into `dist`, and so into the published package.
+  publicDir: false,
+
   build: {
     lib: {
       entry: resolve(import.meta.dirname, 'src/index.ts'),
