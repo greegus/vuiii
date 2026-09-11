@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.2.2
+
+- The published package is 4.8% smaller (74.3 kB → 70.8 kB). `dialogs` in the dialog stack is now
+  explicitly typed, which stops an inferred type from expanding Vue's `Component` structurally and
+  cuts the emitted declarations by 19%; the lib build no longer copies `public/favicon.ico` into
+  `dist`; and two utilities that nothing referenced were removed. No API or runtime change —
+  `vuiii.js` and `vuiii.css` are byte-identical to 1.2.1.
+
 ## 1.2.1
 
 - The published package no longer contains type declarations for Storybook-only files
